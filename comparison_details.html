@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Open source Unix automation</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <!-- This text was in "comparison.haml" but was just too angry and long, so I'm hiding it for now. -->
+                <h1>Philosophical differences</h1>
+                <h2>Standing on the shoulders of giants</h2>
+                <p>Mark Burgess&#8217; <a href="http://cfengine.org/">Cfengine</a> set the gold standard for system configuration management tools. Luke Kanies&#8217; <a href="http://reductivelabs.com/trac/puppet">Puppet</a> provides some incremental improvements to Cfengine, along with some peculiar constraints. Mark and Luke have done a fantastic service to the community by making automated system administration a reality and preaching its gospel.</p>
+                <h2>Minimalism can breed complexity</h2>
+                <p>Cfengine and Puppet are designed as minimalistic, special-purpose declarative languages. They&#8217;re used to describe the expected state of a system with dependency graphs and targets, and the tool figures out how to create this desired state.</p>
+                <p>Unfortunately, these tools are too simplistic to handle many typical system administration tasks in a reasonable way. Recipes for even trivial tasks become so convoluted that it&#8217;s unclear what the recipe is doing or what order its actions are executed in.</p>
+                <p>Worse still, these tools deliberately refuse to do many things that typical users need because of these minimalistic principles. Users are forced to write elaborate hacks to get around these limitations, which negates much of the value these tools provide. For example, many Cfengine configurations rely on thousands of lines of custom-crafted code generators and external programs to accomplish what should have been trivial tasks.</p>
+                <p>The irony is that these tools were supposed to be simple, elegant and easy for anyone to understand &#8212; but in the real world, even moderately complex recipes are so convoluted that only gurus can work with them effectively.</p>
+                <h2>The power to simplify</h2>
+                <p>AutomateIt approaches the configuration management challenge from an entirely different angle. It includes all the basic features of Cfengine and Puppet, plus many more &#8212; but it provides them in the form of a library for a conventional programming language, utility programs, and an interactive shell.</p>
+                <p>This approach dramatically improves AutomateIt&#8217;s power and clarity. Its recipes and programming approach will be familiar to anyone that&#8217;s written a shell script. Commands are executed in a predictable order. Conventional programming features are available and used for their intended purposes.</p>
+                <h2>Clear code and logical flow</h2>
+                <p>For example, the following AutomateIt recipe is entirely obvious and there&#8217;s no doubt about what order the commands run in:</p>
+                <div class='scraped'>
+                  <pre><font color="#9a94c8"># AutomateIt -- note that you'd normally use 'puts' rather than shell echo.</font>&#x000A;&#x000A;sh <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">echo 'Hello!'</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;&#x000A;<font color="#90ee90">if</font> mkdir(<font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">/tmp/mydir</font></span><font color="#66cdaa"><b>&quot;</b></font>)&#x000A;  sh <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">echo 'I made a directory!'</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;<font color="#90ee90">else</font>&#x000A;  sh <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">echo 'The directory is already present.</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;<font color="#90ee90">end</font>&#x000A;&#x000A;sh <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">echo 'Goodbye!'</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;</pre>&#x000A;
+                </div>
+                <p>In contrast, Cfengine is so minimalistic that doesn&#8217;t have an <code>if</code> statement and can&#8217;t execute commands in linear order. Users have to simulate this by predeclaring all possible variable conditions, specifying a sequence, dynamically creating classes, crafting restriction stanzas to check for the precense of classes because it&#8217;ll re-execute certain sections multiple times (e.g., it runs the <code>shellcommands</code> twice in the example below), etc. How is this needless complexity minimalistic? The resulting code is a confused mess and will get much uglier if this weren&#8217;t just a trivial example:</p>
+                <div class='scraped'>
+                  <pre><font color="#9a94c8"># Cfengine</font>&#x000A;&#x000A;<font color="#87ceff">control</font>:&#x000A;  <font color="#90ee90">actionsequence</font> = <font color="#66cdaa"><b>( </b></font><font color="#87ceff">shellcommands</font>.first <font color="#87ceff">files</font> <font color="#87ceff">shellcommands</font>.second<font color="#66cdaa"><b> )</b></font>&#x000A;  <font color="#90ee90">addinstallable</font> = <font color="#66cdaa"><b>( </b></font>changed<font color="#66cdaa"><b> )</b></font>&#x000A;&#x000A;<font color="#87ceff">files</font>:&#x000A;  /tmp/mydir/. <font color="#90ee90">act</font>=<span style="background-color: #103040"><font color="#00cdcd">fixdirs</font></span> <font color="#90ee90">define</font>=changed&#x000A;&#x000A;<font color="#87ceff">shellcommands</font>:&#x000A;<font color="#add8e6">  first::</font>&#x000A;    <span style="background-color: #103040"><font color="#00e5ee">&quot;echo 'Hello!'&quot;</font></span> noabspath=<span style="background-color: #103040"><font color="#00cdcd">true</font></span>&#x000A;<font color="#add8e6">  second.changed::</font>&#x000A;    <span style="background-color: #103040"><font color="#00e5ee">&quot;echo 'I made a directory!'&quot;</font></span> noabspath=<span style="background-color: #103040"><font color="#00cdcd">true</font></span>&#x000A;<font color="#add8e6">  second.!changed::</font>&#x000A;    <span style="background-color: #103040"><font color="#00e5ee">&quot;echo 'The directory is already present.&quot;</font></span> noabspath=<span style="background-color: #103040"><font color="#00cdcd">true</font></span>&#x000A;<font color="#add8e6">  second::</font>&#x000A;</pre>&#x000A;
+                </div>
+                <h2>Putting you in control</h2>
+                <p>AutomateIt lets you choose how to best administer your systems, rather than forcing a problematic model on you. You can choose to use its built-in features, leverage its infrastructure to write your own custom code, or effortlessly interact with external programs.</p>
+                <p>A plugin architecture lets users add features and drivers effortlessly. Extending AutomateIt is a simple matter of dropping files into a project&#8217;s <code>lib</code> directory, and these will be automatically loaded and made available to recipes. This saves users from having to maintain a fork of the tools&#8217; code.</p>
+                <p>AutomateIt makes it possible to quickly and easily write clear, succinct system configurations without compromises. Although AutomateIt provides a more complex solution than Cfengine and Puppet, the resulting recipes will typically be much simpler, shorter and easier to maintain.</p>
+                <h2>Power and ease of extensions</h2>
+                <p>For example, let&#8217;s say you want to generate an Apache configuration file from a template, and restart Apache if the file was updated.</p>
+                <p>AutomateIt already provides a powerful built-in <code>render</code> command for generating files from templates. However, for the sake of illustration, here&#8217;s how a user would create their own <code>render</code> method and use it:</p>
+                <div class='scraped'>
+                  <pre><font color="#9a94c8"># AutomateIt</font>&#x000A;&#x000A;<font color="#9a94c8"># File: lib/render.rb</font>&#x000A;<span style="background-color: #103040"><font color="#bcd2ee">def </font></span><span style="background-color: #103040"><font color="#9bcd9b">render</font></span>(options)&#x000A;  <font color="#9a94c8"># Put new 'render' method's code here.</font>&#x000A;<span style="background-color: #103040"><font color="#bcd2ee">end</font></span>&#x000A;&#x000A;<font color="#9a94c8"># File: recipes/render_sample.rb</font>&#x000A;<font color="#90ee90">if</font> tagged?(<font color="#8db6cd">:apache_servers</font>)&#x000A;  apache_ports_conf = <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">/etc/apache2/ports.conf</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;  changed = render(&#x000A;    <font color="#8db6cd">:file</font> =&gt; dist+apache_ports_conf+<font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">.erb</font></span><font color="#66cdaa"><b>&quot;</b></font>,&#x000A;    <font color="#8db6cd">:to</font> =&gt; apache_ports_conf,&#x000A;    <font color="#8db6cd">:locals</font> =&gt; lookup(<font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">apache</font></span><font color="#66cdaa"><b>&quot;</b></font>)&#x000A;  )&#x000A;  <font color="#90ee90">if</font> changed&#x000A;    service_manager.restart(<font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">apache2</font></span><font color="#66cdaa"><b>&quot;</b></font>)&#x000A;  <font color="#90ee90">end</font>&#x000A;<font color="#90ee90">end</font>&#x000A;</pre>&#x000A;
+                </div>
+                <p>In contrast, there&#8217;s no way to add a method to Cfengine without forking and editing its <code>C</code> code. Because this is prohibitively difficult, the following example shows a more typical solution where Cfengine interacts with external programs. Many of these programs simply swallow output so that Cfengine only will only print output if it needs to make changes. The recipe must call the template generator, <code>erbert</code>, twice to accomplish the task &#8212; once to determine if the template should be rendered, and again to render it. The resulting recipe is confusing, messy and slow because it calls many external commands:</p>
+                <div class='scraped'>
+                  <pre><font color="#9a94c8"># Cfengine</font>&#x000A;&#x000A;<font color="#87ceff">control</font>:&#x000A;  <font color="#90ee90">ActionSequence</font> = <font color="#66cdaa"><b>( </b></font><font color="#87ceff">shellcommands</font><font color="#66cdaa"><b> )</b></font>&#x000A;  <font color="#90ee90">AddInstallable</font> = <font color="#66cdaa"><b>( </b></font>apache_needs_restart<font color="#66cdaa"><b> )</b></font>&#x000A;&#x000A;  PROPERTIES = <font color="#66cdaa"><b>( $(CFINPUTS)</b></font>/properties.yml<font color="#66cdaa"><b> )</b></font>&#x000A;  CFROOT = <font color="#66cdaa"><b>( $(CFDIR) )</b></font>&#x000A;  BIN = <font color="#66cdaa"><b>( $(CFROOT)</b></font>/bin<font color="#66cdaa"><b> )</b></font>&#x000A;  DIST = <font color="#66cdaa"><b>( $(CFROOT)</b></font>/dist<font color="#66cdaa"><b> )</b></font>&#x000A;  RIE = <font color="#66cdaa"><b>( $(BIN)</b></font>/runifexists<font color="#66cdaa"><b> )</b></font>&#x000A;  SILENTLY = <font color="#66cdaa"><b>( $(BIN)</b></font>/silently<font color="#66cdaa"><b> )</b></font>&#x000A;  RS = <font color="#66cdaa"><b>( </b></font>&quot;<font color="#66cdaa"><b>$(SILENTLY)</b></font> <font color="#66cdaa"><b>$(RIE)</b></font>&quot;<font color="#66cdaa"><b> )</b></font>&#x000A;  ERBERT = <font color="#66cdaa"><b>( $(BIN)</b></font>/erbert<font color="#66cdaa"><b> )</b></font>&#x000A;&#x000A;<font color="#add8e6">  apache_servers::</font>&#x000A;    apache_ports_conf = <font color="#66cdaa"><b>( </b></font>&quot;/etc/apache2/ports.conf&quot;<font color="#66cdaa"><b> )</b></font>&#x000A;    apache_ports_conf_generator = \&#x000A;      <font color="#66cdaa"><b>( </b></font>&quot;<font color="#66cdaa"><b>$(ERBERT)</b></font> -v -u -i <font color="#66cdaa"><b>$(DIST)</b></font>/<font color="#66cdaa"><b>$(apache_ports_conf)</b></font>.erb "\&#x000A;        "-o <font color="#66cdaa"><b>$(apache_ports_conf)</b></font> -c <font color="#66cdaa"><b>$(PROPERTIES)</b></font> -m 0444&quot;<font color="#66cdaa"><b> )</b></font>&#x000A;&#x000A;<font color="#87ceff">groups</font>:&#x000A;<font color="#add8e6">  apache_servers::</font>&#x000A;    apache_ports_conf_generated = \&#x000A;      <font color="#66cdaa"><b>( </b></font><font color="#90ee90">ReturnsZero(</font>${RS} ${apache_ports_conf_generator} --dryrun<font color="#90ee90">)</font><font color="#66cdaa"><b> )</b></font>&#x000A;&#x000A;<font color="#87ceff">shellcommands</font>:&#x000A;<font color="#add8e6">  !apache_ports_conf_generated.apache_servers::</font>&#x000A;    <span style="background-color: #103040"><font color="#00e5ee">&quot;</font></span><font color="#66cdaa"><b>$(apache_ports_conf_generator)</b></font><span style="background-color: #103040"><font color="#00e5ee">&quot;</font></span>&#x000A;      <font color="#90ee90">define</font>=apache_needs_restart&#x000A;<font color="#add8e6">  apache_needs_restart.apache_servers::</font>&#x000A;    <span style="background-color: #103040"><font color="#00e5ee">&quot;/etc/init.d/apache2 restart&quot;</font></span>&#x000A;</pre>&#x000A;
+                </div>
+                <h2>External access</h2>
+                <p>External programs, e.g., a Unix shell script, can often benefit from access to the configuration management system&#8217;s data.</p>
+                <p>AutomateIt makes external access trivial. For example, here&#8217;s how to execute an arbitrary AutomateIt command from the Unix shell:</p>
+                <div class='scraped'>
+                  <pre>you@host&gt; if automateit -e 'tagged? "ubuntu"'; then echo "I'm on Ubuntu"; fi&#x000A;I'm on Ubuntu&#x000A;you@host&gt;&#x000A;</pre>&#x000A;
+                </div>
+                <p>AutomateIt provides helper programs called <code>aitag</code> and <code>aifield</code> to make this common task even easier:</p>
+                <div class='scraped'>
+                  <pre>you@host&gt; if aitag "ubuntu"'; then echo "I'm on Ubuntu"; fi&#x000A;I'm on Ubuntu&#x000A;you@host&gt;&#x000A;</pre>&#x000A;
+                </div>
+                <p>In contrast, there&#8217;s no easy way to do this with Cfengine. Users can&#8217;t execute arbitrary commands at all. One must write a code generator that writes a recipe and has Cfengine run it. Accessing tags (Cfengine &#8220;classes&#8221;) is equally awkward and requires writing a wrapper that exports a query as an environmental variable, runs <code>cfagent</code> with a specific class, requires a specially-crafted recipe that&#8217;ll only execute when this class is set, forks an external program that scans the defined classes, returns text output (e.g., <code>echo "true"</code>), and then the wrapper parses this output and quits with the appropriate exit value. Yuck.</p>
+                <h1>Why not &#8220;fix&#8221; existing tools?</h1>
+                <p>Cfengine and Puppet&#8217;s problems can&#8217;t be solved with a patch. Not even a massive rewrite would be enough to address the problems described in this document. The fundamental design and philosophy of these tools are the source of these issues &#8212; there&#8217;s no way to change that without starting over from scratch.</p>
+                <h1>Is AutomateIt&#8217;s approach reasonable?</h1>
+                <p>AutomateIt was created as a result of many years experience working with other automation tools. It takes the lessons learned, addresses their problems, adds missing features, and is flexible enough to deal with the inevitable unexpected challenges.</p>
+                <p>Igal Koshevoy, the creator of AutomateIt, has over a decade of experience building applications and the systems they run on. He has been using automation systems for most of his projects and has eight years of Cfengine experience. His projects include delivering companies&#8217; flagship web applications; creating <span class="caps">ERP</span>, <span class="caps">CRM</span> and workflow automation systems for Fortune 50&#8217;s; and building fault-tolerant massively-distributed data collection systems. Unlike authors of many automation programs, he&#8217;s had to solve real-world problems for businesses, while meeting quality-of-service requirements, deadlines and budgets.</p>
+                <p>AutomateIt is quick and lightweight enough to be valuable for even simple personal projects. In contrast, Cfengine is usually too cumbersome for projects that don&#8217;t have access to multiple full-time systems programmers. Clients often chose simpler, yet problematic and inadequate, alternatives such as: disk cloning, shell scripts, <code>make</code>, and remote execution programs like <code>capistrano</code>. These approaches are a huge hassle and their code is obsolete the moment it&#8217;s run because there&#8217;s no way to re-run them, so although these might automate setup tasks, they&#8217;re poorly-suited for automating maintenance.</p>
+                <p>Although AutomateIt is simple enough that any Unix user can read its recipes, it packs the power of a full-featured language to help tackle the toughest problems. In contrast, Cfengine isn&#8217;t powerful enough to meet the needs of many larger clients and they&#8217;re forced to make a huge investment in reinventing how it works. Igal created business-critical configurations with tens-of-thousands of lines of code. These automated all aspects of setup and maintenance for geographically-distributed data-centers with hundreds of servers in multiple clusters, dozens of OSes and countless configuration permutations. These recipes proved to be incredibly valuable for helping companies speed development, deliver quality services, and survive the unexpected. Cfengine got the job done, but was an incredible pain to use. The worst part was that the resulting recipes were so complex that it was hard to train even the best programmers and sysadmins to use them.</p>
+                <h1>Conclusion</h1>
+                <p>AutomateIt is not an incremental improvement over Cfengine or Puppet, but a whole different perspective on the problem. It systematically addresses the problems encountered in the real-world with other tools and tries to provide something better.</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

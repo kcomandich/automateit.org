@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_group (AutomateIt::AccountManager::POSIX)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/account_manager/posix.rb, line 68</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_group</span>(<span class="ruby-identifier">groupname</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">modified</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">has_group?</span>(<span class="ruby-identifier">groupname</span>)
+      <span class="ruby-identifier">modified</span> = <span class="ruby-keyword kw">true</span>
+
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-value str">&quot;groupadd&quot;</span>
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; -g #{opts[:gid]}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:gid</span>]
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{groupname}&quot;</span>
+      <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">sh</span>(<span class="ruby-identifier">cmd</span>)
+
+      <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">invalidate</span>(<span class="ruby-identifier">:groups</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:members</span>]
+      <span class="ruby-identifier">modified</span> = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-identifier">add_users_to_group</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:members</span>], <span class="ruby-identifier">groupname</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">modified</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">groupname</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

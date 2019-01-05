@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>_raise_unless_available (AutomateIt::Plugin::Driver)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/plugin/driver.rb, line 227</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_raise_unless_available</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">available?</span>
+          <span class="ruby-identifier">msg</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">kind</span>, <span class="ruby-identifier">elements</span> <span class="ruby-keyword kw">in</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_missing_dependencies</span>
+            <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;; &quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">msg</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;%s: %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">elements</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;Missing dependencies -- %s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">msg</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

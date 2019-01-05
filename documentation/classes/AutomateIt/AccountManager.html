@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::AccountManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::AccountManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/automateit/account_manager_rb.html">
+                lib/automateit/account_manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Plugin/Manager.html">
+                AutomateIt::Plugin::Manager
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="AccountManager.html">AccountManager</a></h2>
+<p>
+The <a href="AccountManager.html">AccountManager</a> provides a way of
+managing system accounts, such as Unix <a
+href="AccountManager.html#M000149">users</a> and <a
+href="AccountManager.html#M000156">groups</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000157">add_group</a>&nbsp;&nbsp;
+      <a href="#M000153">add_groups_to_user</a>&nbsp;&nbsp;
+      <a href="#M000150">add_user</a>&nbsp;&nbsp;
+      <a href="#M000160">add_users_to_group</a>&nbsp;&nbsp;
+      <a href="#M000156">groups</a>&nbsp;&nbsp;
+      <a href="#M000162">groups_for_user</a>&nbsp;&nbsp;
+      <a href="#M000159">has_group?</a>&nbsp;&nbsp;
+      <a href="#M000152">has_user?</a>&nbsp;&nbsp;
+      <a href="#M000148">invalidate</a>&nbsp;&nbsp;
+      <a href="#M000155">passwd</a>&nbsp;&nbsp;
+      <a href="#M000158">remove_group</a>&nbsp;&nbsp;
+      <a href="#M000154">remove_groups_from_user</a>&nbsp;&nbsp;
+      <a href="#M000151">remove_user</a>&nbsp;&nbsp;
+      <a href="#M000161">remove_users_from_group</a>&nbsp;&nbsp;
+      <a href="#M000149">users</a>&nbsp;&nbsp;
+      <a href="#M000163">users_for_group</a>&nbsp;&nbsp;
+      <a href="#M000164">users_to_groups</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="AccountManager/BaseDriver.html" class="link">AutomateIt::AccountManager::BaseDriver</a><br />
+Class <a href="AccountManager/Etc.html" class="link">AutomateIt::AccountManager::Etc</a><br />
+Class <a href="AccountManager/NSCD.html" class="link">AutomateIt::AccountManager::NSCD</a><br />
+Class <a href="AccountManager/POSIX.html" class="link">AutomateIt::AccountManager::POSIX</a><br />
+Class <a href="AccountManager/PasswdExpect.html" class="link">AutomateIt::AccountManager::PasswdExpect</a><br />
+Class <a href="AccountManager/PasswdPTY.html" class="link">AutomateIt::AccountManager::PasswdPTY</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000157" class="method-detail">
+        <a name="M000157"></a>
+
+        <div class="method-heading">
+          <a href="#M000157" class="method-signature">
+          <span class="method-name">add_group</span><span class="method-args">(groupname, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add <tt>groupname</tt> if it doesn&#8216;t exist. Options:
+</p>
+<ul>
+<li>:members &#8212; Array of usernames to add as members.
+
+</li>
+<li>:gid &#8212; Group ID to use. Default is to find an unused id.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000157-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000157-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 81</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_group</span>(<span class="ruby-identifier">groupname</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">groupname</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000153" class="method-detail">
+        <a name="M000153"></a>
+
+        <div class="method-heading">
+          <a href="#M000153" class="method-signature">
+          <span class="method-name">add_groups_to_user</span><span class="method-args">(groups, user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add <tt><a href="AccountManager.html#M000156">groups</a></tt> (array of
+groupnames) to <tt>user</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000153-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000153-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 58</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_groups_to_user</span>(<span class="ruby-identifier">groups</span>, <span class="ruby-identifier">user</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">groups</span>, <span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000150" class="method-detail">
+        <a name="M000150"></a>
+
+        <div class="method-heading">
+          <a href="#M000150" class="method-signature">
+          <span class="method-name">add_user</span><span class="method-args">(username, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add the <tt>username</tt> if not already created.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:description &#8212; User&#8216;s full name. Defaults to username.
+
+</li>
+<li>:home &#8212; Path to user&#8216;s home directory. If not specified, uses
+system default like &quot;/home/username&quot;.
+
+</li>
+<li>:create_home &#8212; Create homedir. Defaults to true.
+
+</li>
+<li>:<a href="AccountManager.html#M000156">groups</a> &#8212; Array of group
+names to add this user to.
+
+</li>
+<li>:shell &#8212; Path to login shell. If not specified, uses system default
+like &quot;/bin/bash&quot;.
+
+</li>
+<li>:uid &#8212; Fixnum user ID for user. Default chooses an unused id.
+
+</li>
+<li>:gid &#8212; Fixnum group ID for user. Default chooses same gid as uid.
+
+</li>
+</ul>
+<p>
+Example:
+</p>
+<pre>
+  add_user(&quot;bob&quot;, :description =&gt; &quot;Bob Smith&quot;)
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000150-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000150-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 42</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_user</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000160" class="method-detail">
+        <a name="M000160"></a>
+
+        <div class="method-heading">
+          <a href="#M000160" class="method-signature">
+          <span class="method-name">add_users_to_group</span><span class="method-args">(users, group)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add <tt><a href="AccountManager.html#M000149">users</a></tt> (array of
+usernames) to <tt>group</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000160-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000160-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 93</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_users_to_group</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">group</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">group</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000156" class="method-detail">
+        <a name="M000156"></a>
+
+        <div class="method-heading">
+          <a href="#M000156" class="method-signature">
+          <span class="method-name">groups</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find a group. Method returns a query helper which takes a
+<tt>groupname</tt> as an index argument and returns a Struct::Group entry
+as described in Etc::getgrent if the group exists or a nil if not.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  groups[&quot;root&quot;] # =&gt; #&lt;struct Struct::Group name=&quot;root&quot;...
+
+  groups[&quot;does_not_exist&quot;] # =&gt; nil
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000156-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000156-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 76</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">groups</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000162" class="method-detail">
+        <a name="M000162"></a>
+
+        <div class="method-heading">
+          <a href="#M000162" class="method-signature">
+          <span class="method-name">groups_for_user</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Array of groupnames this user is a member of.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000162-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000162-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 99</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">groups_for_user</span>(<span class="ruby-identifier">query</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">query</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000159" class="method-detail">
+        <a name="M000159"></a>
+
+        <div class="method-heading">
+          <a href="#M000159" class="method-signature">
+          <span class="method-name">has_group?</span><span class="method-args">(group)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does <tt>group</tt> exist?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000159-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000159-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 90</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_group?</span>(<span class="ruby-identifier">group</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">group</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000152" class="method-detail">
+        <a name="M000152"></a>
+
+        <div class="method-heading">
+          <a href="#M000152" class="method-signature">
+          <span class="method-name">has_user?</span><span class="method-args">(user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is <tt>user</tt> present?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000152-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000152-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 55</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_user?</span>(<span class="ruby-identifier">user</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000148" class="method-detail">
+        <a name="M000148"></a>
+
+        <div class="method-heading">
+          <a href="#M000148" class="method-signature">
+          <span class="method-name">invalidate</span><span class="method-args">(database)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invalidate system cache for <tt>database</tt>. The <tt>database</tt> can be
+either :<a href="AccountManager.html#M000149">users</a> or :<a
+href="AccountManager.html#M000156">groups</a>. This is necessary on
+operating systems that lack logic to notify their caching system that an
+entry changed. If the OS doesn&#8216;t need invalidation, will do nothing
+and return false.
+</p>
+<p>
+This method is primarily for the sake of driver authors, recipe authors
+will probably never need to use this.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000148-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000148-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 13</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invalidate</span>(<span class="ruby-identifier">database</span>) <span class="ruby-identifier">dispatch_safely</span>(<span class="ruby-identifier">database</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000155" class="method-detail">
+        <a name="M000155"></a>
+
+        <div class="method-heading">
+          <a href="#M000155" class="method-signature">
+          <span class="method-name">passwd</span><span class="method-args">(user, password, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the <tt>password</tt> for the <tt>user</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000155-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000155-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 64</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">passwd</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000158" class="method-detail">
+        <a name="M000158"></a>
+
+        <div class="method-heading">
+          <a href="#M000158" class="method-signature">
+          <span class="method-name">remove_group</span><span class="method-args">(groupname, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove <tt>groupname</tt> if it exists.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000158-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000158-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 87</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_group</span>(<span class="ruby-identifier">groupname</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">groupname</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000154" class="method-detail">
+        <a name="M000154"></a>
+
+        <div class="method-heading">
+          <a href="#M000154" class="method-signature">
+          <span class="method-name">remove_groups_from_user</span><span class="method-args">(groups, user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove <tt><a href="AccountManager.html#M000156">groups</a></tt> (array of
+groupnames) from <tt>user</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000154-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000154-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 61</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_groups_from_user</span>(<span class="ruby-identifier">groups</span>, <span class="ruby-identifier">user</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">groups</span>, <span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000151" class="method-detail">
+        <a name="M000151"></a>
+
+        <div class="method-heading">
+          <a href="#M000151" class="method-signature">
+          <span class="method-name">remove_user</span><span class="method-args">(username, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the <tt>username</tt> if present.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:remove_home &#8212; Delete user&#8216;s home directory and mail spool.
+Default is true.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000151-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000151-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 52</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_user</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000161" class="method-detail">
+        <a name="M000161"></a>
+
+        <div class="method-heading">
+          <a href="#M000161" class="method-signature">
+          <span class="method-name">remove_users_from_group</span><span class="method-args">(users, group)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove <tt><a href="AccountManager.html#M000149">users</a></tt> (array of
+usernames) from <tt>group</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000161-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000161-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 96</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_users_from_group</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">group</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">group</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000149" class="method-detail">
+        <a name="M000149"></a>
+
+        <div class="method-heading">
+          <a href="#M000149" class="method-signature">
+          <span class="method-name">users</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find a user account. Method returns a query helper which takes a
+<tt>username</tt> as an index argument and returns a Struct::Passwd entry
+as described in Etc::getpwent if the user exists or a nil if not.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  users[&quot;root&quot;] # =&gt; #&lt;struct Struct::Passwd name=&quot;root&quot;...
+
+  users[&quot;does_not_exist&quot;] # =&gt; nil
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000149-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000149-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 25</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000163" class="method-detail">
+        <a name="M000163"></a>
+
+        <div class="method-heading">
+          <a href="#M000163" class="method-signature">
+          <span class="method-name">users_for_group</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Array of usernames in group.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000163-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000163-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 102</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users_for_group</span>(<span class="ruby-identifier">query</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">query</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000164" class="method-detail">
+        <a name="M000164"></a>
+
+        <div class="method-heading">
+          <a href="#M000164" class="method-signature">
+          <span class="method-name">users_to_groups</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Hash of usernames and the groupnames they&#8216;re members of.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000164-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000164-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager.rb, line 105</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users_to_groups</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

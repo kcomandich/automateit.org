@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Drivers</title>
+    <link href="stylesheets/blueprint/screen.css" rel="stylesheet" media="screen, projection" type="text/css" />
+    <link href="stylesheets/blueprint/print.css" rel="stylesheet" media="print" type="text/css" />
+    <link href="stylesheets/application.css" rel="stylesheet" media="all" type="text/css" />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id="everything">
+      <div id="header">
+        <table>
+          <tr>
+            <td>
+              <div class="logo">
+                <a href=".">
+                  <span class="color1">Automate</span><span class="color2">It</span>
+                </a>
+              </div>
+            </td>
+            <td align="middle">
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="menu_and_page_content">
+        <table>
+          <tr>
+            <td>
+              <div id="menu">
+                <ul>
+                  <li><a href=".">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li><a href="download">Download</a></li>
+                  <!-- /li= link 'Community' // FIXME write -->
+                  <!-- /%li= link 'Consulting' // FIXME write -->
+                  <li><a href="drivers">Drivers</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id="page_content">
+                <h1>AutomateIt Drivers</h1>
+                
+                
+                	<h2>Platform-specific drivers</h2>
+                
+                
+                	<p>Most AutomateIt features will work on all Ruby-supported platforms. However, some plugins require platform-specific drivers. For example, AutomateIt&#8217;s <code>package_manager.install</code> command can use a driver to interact with Debian&#8217;s <code>apt-get</code> packaging tool.</p>
+                
+                
+                	<p>As a fall-back, most plugins include drivers that provide limited features for many platforms. For example, the <span class="caps">SYSV</span> Service driver can start daemons on any platform using SystemV-style init&#8212;however, it cannot enable them to start after reboot because this requires a specialized driver, such as Chkconfig for RedHat-style systems.</p>
+                
+                
+                	<h2>Driver availability by platform for AutomateIt 0.70913</h2>
+                
+                
+                	<p style="margin-bottom:1em;">The AutomateIt 1.x production-quality release will provide complete, tested drivers for at least the platforms listed below:</p>
+                
+                
+                	<table class="driver_availability">
+                		<tr>
+                			<th>Platform </th>
+                			<th>Tested? </th>
+                			<th>Account     </th>
+                			<th>Address     </th>
+                			<th>Package </th>
+                			<th>Platform  </th>
+                			<th>Service </th>
+                		</tr>
+                		<tr>
+                			<td> Ubuntu    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> APT       </td>
+                			<td> LSB         </td>
+                			<td> UpdateRCD </td>
+                		</tr>
+                		<tr>
+                			<td> Fedora    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> YUM       </td>
+                			<td> LSB         </td>
+                			<td> Chkconfig </td>
+                		</tr>
+                		<tr>
+                			<td> Debian    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> APT       </td>
+                			<td> Debian      </td>
+                			<td> UpdateRCD </td>
+                		</tr>
+                		<tr>
+                			<td> CentOS    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> YUM       </td>
+                			<td> LSB         </td>
+                			<td> Chkconfig </td>
+                		</tr>
+                		<tr>
+                			<td> RedHat    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> YUM       </td>
+                			<td> LSB         </td>
+                			<td> Chkconfig </td>
+                		</tr>
+                		<tr>
+                			<td> Gentoo    </td>
+                			<td> Yes       </td>
+                			<td> Linux         </td>
+                			<td> Linux         </td>
+                			<td> Portage   </td>
+                			<td> Gentoo      </td>
+                			<td> RC_Update </td>
+                		</tr>
+                		<tr>
+                			<td> OS X      </td>
+                			<td> Yes       </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">-     </td>
+                			<td> Darwin      </td>
+                			<td class="l">-     </td>
+                		</tr>
+                		<tr>
+                			<td> FreeBSD   </td>
+                			<td> Yes       </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">-     </td>
+                			<td> FreeBSD     </td>
+                			<td class="l">-     </td>
+                		</tr>
+                		<tr>
+                			<td> OpenBSD   </td>
+                			<td class="l">No    </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">-     </td>
+                			<td class="l">Uname*  </td>
+                			<td class="l">-     </td>
+                		</tr>
+                		<tr>
+                			<td> Solaris   </td>
+                			<td class="l">No    </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">-     </td>
+                			<td class="l">Uname*  </td>
+                			<td class="l"><span class="caps">SYSV</span>* </td>
+                		</tr>
+                		<tr>
+                			<td> Windows^  </td>
+                			<td> Yes       </td>
+                			<td class="l">-         </td>
+                			<td class="l">Portable* </td>
+                			<td class="l">-     </td>
+                			<td> Windows     </td>
+                			<td class="l">-     </td>
+                		</tr>
+                		<tr>
+                			<td> JRuby     </td>
+                			<td> Yes       </td>
+                			<td> (Inherits)    </td>
+                			<td> (Inherits)    </td>
+                			<td> (Inherits)</td>
+                			<td> (Inherits)  </td>
+                			<td> (Inherits)</td>
+                		</tr>
+                		<tr>
+                			<th class="key" colspan="7"><em>Key: &#8221;-&#8221; = not available, &#8221;*&#8221; = limited features</em>, &#8221;^&#8221; = no additional drivers planned </th>
+                		</tr>
+                	</table>
+                
+                
+                
+                
+                	<p>For example, according to the table above, Ubuntu has been tested and includes full-featured plugins for Account, Address, Package, Platform and Service. In contrast, Solaris hasn&#8217;t been tested, but should work with the limited-purpose drivers for Account, Address, Platform and Service.</p>
+                
+                
+                	<p>Technical information about specific drivers can be found in the <a href="documentation">Documentation</a>&#8212;for example the Service plugin driver for Chkconfig will be documented as <code>AutomateIt::ServiceManager::Chkconfig</code>.</p>
+                
+                
+                	<h2>Determining Driver availability</h2>
+                
+                
+                	<p>Run the integration test suite to see what drivers are supported on a platform. See the documentation&#8217;s <a href="documentation/files/TESTING_txt.html"><span class="caps">TESTING</span>.txt</a> for details.</p>
+                
+                
+                	<h2>Writing drivers</h2>
+                
+                
+                	<p>If no driver is available, it&#8217;s easy to write one. Most drivers can be written in less than an hour. Custom-written drivers are placed into your project&#8217;s <code>lib</code> directory and will be loaded automatically&#8212;there&#8217;s no need to fork AutomateIt&#8217;s source code. For technical details, see the <a href="documentation/classes/AutomateIt/Plugin/Driver.html">AutomateIt::Plugin::Driver</a> technical documentation.</p>
+                
+                
+                	<h2>Workarounds for missing drivers</h2>
+                
+                
+                	<p>If you don&#8217;t want to write a driver, there are simpler alternatives available. For example:</p>
+                
+                
+                	<ul>
+                	<li>Manually define tags: AutomateIt adds an <code>ubuntu</code> tag when running on Ubuntu, but can&#8217;t add tags for Obscurix, an unsupported platform. To workaround this, edit the <code>tags.yml</code> file and tag the matching hosts with <code>obscurix</code>.</li>
+                	</ul>
+                
+                
+                	<ul>
+                	<li>Directly run low-level tools: Run commands from recipes using <code>sh</code>, <code>system</code> or <code>`backticks`</code> from your recipe. This isn&#8217;t pretty, but will get the job done. Be sure to add logic to your custom commands so they can be previewed.</li>
+                	</ul>
+                
+                
+                	<ul>
+                	<li>Extract reusable code into methods: Even if you don&#8217;t write a driver, use a method to encapsulate logic. So rather than writing a new package manager driver, you can just write a simple method &mdash; e.g., <code>def obscurix_install(packages)</code> &mdash; that includes the <code>system</code> commands to run the low-level tools. This will make recipes more maintainable and easier to change over to drivers.</li>
+                	</ul>
+                
+                
+                	<h1>Future plugins</h1>
+                
+                
+                	<p>Plugins that might be implemented in the future:</p>
+                
+                
+                	<ul>
+                	<li>ScheduleManager&#8212;Manipulates regular command execution schedules, e.g., cron.</li>
+                		<li>TransferManager&#8212;Transfers files from some source, e.g., rsync, sftp, http.</li>
+                		<li>SourceManager&#8212;Manipulates source control systems, e.g., svn, cvs, hg.</li>
+                	</ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <p>
+          Copyright &copy; 2007 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

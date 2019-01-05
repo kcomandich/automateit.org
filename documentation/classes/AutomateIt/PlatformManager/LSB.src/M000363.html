@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_parse_lsb_release_data (AutomateIt::PlatformManager::LSB)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/platform_manager/lsb.rb, line 41</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_parse_lsb_release_data</span>(<span class="ruby-identifier">data</span>)
+    <span class="ruby-identifier">data</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/^([^:]+):\s+([^\n]+)/</span>).<span class="ruby-identifier">inject</span>({}){<span class="ruby-operator">|</span><span class="ruby-identifier">s</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>[<span class="ruby-identifier">v</span>.<span class="ruby-identifier">first</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">last</span>; <span class="ruby-identifier">s</span>}
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

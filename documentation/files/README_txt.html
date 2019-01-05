@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 20 04:47:12 -0700 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>AutomateIt</h2>
+<p>
+<em>AutomateIt is an open source tool for automating the setup and
+maintenance of servers, applications and their dependencies.</em>
+</p>
+<ol>
+<li><a href="http://AutomateIt.org">AutomateIt.org</a> &#8212; website
+explaining what it is and why it&#8216;s useful
+
+</li>
+<li><a href="http://AutomateIt.org/screenshots">Screenshots</a> &#8212; quick
+tour of sample AutomateIt code
+
+</li>
+<li><a href="TUTORIAL_txt.html">TUTORIAL.txt</a> &#8212; hands-on tutorial
+
+</li>
+</ol>
+<h3>Frequently-used commands</h3>
+<p>
+Execute these from a terminal, use <tt>&#8212;help</tt> option for help:
+</p>
+<ul>
+<li><tt>automateit</tt> or <tt>ai</tt> &#8212; Run a recipe or create a
+project.
+
+</li>
+<li><tt>aitag</tt> &#8212; Query project&#8216;s tags.
+
+</li>
+<li><tt>aifield</tt> &#8212; Query project&#8216;s fields.
+
+</li>
+</ul>
+<h3>Frequently-used classes</h3>
+<ul>
+<li><a
+href="../classes/AutomateIt/Interpreter.html">AutomateIt::Interpreter</a>
+&#8212; Runs AutomateIt commands.
+
+</li>
+<li><a href="../classes/AutomateIt/Project.html">AutomateIt::Project</a>
+&#8212; Collection of related recipes, tags, fields and custom plugins.
+
+</li>
+<li><a
+href="../classes/AutomateIt/AccountManager.html">AutomateIt::AccountManager</a>
+&#8212; Manipulates users and groups.
+
+</li>
+<li><a
+href="../classes/AutomateIt/AddressManager.html">AutomateIt::AddressManager</a>
+&#8212; Manipulates host&#8216;s network addresses.
+
+</li>
+<li><a
+href="../classes/AutomateIt/DownloadManager.html">AutomateIt::DownloadManager</a>
+&#8212; Downloads files.
+
+</li>
+<li><a
+href="../classes/AutomateIt/EditManager/EditSession.html">AutomateIt::EditManager::EditSession</a>
+&#8212; Commands for editing files.
+
+</li>
+<li><a
+href="../classes/AutomateIt/FieldManager.html">AutomateIt::FieldManager</a>
+&#8212; Queries configuration variables.
+
+</li>
+<li><a
+href="../classes/AutomateIt/PackageManager.html">AutomateIt::PackageManager</a>
+&#8212; Manipulates software packages.
+
+</li>
+<li><a
+href="../classes/AutomateIt/PlatformManager.html">AutomateIt::PlatformManager</a>
+&#8212; Queries platform, such as its OS version.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ServiceManager.html">AutomateIt::ServiceManager</a>
+&#8212; Manipulates services, such as Unix daemons.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ShellManager.html">AutomateIt::ShellManager</a>
+&#8212; Manipulates files and executes Unix commands.
+
+</li>
+<li><a href="../classes/AutomateIt/TagManager.html">AutomateIt::TagManager</a>
+&#8212; Groups hosts by role and queries membership.
+
+</li>
+<li><a
+href="../classes/AutomateIt/TemplateManager.html">AutomateIt::TemplateManager</a>
+&#8212; Renders templates to files.
+
+</li>
+</ul>
+<h3>Legal</h3>
+<p>
+Copyright (C) 2007-2008 Igal Koshevoy (igal@pragmaticraft.com)
+</p>
+<p>
+AutomateIt is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free
+Software Foundation; either version 3 of the License, or (at your option)
+any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+more details.
+</p>
+<p>
+You should have received a copy of the GNU General Public License along
+with this program. If not, see: <a
+href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

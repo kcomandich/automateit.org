@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (AutomateIt::CLI)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/cli.rb, line 23</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">run</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+      <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+      <span class="ruby-identifier">recipe</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recipe</span>]
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">recipe</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:project</span>]
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:project</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">recipe</span>), <span class="ruby-value str">&quot;..&quot;</span>)
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:guessed_project</span>] = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:create</span>]
+        <span class="ruby-constant">Project</span><span class="ruby-operator">::</span><span class="ruby-identifier">create</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">code</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:eval</span>)
+        <span class="ruby-identifier">interpreter</span> = <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>)
+        <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">code</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">recipe</span>
+        <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">recipe</span>, <span class="ruby-identifier">opts</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># Welcome messages</span>
+        <span class="ruby-identifier">display</span> = <span class="ruby-identifier">lambda</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">msg</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>}
+        <span class="ruby-identifier">display</span>.<span class="ruby-identifier">call</span> <span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;AutomateIt Shell v#{AutomateIt::VERSION} #{$0}&quot;</span>
+
+        <span class="ruby-comment cmt"># Create and connect instances</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;irb&quot;</span>
+        <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">setup</span>(<span class="ruby-keyword kw">__FILE__</span>)
+        <span class="ruby-comment cmt"># XXX irb: warn: can't alias context from irb_context.</span>
+        <span class="ruby-identifier">irb</span> = <span class="ruby-constant">IRB</span><span class="ruby-operator">::</span><span class="ruby-constant">Irb</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:irb</span>] = <span class="ruby-identifier">irb</span>
+        <span class="ruby-constant">IRB</span>.<span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:MAIN_CONTEXT</span>] = <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>
+        <span class="ruby-identifier">interpreter</span> = <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>)
+        <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">workspace</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@binding</span>, <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:binding</span>))
+
+        <span class="ruby-comment cmt"># Tab completion</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-value str">&quot;&lt;CTRL-D&gt; to quit&quot;</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">require</span> <span class="ruby-value str">'irb/completion'</span>
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">auto_indent_mode</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">load_modules</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'irb/completion'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">load_modules</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'irb/completion'</span>)
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">instance_eval</span>{ <span class="ruby-ivar">@use_readline</span> = <span class="ruby-keyword kw">true</span> }
+          <span class="ruby-identifier">message</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;, &lt;Tab&gt; to auto-complete&quot;</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+          <span class="ruby-comment cmt"># Ignore</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">display</span>.<span class="ruby-identifier">call</span> <span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-identifier">message</span>
+
+        <span class="ruby-comment cmt"># Set prompt</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:custom_prompt</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">prompt_i</span> = <span class="ruby-value str">&quot;ai&gt; &quot;</span>
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">prompt_s</span> = <span class="ruby-value str">&quot;ai%l &quot;</span>
+          <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">prompt_c</span> = <span class="ruby-value str">&quot;ai* &quot;</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">context</span>.<span class="ruby-identifier">prompt_n</span> = <span class="ruby-value str">&quot;ai%i &quot;</span> 
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span>
+            <span class="ruby-comment cmt"># Not available on Ruby 1.8.2 bundled with Mac OS X 10.4 Tiger</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Run loop to read user input</span>
+        <span class="ruby-identifier">irb</span>.<span class="ruby-identifier">eval_input</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

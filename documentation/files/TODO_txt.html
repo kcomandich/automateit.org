@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: TODO.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>TODO.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>TODO.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Thu Jun 26 03:55:31 -0700 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>AutomateIt&#8216;s todo list</h1>
+<h3>Software</h3>
+<p>
+Bugs
+</p>
+<ul>
+<li>Interpreter &#8212; &quot;def&quot; in recipes isn&#8216;t visible, why?
+
+</li>
+<li>ShellManager &#8212; ln_s of a directory source to a specific
+non-subdirectory name creates a link
+
+</li>
+<li>AccountManager::NSCD &#8212; Uses &quot;ps -ef&quot;, needs abstraction,
+create and use ProcessManager?
+
+</li>
+<li>AccountManager &#8212; Solaris fails 5% of the time on the last spec. WTF?
+
+</li>
+<li>AccountManager &#8212; OpenBSD stalls if it thinks a password&#8216;s
+quality sucks. What to do?
+
+</li>
+<li>AccountManager &#8212; OpenBSD fails &quot;should add groups to a
+user&quot; and &quot;should add users to group&quot;.
+
+</li>
+</ul>
+<p>
+Needs improvement
+</p>
+<ul>
+<li>Interpreter &#8212; unique_methods should use :symbols
+
+</li>
+<li>Interpreter#invoke and <a href="../classes/HelpfulERB.html">HelpfulERB</a>
+&#8212; Extract error context code into separate, reusable classes
+
+</li>
+<li>FieldManager &#8212; Wrap lookup(&quot;my#deep#non-existent#path&quot;)
+with friendly exceptions
+
+</li>
+<li>TagManager &#8212; Wrap YAML and ERB errors using friendly exceptions
+
+</li>
+<li>ServiceManager &#8212; Write tests for start_and_enable and such
+
+</li>
+<li>Shell &#8212; Expand glob patterns, e.g. chown_R(500, 500, &quot;*&quot;)
+
+</li>
+<li>Edit &#8212; Display summary of edits, return with :details as [rv, list]
+
+</li>
+<li>Shell#chperm &#8212; With symbolic mode, wrap `chmod -v` as temporary
+workaround?
+
+</li>
+<li>Shell#chperm &#8212; Accept varargs as argument, not just string or array
+
+</li>
+<li>ServiceManager &#8212; Create new stop_and_start, and add new restart as
+tell wrapper
+
+</li>
+<li>PackageManager &#8212; Improve PEAR spec by having it check files with and
+without channel URL
+
+</li>
+</ul>
+<p>
+Needs redesign
+</p>
+<ul>
+<li>PackageManager &#8212; How to specify command to use? E.g.
+&#8216;gem1.8&#8217;, &#8216;python2.5.1&#8217; and
+&#8217;/usr/local/bin/perl&#8217;. Generalize CPAN driver&#8216;s approach?
+
+</li>
+<li>PackageManager &#8212; What&#8216;s a reasonable way to leave out the
+&#8217;:with&#8217; option when using a hash argument to install? E.g.,
+sudo ai -e &quot;package_manager.install({&#8216;swiftfox-prescott&#8217;
+=&gt; &#8217;/tmp/swiftfox_3.0b3pre-1_prescott.deb&#8217;}, :with =&gt;
+:dpkg)&quot;
+
+</li>
+<li>Shell &#8212; Consistently return single items or arrays, alter specs to
+match
+
+</li>
+<li>Driver &#8212; How to determine if a manager or driver method is available?
+Manager#available?, Manager#available and Driver#suitable? only say if it
+should be a default.
+
+</li>
+</ul>
+<p>
+New features
+</p>
+<ul>
+<li>ScheduleManager &#8212; Design, or write wrapper for RubyCron or such
+
+</li>
+<li>ProcessManger &#8212; Design (provides &quot;ps -ef&quot; and such), add
+pgrep and pmatch methods
+
+</li>
+<li>Shell &#8212; Write su(user, *command) as a wrapper around sh
+
+</li>
+<li>Interpeter &#8212; Implement track_changes, changed?
+
+</li>
+<li>SourceManager &#8212; Design (e.g. svn wrapper)
+
+</li>
+</ul>
+<p>
+New drivers
+</p>
+<ul>
+<li>PackageManager::FreeBSD_Ports - Implement (or make generic ::Ports? and
+FreeBSD_Pkg
+
+</li>
+<li>PackageManager &#8212; Fink and MacPorts (or generic ::Ports?)
+
+</li>
+<li>PackageManager &#8212; Upgrade or install specific versions
+
+</li>
+<li>PackageManager::Blastwave &#8212; Implement
+
+</li>
+<li>PackageManager::SunOS_Pkg &#8212; Implement
+
+</li>
+<li>ServiceManager::SMF &#8212; Implement
+
+</li>
+</ul>
+<h3>Website</h3>
+<ul>
+<li>CSS &#8212; Highlight active section of site
+
+</li>
+<li>Page &#8212; Add error page
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

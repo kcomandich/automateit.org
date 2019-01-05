@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>tags (AutomateIt::TagManager::Struct)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/tag_manager/struct.rb, line 29</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@our_hostname_tags</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@struct_updated</span> = <span class="ruby-keyword kw">true</span>
+
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@our_hostname_tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">address_manager</span>.<span class="ruby-identifier">hostnames</span>) <span class="ruby-comment cmt"># SLOW 0.4s</span>
+        <span class="ruby-ivar">@our_hostname_tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">address_manager</span>.<span class="ruby-identifier">addresses</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NotImplementedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Can't find AddressManager for this platform: #{e}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@our_hostname_tags</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@our_platform_tags</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-ivar">@struct_updated</span> = <span class="ruby-keyword kw">true</span>
+
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-ivar">@our_platform_tags</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">platform_manager</span>.<span class="ruby-identifier">tags</span>
+        <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@our_platform_tags</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NotImplementedError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-node">&quot;Can't find PlatformManager for this platform: #{e}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@struct_updated</span>
+      <span class="ruby-ivar">@tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">tags_for</span>(<span class="ruby-ivar">@our_hostname_tags</span>))
+      <span class="ruby-ivar">@struct_updated</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@tags</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

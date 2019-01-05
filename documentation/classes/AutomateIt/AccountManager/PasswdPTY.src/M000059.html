@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>_passwd_raw (AutomateIt::AccountManager::PasswdPTY)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/account_manager/passwd_pty.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_passwd_raw</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">quiet</span> = (<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info?</span>)
+
+    <span class="ruby-identifier">require</span> <span class="ruby-value str">'open4'</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Open4</span><span class="ruby-operator">::</span><span class="ruby-identifier">popen4</span>(<span class="ruby-value str">&quot;passwd %s 2&gt;&amp;1&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">user</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pid</span>, <span class="ruby-identifier">sin</span>, <span class="ruby-identifier">sout</span>, <span class="ruby-identifier">serr</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">$expect_verbose</span> = <span class="ruby-operator">!</span> <span class="ruby-identifier">quiet</span>
+      <span class="ruby-value">2</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">sout</span>.<span class="ruby-identifier">expect</span>(<span class="ruby-regexp re">/:/</span>)
+        <span class="ruby-identifier">sleep</span> <span class="ruby-value">0</span><span class="ruby-value">.1</span> <span class="ruby-comment cmt"># Reduce chance of passwd thinking we're a robot :(</span>
+        <span class="ruby-identifier">sin</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">password</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;*&quot;</span> <span class="ruby-operator">*</span> <span class="ruby-value">12</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">quiet</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

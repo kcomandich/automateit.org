@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: inactive_support.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>inactive_support.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/inactive_support.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 20 04:47:12 -0700 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>InactiveSupport</h2>
+<p>
+InactiveSupport is a subset of features copied from the Rails ActiveSupport
+2.0.2 library, and retain the same ownership and licensing as the
+originals.
+</p>
+<p>
+Using this subset of ActiveSupport makes AutomateIt:
+</p>
+<ul>
+<li>More reliable: InactiveSupport is guaranteed correctly to work because
+it&#8216;s part of AutomateIt. This is in contrast to ActiveSupport, which
+is versioned separately and regularly introduces new bugs and breaks
+backwards compatibility, which makes it unsuitable as a library.
+
+</li>
+<li>Easier and faster install: Installing AutomateIt is easier and faster
+because it no longer needs the ActiveSupport and Builder gems..
+
+</li>
+<li>Quicker startup: InactiveSupport loads in a fraction of the time that
+ActiveSupport takes.
+
+</li>
+</ul>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      inactive_support/core_ext/array/extract_options&nbsp;&nbsp;
+      inactive_support/core_ext/blank&nbsp;&nbsp;
+      inactive_support/core_ext/symbol&nbsp;&nbsp;
+      inactive_support/core_ext/module/aliasing&nbsp;&nbsp;
+      inactive_support/core_ext/class/attribute_accessors&nbsp;&nbsp;
+      inactive_support/core_ext/class/inheritable_attributes&nbsp;&nbsp;
+      inactive_support/core_ext/enumerable&nbsp;&nbsp;
+      inactive_support/core_ext/numeric/time&nbsp;&nbsp;
+      inactive_support/core_ext/string/inflections&nbsp;&nbsp;
+      inactive_support/core_ext/hash/keys&nbsp;&nbsp;
+      inactive_support/basic_object&nbsp;&nbsp;
+      inactive_support/duration&nbsp;&nbsp;
+      inactive_support/core_ext/time/conversions&nbsp;&nbsp;
+      inactive_support/clean_logger&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

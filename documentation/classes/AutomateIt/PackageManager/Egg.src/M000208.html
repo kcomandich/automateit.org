@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>installed? (AutomateIt::PackageManager::Egg)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/package_manager/egg.rb, line 14</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">installed?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">_installed_helper?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-value str">&quot;python -c 'import sys; print(sys.path)' 2&gt;&amp;1&quot;</span>
+
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PEXEC</span><span class="ruby-operator">+</span><span class="ruby-identifier">cmd</span>)
+      <span class="ruby-identifier">data</span> = <span class="ruby-node">`#{cmd}`</span>
+      <span class="ruby-comment cmt"># Extract array elements, turn them into basenames, and then split on</span>
+      <span class="ruby-comment cmt"># '-' because that's the separator for the name and version.</span>
+      <span class="ruby-identifier">found</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/'([^']+\.egg)'/</span>).<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">t</span>).<span class="ruby-identifier">split</span>(<span class="ruby-value str">'-'</span>, <span class="ruby-value">2</span>)[<span class="ruby-value">0</span>]}
+      <span class="ruby-identifier">available</span> = <span class="ruby-identifier">found</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">list</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,3103 @@
+--- !ruby/object:Gem::Cache
+gems:
+  automateit-0.70903: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70903"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-06 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70906: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70906"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-07 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70907: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70907"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-07 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70909: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70909"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-07 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70910: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70910"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-07 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70912: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70912"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-12 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70913: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70913"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-12 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70914: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70914"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-12 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70915: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70915"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-12 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70919: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70919"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: automateit
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-20 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    description: 
+    email: igal@pragmaticraft.org
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70921: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70921"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-23 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70922: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70922"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-23 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70923: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70923"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-09-25 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.70930: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.70930"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-01 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71003: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71003"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-04 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71006: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71006"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-09 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71012: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71012"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-13 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71017: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71017"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-18 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71021: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71021"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-22 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open-source tool for automating the setup and maintenance of UNIX-like systems
+    test_files: []
+    
+    
+  automateit-0.71030: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71030"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-31 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71031: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71031"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-31 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71031.1: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71031.1
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-10-31 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71031.2: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71031.2
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-01 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71101: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71101"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-01 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71101.1: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71101.1
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-01 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71101.2: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71101.2
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-01 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71102: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71102"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-02 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71103: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71103"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-04 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71104: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71104"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-04 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71111: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71111"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-12 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71111.1: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71111.1
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-12 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71112: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71112"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-11-12 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">"
+        - !ruby/object:Gem::Version 
+          version: 0.0.0
+      version: 
+    required_rubygems_version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 1
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71219: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71219"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-19 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: builder
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "2.0"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - ai
+    - aitag
+    - aissh
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71220: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71220"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-21 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: builder
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "2.0"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.3.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71221: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71221"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-24 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: builder
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "2.0"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.4.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71226: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71226"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-26 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: builder
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "2.0"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.4.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71226.1: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: 0.71226.1
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-26 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: activesupport
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "1.4"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: builder
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "2.0"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.4.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.71230: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.71230"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2007-12-30 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.4.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.80116: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.80116"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2008-01-17 00:00:00 -08:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.4.0
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    
+  automateit-0.80607: !ruby/object:Gem::Specification 
+    name: automateit
+    version: !ruby/object:Gem::Version 
+      version: "0.80607"
+    platform: ruby
+    authors: 
+    - Igal Koshevoy
+    autorequire: 
+    bindir: bin
+    cert_chain: []
+    
+    date: 2008-06-08 00:00:00 -07:00
+    default_executable: 
+    dependencies: 
+    - !ruby/object:Gem::Dependency 
+      name: open4
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: "0.9"
+        version: 
+    - !ruby/object:Gem::Dependency 
+      name: hoe
+      version_requirement: 
+      version_requirements: !ruby/object:Gem::Requirement 
+        requirements: 
+        - - ">="
+          - !ruby/object:Gem::Version 
+            version: 1.5.1
+        version: 
+    description: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    email: igal@pragmaticraft.com
+    executables: 
+    - aifield
+    - automateit
+    - aissh
+    - ai
+    - aitag
+    extensions: []
+    
+    extra_rdoc_files: []
+    
+    files: []
+    
+    has_rdoc: true
+    homepage: http://automateit.org/
+    post_install_message: 
+    rdoc_options: []
+    
+    require_paths: 
+    - lib
+    required_ruby_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    required_rubygems_version: !ruby/object:Gem::Requirement 
+      requirements: 
+      - - ">="
+        - !ruby/object:Gem::Version 
+          version: "0"
+      version: 
+    requirements: []
+    
+    rubyforge_project: automateit
+    rubygems_version: 1.1.1
+    signing_key: 
+    specification_version: 2
+    summary: AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.
+    test_files: []
+    
+    

@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Compatibility</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>AutomateIt compatibility</h1>
+                <p>AutomateIt works on most server platforms. However, some special-purpose AutomateIt features require the presence of platform-specific features. This page describes the platforms and features supported by AutomateIt.</p>
+                <h2>Topics</h2>
+                <ul>
+                	<li><a href="#platform_specific_drivers">Platform-specific drivers</a></li>
+                	<li><a href="#driver_availability">Driver availability</a></li>
+                	<li><a href="#cross_platform_drivers">Cross-platform drivers</a></li>
+                	<li><a href="#determining_driver_availability">Determining driver availability</a></li>
+                	<li><a href="#writing_drivers">Writing drivers</a></li>
+                	<li><a href="#workarounds_for_missing_drivers">Workarounds for missing drivers</a></li>
+                	<li><a href="#future_plugins">Future plugins</a></li>
+                </ul>
+                <h2><a name="platform_specific_drivers">Platform-specific drivers</a></h2>
+                <p>For example, the <code>ServiceManager</code> plugin provides a high-level interface for manipulating services (&#8220;daemons&#8221;). A <code>SysV</code> driver helps start and stop services on all SystemV-style Unix variants, while the <code>Chkconfig</code> driver for RedHat-style platforms provides additional features to help enable and disable services that start on boot.</p>
+                <h2><a name="driver_availability">Driver availability by platform for AutomateIt 0.80116</a></h2>
+                <p style="margin-bottom:1em;">AutomateIt provides support for many platform-specific drivers, and more are being developed:</p>
+                <table class="specific_drivers">
+                	<tr>
+                		<th class="title" colspan="7">AutomateIt driver availability</th>
+                	</tr>
+                	<tr>
+                		<th>Platform </th>
+                		<th>Tested? </th>
+                		<th>Account            </th>
+                		<th>Address            </th>
+                		<th>Package </th>
+                		<th>Platform  </th>
+                		<th>Service  </th>
+                	</tr>
+                	<tr>
+                		<td> Ubuntu    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> <span class="caps">APT</span>       </td>
+                		<td> <span class="caps">LSB</span>         </td>
+                		<td> UpdateRCD  </td>
+                	</tr>
+                	<tr>
+                		<td> Fedora    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> <span class="caps">YUM</span>       </td>
+                		<td> <span class="caps">LSB</span>         </td>
+                		<td> Chkconfig  </td>
+                	</tr>
+                	<tr>
+                		<td> Debian    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> <span class="caps">APT</span>       </td>
+                		<td> Debian      </td>
+                		<td> UpdateRCD  </td>
+                	</tr>
+                	<tr>
+                		<td> CentOS    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> <span class="caps">YUM</span>       </td>
+                		<td> <span class="caps">LSB</span>         </td>
+                		<td> Chkconfig  </td>
+                	</tr>
+                	<tr>
+                		<td> RedHat    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> <span class="caps">YUM</span>       </td>
+                		<td> <span class="caps">LSB</span>         </td>
+                		<td> Chkconfig  </td>
+                	</tr>
+                	<tr>
+                		<td> Gentoo    </td>
+                		<td> Yes       </td>
+                		<td> Linux                </td>
+                		<td> Linux                </td>
+                		<td> Portage   </td>
+                		<td> Gentoo      </td>
+                		<td> RC_Update  </td>
+                	</tr>
+                	<tr>
+                		<td> Solaris   </td>
+                		<td> Yes       </td>
+                		<td> SunOS                </td>
+                		<td> SunOS                </td>
+                		<td class="l">[N/A] </td>
+                		<td> SunOS       </td>
+                		<td class="l">SYSV*  </td>
+                	</tr>
+                	<tr>
+                		<td> FreeBSD   </td>
+                		<td> Yes       </td>
+                		<td class="l">Portable*        </td>
+                		<td> FreeBSD              </td>
+                		<td class="l">[N/A] </td>
+                		<td> FreeBSD     </td>
+                		<td class="l">[N/A]  </td>
+                	</tr>
+                	<tr>
+                		<td> OpenBSD   </td>
+                		<td> Yes       </td>
+                		<td class="l">Portable*        </td>
+                		<td> OpenBSD              </td>
+                		<td class="l">[N/A] </td>
+                		<td> OpenBSD     </td>
+                		<td class="l">[N/A]  </td>
+                	</tr>
+                	<tr>
+                		<td> Mac OS X  </td>
+                		<td> Yes       </td>
+                		<td class="l">Portable* [N/P]  </td>
+                		<td class="l">Portable* [N/P]  </td>
+                		<td class="l">[N/P] </td>
+                		<td> Darwin      </td>
+                		<td class="l">[N/P]  </td>
+                	</tr>
+                	<tr>
+                		<td> Windows   </td>
+                		<td> Yes       </td>
+                		<td class="l">[N/P]            </td>
+                		<td class="l">Portable* [N/P]  </td>
+                		<td class="l">[N/P] </td>
+                		<td> Windows     </td>
+                		<td class="l">[N/P]  </td>
+                	</tr>
+                	<tr>
+                		<td> Java      </td>
+                		<td> Yes       </td>
+                		<td colspan="5">Uses underlying platform&#8217;s drivers    </td>
+                	</tr>
+                	<tr>
+                		<th class="key" colspan="7">Key: <br>* = Available now, but with limited features<br>[N/A] = Not yet available, but planned for version 1.0<br>[N/P] = No additional support planned for version 1.0 </th>
+                	</tr>
+                </table>
+                <p>Reading the table: For example, Ubuntu has been tested and includes full-featured plugins for Account, Address, Package, Platform and Service. In contrast, Solaris has been tested, includes a feature-complete Platform and Account driver, but uses the limited-feature driver for managing Services, and has no way to manage Solaris-specific packages yet.</p>
+                <p>Technical information about specific drivers can be found in the <a href="documentation">Documentation</a>. For example the Service plugin driver for Chkconfig will be documented as <code>AutomateIt::ServiceManager::Chkconfig</code>.</p>
+                <h2><a name="cross_platform_drivers">Cross-platform drivers</a></h2>
+                <p style="margin-bottom:1em;">AutomateIt provides various cross-platform drivers:</p>
+                <table class='portable_drivers'>
+                  <tr>
+                    <th>Plugin</th>
+                    <th>Drivers</th>
+                  </tr>
+                  <tr>
+                    <td>Package</td>
+                    <td>
+                      <ul>
+                        <li>Gem: Ruby libraries</li>
+                        <li>Egg: Python libraries</li>
+                        <li>PEAR: PHP libraries</li>
+                        <li>PECL: PHP libraries</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Account</td>
+                    <td>
+                      <ul>
+                        <li>
+                          Etc: Parses
+                          <code>/etc</code>
+                          entries on Unix-like platforms
+                        </li>
+                        <li>
+                          PasswdPTY: Changes passwords using Ruby's
+                          <code>pty</code>
+                        </li>
+                        <li>
+                          PasswdExpect: Changes passwords using TCL's
+                          <code>expect</code>
+                        </li>
+                        <li>
+                          NSCD: Manages cache of user and group entries
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Shell</td>
+                    <td>
+                      <ul>
+                        <li>Portable: Provides Unix-like shell commands</li>
+                        <li>
+                          Link and Symlink: Provides Unix-like
+                          <code>ln</code>
+                          command
+                        </li>
+                        <li>
+                          Which: Provides
+                          <code>
+                            which
+                          </code>
+                          on Unix-like platforms
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+                <h2><a name="determining_driver_availability">Determining driver availability</a></h2>
+                <p>Run the integration test suite to see what drivers are supported on a platform. See the documentation&#8217;s <a href="documentation/files/TESTING_txt"><span class="caps">TESTING</span>.txt</a> for details.</p>
+                <h2><a name="writing_drivers">Writing drivers</a></h2>
+                <p>If no driver is available, it&#8217;s easy to write one. Most drivers can be written in less than an hour. Custom-written drivers are placed into your project&#8217;s <code>lib</code> directory and will be loaded automatically &#8212; there&#8217;s no need to fork AutomateIt&#8217;s source code. For technical details, see the <a href="documentation/classes/AutomateIt/Plugin/Driver">AutomateIt::Plugin::Driver</a> technical documentation.</p>
+                <h2><a name="workarounds_for_missing_drivers">Workarounds for missing drivers</a></h2>
+                <p>If you don&#8217;t want to write a driver, there are simpler alternatives available. For example:</p>
+                <ul>
+                	<li>Manually define tags: AutomateIt adds an <code>ubuntu</code> tag when running on Ubuntu, but can&#8217;t add tags for Obscurix, an unsupported platform. To workaround this, edit the <code>tags.yml</code> file and tag the matching hosts with <code>obscurix</code>.</li>
+                </ul>
+                <ul>
+                	<li>Directly run low-level tools: Run commands from recipes using <code>sh</code>, <code>system</code> or <code>`backticks`</code> from your recipe. This isn&#8217;t pretty, but will get the job done. Be sure to add logic to your custom commands so they can be previewed.</li>
+                </ul>
+                <ul>
+                	<li>Extract reusable code into methods: Even if you don&#8217;t write a driver, use a method to encapsulate logic. So rather than writing a new package manager driver, you can just write a simple method &mdash; e.g., <code>def obscurix_install(packages)</code> &mdash; that includes the <code>system</code> commands to run the low-level tools. This will make recipes more maintainable and easier to change over to drivers.</li>
+                </ul>
+                <h2><a name="future_plugins">Future plugins</a></h2>
+                <p>Plugins that might be implemented in the future:</p>
+                <ul>
+                	<li>ScheduleManager &#8212; Manipulates regular command execution schedules, e.g., cron.</li>
+                	<li>TransferManager &#8212; Transfers files from some source, e.g., rsync, sftp, http.</li>
+                	<li>SourceManager &#8212; Manipulates source control systems, e.g., svn, cvs, hg.</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

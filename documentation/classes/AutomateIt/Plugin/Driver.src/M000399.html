@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>available? (AutomateIt::Plugin::Driver)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/plugin/driver.rb, line 145</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">available?</span>
+        <span class="ruby-comment cmt"># Some drivers don't run +depends_on+, so assume they're available.</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:_depends_on_opts</span>)
+        <span class="ruby-identifier">opts</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_depends_on_opts</span>
+
+        <span class="ruby-comment cmt"># Driver said that it +depends_on :nothing+, so it's available.</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:nothing</span>
+
+        <span class="ruby-identifier">is_available</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_is_available</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_available</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-comment cmt">#log.debug(PNOTE+&quot;don't know if driver #{self.class} is available, maybe it doesn't state what it +depends_on+&quot;)</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">is_available</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">all_present</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-identifier">missing</span> = {}
+
+          <span class="ruby-comment cmt"># Check callbacks last</span>
+          <span class="ruby-identifier">kinds</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">keys</span>
+          <span class="ruby-identifier">callbacks</span> = <span class="ruby-identifier">kinds</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:callbacks</span>)
+          <span class="ruby-identifier">kinds</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">callbacks</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">callbacks</span>
+
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">kind</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">kinds</span>
+              <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">kind</span>]
+              <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">item</span> <span class="ruby-keyword kw">in</span> [<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">kind</span>]].<span class="ruby-identifier">flatten</span>
+                <span class="ruby-identifier">present</span> = \
+                  <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">kind</span>
+                  <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:files</span>
+                    <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">item</span>)
+                  <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:directories</span>
+                    <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">item</span>)
+                  <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:programs</span>
+                    <span class="ruby-comment cmt"># TODO Driver#available? - Find better way to locate the platform's #which driver and use it to check if a program exists. This is tricky because this #available? method is the one that handles detection, yet we have to bypass it.</span>
+                    <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">nil</span>
+                    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">variant</span> <span class="ruby-keyword kw">in</span> <span class="ruby-node">%w(unix windows)</span>
+                      <span class="ruby-identifier">variant_token</span> = <span class="ruby-node">&quot;which_#{variant}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+                      <span class="ruby-keyword kw">begin</span>
+                        <span class="ruby-identifier">driver</span> = <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">shell_manager</span>[<span class="ruby-identifier">variant_token</span>]
+                        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">which!</span>(<span class="ruby-identifier">item</span>)
+                        <span class="ruby-comment cmt">### puts &quot;%s : %s for %s&quot; % [variant, result, item]</span>
+                        <span class="ruby-keyword kw">break</span>
+                      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-constant">NoMethodError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+                        <span class="ruby-comment cmt"># Exceptions are expected, only print for debugging</span>
+                        <span class="ruby-comment cmt">### puts e.inspect</span>
+                      <span class="ruby-keyword kw">end</span>
+                    <span class="ruby-keyword kw">end</span>
+                    <span class="ruby-identifier">result</span>
+                  <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:requires</span>, <span class="ruby-identifier">:libraries</span>
+                    <span class="ruby-keyword kw">begin</span>
+                      <span class="ruby-identifier">require</span> <span class="ruby-identifier">item</span>
+                      <span class="ruby-keyword kw">true</span>
+                    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+                      <span class="ruby-keyword kw">false</span>
+                    <span class="ruby-keyword kw">end</span>
+                  <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:callbacks</span>
+                    <span class="ruby-identifier">item</span>.<span class="ruby-identifier">call</span>() <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+                  <span class="ruby-keyword kw">else</span>
+                    <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Unknown kind: #{kind}&quot;</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">present</span>
+                  <span class="ruby-identifier">all_present</span> = <span class="ruby-keyword kw">false</span>
+                  <span class="ruby-identifier">missing</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">||=</span> []
+                  <span class="ruby-identifier">missing</span>[<span class="ruby-identifier">kind</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>
+
+                  <span class="ruby-comment cmt"># Do not continue scanning if dependency is missed</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;break&quot;</span>)
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">EOFError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+            <span class="ruby-comment cmt"># Ignore expected &quot;break&quot; warning</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;break&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_missing_dependencies</span> = <span class="ruby-identifier">missing</span>
+          <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_is_available</span> = <span class="ruby-identifier">all_present</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Driver #{self.class} #{all_present ? &quot;is&quot; : &quot;isn't&quot;} available&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_is_available</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

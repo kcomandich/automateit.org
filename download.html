@@ -1,0 +1,206 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Downloads</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>AutomateIt downloads</h1>
+                <h2>Topics</h2>
+                <ul>
+                	<li><a href="#notifications">Release notifications</a></li>
+                	<li><a href="#install">Install</a></li>
+                	<li><a href="#update">Update</a></li>
+                	<li><a href="#browse">Browse source</a></li>
+                	<li><a href="#source">Download source</a></li>
+                	<li><a href="#rundev">Using development releases</a></li>
+                </ul>
+                <h2><a name="notifications"/> Release notifications</h2>
+                <p>Subscribe to the <a href="changes.rss"><span class="caps">RSS</span> changes feed</a> for release notifications.</p>
+                <h2><a name="install"/> Install</h2>
+                <ol>
+                  <li>
+                    Install the <a href="http://www.ruby-lang.org/en/">Ruby</a> programming language
+                  </li>
+                  <li>
+                    Install the <a href="http://rubyforge.org/frs/?group_id=126">RubyGems</a> tool for installing Ruby packages
+                  </li>
+                  <li>
+                    Install the AutomateIt package -- if you get a permission denied error, use <code>sudo</code> or switch to a root or Administrator account to run:
+                    <div class='scraped'>
+                      <pre>gem install -y automateit&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    <p>Run <code>automateit -v</code>. If it displays a version number, all is well. Otherwise, read the <a href="install_issues">Installation issues</a> page.</p>
+                  </li>
+                  <li>
+                    <p>See the <a href="screenshots">Screenshots</a> and <a href="tutorial">Tutorial</a> to learn how to use the toolkit.</p>
+                  </li>
+                </ol>
+                <h2><a name="update"/> Update</h2>
+                <ol>
+                  <li>
+                    Read the
+                    <a href="changes">Changes</a>
+                    page to learn about API changes, bugfixes and new features.
+                  </li>
+                  <li>
+                    Update the AutomateIt gem -- if you get a permission denied error, use <code>sudo</code> or switch to a root or Administrator account to run:
+                    <div class='scraped'>
+                      <pre>gem update -y automateit&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Run your recipes with the
+                    <code>--preview</code>
+                    options to make sure they still work.
+                  </li>
+                </ol>
+                <h2><a name="browse"/> Browse source</h2>
+                <p>You can browse <a href="http://github.com/automateit/automateit/tree/master">AutomateIt&#8217;s source code</a> online.</p>
+                <h2><a name="source"/> Download source</h2>
+                <ol>
+                  <li>
+                    Install the <a href="http://git-scm.com/">Git</a> distributed revision control system.
+                  </li>
+                  <li>
+                    Download the AutomateIt source code:
+                    <div class='scraped'>
+                      <pre>git clone git://github.com/automateit/automateit.git&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Read the code in the newly-created
+                    <code>automateit</code>
+                    directory.
+                  </li>
+                  <li>
+                    The repository may contain unreleased and unstable changes. Install the gem if you need stability.
+                  </li>
+                  <li>
+                    You can also run AutomateIt directly from the checkout, e.g., <code>automateit/bin/automateit -h</code>.
+                  </li>
+                </ol>
+                <h2>
+                  <a name="rundev" />Using development releases
+                </h2>
+                <p>
+                  You may want to use development versions of AutomateIt that haven't been released to the public RubyGems repository. There are two ways to use these:
+                </p>
+                <h3>
+                  Upgrade your system by downloading and installing the new gem:
+                </h3>
+                <ol>
+                  <li>
+                    Setup by running commands like:
+                    <div class='scraped'>
+                      <pre>  cd /tmp&#x000A;  wget http://automateit.org/pub/gems/automateit-0.91104.gem&#x000A;  sudo gem install automateit-0.91104.gem --no-ri --no-rdoc&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Use it as normal, e.g.:
+                    <div class='scraped'>
+                      <pre>  automateit --version&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Uninstall if needed by running:
+                    <div class='scraped'>
+                      <pre>  sudo gem uninstall&#x000A;</pre>&#x000A;
+                    </div>
+                  </li>
+                </ol>
+                <h3>
+                  Temporarily run it from from a source code checkout:
+                </h3>
+                <ol>
+                  <li>
+                    Setup by running commands like this to checkout the source and a particular branch:
+                    <div class='scraped'>
+                      <pre>  cd ~&#x000A;  git clone git://github.com/automateit/automateit.git automateit_src&#x000A;  cd ~/automateit_src&#x000A;  git checkout origin/next -b next&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Update an existing checkout by running commands like:
+                    <div class='scraped'>
+                      <pre>  cd ~/automateit_src&#x000A;  git pull&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Use it by starting a shell and setting paths, e.g.:
+                    <div class='scraped'>
+                      <pre>  sudo -s&#x000A;  cd ~/automateit_src&#x000A;  . add2path.sh&#x000A;  automateit --version&#x000A;</pre>
+                    </div>
+                  </li>
+                  <li>
+                    Uninstall is not needed, just close the shell and remove the checked-out <code>~/automateit_src</code> directory.
+                  </li>
+                </ol>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: friendly_errors.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>friendly_errors.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>docs/friendly_errors.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 20 04:47:12 -0700 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>User-friendly error messages</h2>
+<p>
+AutomateIt provides user-friendly error messages that make it easier to fix
+problems in recipes and templates. These pinpoint the cause and show code
+snippets.
+</p>
+<p>
+For example, one of the sample recipes is executed &#8212; but
+there&#8216;s a problem and the output is shown below.
+</p>
+<p>
+The message is telling us the error happened in the
+&#8216;examples/basic/recipes/install.rb&#8217; recipe at line 47. The
+first snippet shows the end of a failed TemplateManager <tt>render</tt>
+call.
+</p>
+<p>
+In the second code snippet, we see there was a problem with the ERB
+template &#8216;dist/myapp_server.erb&#8217;. This template failed at line
+5 because it couldn&#8216;t find a variable called <tt>pat</tt>.
+</p>
+<p>
+With the help of the second snippet, we quickly see that there&#8216;s a
+typo &#8212; that bad variable should have been <tt>path</tt>. Problem
+solved!
+</p>
+<pre>
+  root@kagami&gt; automateit -n examples/basic/recipes/install.rb
+  !! Problem with recipe 'examples/basic/recipes/install.rb' at line 47
+
+     41            :to =&gt; &quot;/etc/init.d/myapp_server&quot;,
+     42            :mode =&gt; 0555,
+     43            :locals =&gt; {
+     44               :path =&gt; lookup(:path),
+     45               :user =&gt; lookup(:user),
+     46               :port =&gt; lookup(:port),
+   * 47            }
+     48     )
+     49
+
+  (NestedError) Problem with template 'dist/myapp_server.erb' at line 5:
+
+     1 #!/usr/bin/env ruby
+     2
+     3 user = &quot;&lt;%=user%&gt;&quot;
+     4 port = &quot;&lt;%=port%&gt;&quot;
+   * 5 path = &quot;&lt;%=pat%&gt;&quot;
+     6 pid = &quot;mongrel.pid&quot;
+     7
+
+  (NameError) undefined local variable or method `pat' for #&lt;AutomateIt::TemplateManager::ERB:0xb78a4e8c&gt;
+    /home/igal/workspace/automateit/app/lib/helpful_erb.rb:60:in `result'
+    /home/igal/workspace/automateit/app/lib/automateit/template_manager/erb.rb:105:in `render'
+    (eval):2:in `render'
+    examples/basic/recipes/install.rb:47:in `invoke'
+
+  =&gt; Use 'automateit --trace' to see complete backtrace
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Status</title>
+    <link href="stylesheets/blueprint/screen.css" rel="stylesheet" media="screen, projection" type="text/css" />
+    <link href="stylesheets/blueprint/print.css" rel="stylesheet" media="print" type="text/css" />
+    <link href="stylesheets/application.css" rel="stylesheet" media="all" />
+  </head>
+  <body>
+    <div id="everything">
+      <div id="header">
+        <table>
+          <tr>
+            <td>
+              <h1>
+                <a href=".">
+                  <span class="color1">Automate</span><span class="color2">It</span>
+                </a>
+              </h1>
+            </td>
+            <!-- / XXX tagline? -->
+            <!-- / %td{:align => "middle"} -->
+            <!-- /   %h3 System Administration 2.0 -->
+          </tr>
+        </table>
+      </div>
+      <div id="menu_and_page_content">
+        <table>
+          <tr>
+            <td>
+              <div id="menu">
+                <ul>
+                  <li><a href="about">About</a></li>
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Get started!</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li><a href="download">Download</a></li>
+                  <!-- / FIXME setup mailing list -->
+                  <!-- /li= link 'Community' -->
+                  <!-- / FIXME write -->
+                  <!-- /%li= link 'Consulting' -->
+                  <li><a href="status">Status</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id="page_content">
+                <h3>AutomateIt status</h3>
+                
+                
+                	<h4>Beta</h4>
+                
+                
+                	<p>AutomateIt is feature-complete, exceeds the capabilities of most major products, and ensures its quality with a self-test suite. However, this is a young product and users are expected to be technically proficient, be willing to accept rough spots, work through problems and upgrade frequently.</p>
+                
+                
+                	<h3>Driver-related issues</h3>
+                
+                
+                	<h4>Platform-specific drivers</h4>
+                
+                
+                	<p>Most AutomateIt features will work on all Ruby-supported platform. However, some plugins require platform-specific drivers. For example, AutomateIt&#8217;s <code>package_manager.install</code> command can use a driver to use Debian&#8217; <code>apt-get</code> packaging tool.</p>
+                
+                
+                	<p>Most plugins include drivers that provide limited features for many platforms. For example, the <span class="caps">SYSV</span> Service driver can start daemons on any platform using SystemV-style init&#8212;however, it cannot enable them to start after reboot because this requires a specialized driver, such as Chkconfig for RedHat-style systems.</p>
+                
+                
+                	<p>AutomateIt&#8217;s production-quality release will provide complete, tested drivers for at least the platforms listed below.</p>
+                
+                
+                	<h4>Driver availability by platform</h4>
+                <p>
+                  <table class="driver_availability">
+                    <tr>
+                      <th>Platform</th>
+                      <th>Tested?</th>
+                      <th>Account</th>
+                      <th>Address</th>
+                      <th>Package</th>
+                      <th>Platform</th>
+                      <th>Service</th>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Ubuntu</td>
+                      <td>Yes</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>APT</td>
+                      <td>LSB</td>
+                      <td>UpdateRCD</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Fedora</td>
+                      <td>Yes</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>YUM</td>
+                      <td>LSB</td>
+                      <td>Chkconfig</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Debian</td>
+                      <td>Yes</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>APT</td>
+                      <td>Debian</td>
+                      <td>UpdateRCD</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">CentOS</td>
+                      <td>No</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>YUM</td>
+                      <td>LSB</td>
+                      <td>Chkconfig</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">RedHat</td>
+                      <td>No</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>YUM</td>
+                      <td>LSB</td>
+                      <td>Chkconfig</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Gentoo</td>
+                      <td>Yes</td>
+                      <td>Linux</td>
+                      <td>Linux</td>
+                      <td>-</td>
+                      <td>Gentoo</td>
+                      <td>SYSV*</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">FreeBSD</td>
+                      <td>No</td>
+                      <td>Portable*</td>
+                      <td>Portable*</td>
+                      <td>-</td>
+                      <td>Uname*</td>
+                      <td>SYSV*</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">OpenBSD</td>
+                      <td>No</td>
+                      <td>Portable*</td>
+                      <td>Portable*</td>
+                      <td>-</td>
+                      <td>Uname*</td>
+                      <td>SYSV*</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Solaris</td>
+                      <td>No</td>
+                      <td>Portable*</td>
+                      <td>Portable*</td>
+                      <td>-</td>
+                      <td>Uname*</td>
+                      <td>SYSV*</td>
+                    </tr>
+                    <tr>
+                      <td class="platform_name">Darwin</td>
+                      <td>No</td>
+                      <td>Portable*</td>
+                      <td>Portable*</td>
+                      <td>-</td>
+                      <td>Uname*</td>
+                      <td>SYSV*</td>
+                    </tr>
+                    <tr>
+                      <th class="key" colspan="7">
+                        Key: "-" = not available, "*" = limited features
+                      </th>
+                    </tr>
+                  </table>
+                </p>
+                <p>For example, on the chart above, we can see that Ubuntu has been tested and has full-featured plugins for Account, Address, Package, Platform and Service. In contrast, Solaris hasn&#8217;t been tested yet, but should work with the limited-purpose drivers for Account, Address, Platform and Service.</p>
+                
+                
+                	<p>Technical information about specific drivers can be found in the <a href="documentation">Documentation</a>&#8212;for example the Service plugin driver for Chkconfig will be documented as <code>AutomateIt::ServiceManager::Chkconfig</code>.</p>
+                
+                
+                	<h4>Determine Driver availability</h4>
+                
+                
+                	<p>Run the integration test suite to see what drivers are supported on a platform. See the documentation&#8217;s <a href="documentation/files/TESTING_txt.html"><span class="caps">TESTING</span>.txt</a> for details.</p>
+                
+                
+                	<h4>Writing drivers</h4>
+                
+                
+                	<p>If no driver is available, it&#8217;s easy to write one. Most drivers can be written in less than an hour. To write a driver, find the most similar driver available for a specific plugin, copy it, and rework its code. Save the code for the new driver in a file ending with <code>.rb</code> into the project&#8217;s <code>lib</code> directory, it will be automatically loaded whenever the Interpreter for that project is run. Please test and contribute drivers so that others can benefit.</p>
+                
+                
+                	<h4>Workarounds for missing drivers</h4>
+                
+                
+                	<p>If writing a driver seems like too much work, there are alternatives depending on what functionality is needed.</p>
+                
+                
+                	<p>For example, AutomateIt adds tags based on the machine&#8217;s platform information&#8212;it will add an <code>ubuntu</code> tag when run on an Ubuntu system. For platforms that don&#8217;t have a Platform driver, users can manually set tags by defining them in the <code>tags.yml</code> file.</p>
+                
+                
+                	<p>Or for example, AutomateIt provides drivers for installing software using platform-specific packaging tools like <code>apt-get</code>. If a user needs to use an unsupported package tool and doesn&#8217;t want to write a driver, they can manually use <code>sh</code> commands to run the system-level tool directly. This isn&#8217;t pretty, but will get the job done.</p>
+                
+                
+                	<h3>Future plugins</h3>
+                
+                
+                	<p>Plugins that might be implemented in the future:</p>
+                
+                
+                	<ul>
+                	<li>ScheduleManager&#8212;Manipulates regular command execution schedules, e.g. cron.</li>
+                		<li>TransferManager&#8212;Transfers files from some source, e.g. rsync, sftp, http.</li>
+                		<li>SourceManager&#8212;Manipulates source control systems, e.g. svn, cvs, hg.</li>
+                	</ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <p>
+          Copyright &copy; 2007 Igal Koshevoy. <a href="contact">Contact</a> || <a href="legal">Legal</a>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

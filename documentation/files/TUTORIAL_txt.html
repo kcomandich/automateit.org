@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: TUTORIAL.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>TUTORIAL.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>TUTORIAL.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Mar 20 04:47:12 -0700 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>A hands-on tutorial for learning AutomateIt</h2>
+<p>
+<em>AutomateIt is an open source tool for automating the setup and
+maintenance of servers, applications and their dependencies.</em>
+</p>
+<p>
+This hands-on guide will teach you to use AutomateIt and explain where to
+find more detailed instructions.
+</p>
+<p>
+It&#8216;s recommended that you see the <a
+href="http://automateit.org/screenshots">Screenshots</a> of AutomateIt in
+action to get a quick idea of what AutomateIt is all about.
+</p>
+<p>
+AutomateIt is feature-complete, exceeds the capabilities of similar
+products, and ensures its quality with a self-test suite. However, this is
+a young product and users are expected to be technically proficient,
+willing to accept rough spots, to work through problems and upgrade
+frequently.
+</p>
+<p>
+Please sign up for RSS change <a
+href="http://automateit.org/changes">notifications</a> so you know when
+upgrades are available.
+</p>
+<h3>Ruby</h3>
+<p>
+AutomateIt is written using the Ruby programming language. If you
+haven&#8216;t used Ruby, you&#8216;ll find it easy to learn and a pleasure
+to use. If you already know the basics of Perl, Python, PHP or Java,
+you&#8216;ll be able to pick up Ruby almost instantly. Although AutomateIt
+provides much of the structure and commands needed, you still need to know
+the basic Ruby syntax to get by.
+</p>
+<p>
+Some Ruby resources:
+</p>
+<ul>
+<li>Ruby&#8216;s official documentation page: <a
+href="http://www.ruby-lang.org/en/documentation">www.ruby-lang.org/en/documentation</a>/
+
+</li>
+<li>The online &quot;Ruby user&#8216;s guide&quot; is a gentle introduction to
+the Ruby language: <a
+href="http://www.ruby-doc.org/docs/UsersGuide/rg">www.ruby-doc.org/docs/UsersGuide/rg</a>/
+
+</li>
+<li>The online &quot;Ruby syntax&quot; is a condensed, one-page reference of
+the language&#8216;s syntax: <a
+href="http://www.ruby-doc.org/docs/ruby-doc-bundle/Manual/man-1.4/syntax.html">www.ruby-doc.org/docs/ruby-doc-bundle/Manual/man-1.4/syntax.html</a>
+
+</li>
+<li>The online &quot;Programming Ruby&quot; site provides a fairly detailed
+walk-through of the language: <a
+href="http://www.ruby-doc.org/docs/ProgrammingRuby">www.ruby-doc.org/docs/ProgrammingRuby</a>/
+
+</li>
+<li>The &quot;Practical Ruby for System Administration&quot; book is a gentle
+introduction for sysadmins, which may be much easier for them to understand
+than a book aimed at software engineers, and it covers many system
+administration automation topics that&#8216;ll be of use for Automateit
+recipes: <a
+href="http://www.apress.com/book/view/1590598210">www.apress.com/book/view/1590598210</a>
+
+</li>
+<li>The &quot;Programming Ruby&quot; book provides a much more complete
+language reference than any online reference: <a
+href="http://www.pragmaticprogrammer.com/titles/ruby/index.html">www.pragmaticprogrammer.com/titles/ruby/index.html</a>
+
+</li>
+</ul>
+<h3>Typographical conventions</h3>
+<p>
+AutomateIt&#8216;s technical documentation uses the following typographical
+conventions:
+</p>
+<ul>
+<li><tt>automateit</tt> &#8212; A file, command or variable.
+
+</li>
+<li><tt>:verbosity</tt> &#8212; A symbol, usually used in an options hash.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ShellManager.html">AutomateIt::ShellManager</a>
+&#8212; A class, with a link to its documentation. You can also find a link
+to this class&#8216;s documentation in the &quot;Classes&quot; pane on the
+left.
+
+</li>
+<li>AutomateIt::ShellManager#sh &#8212; A method, with a link to its
+documentation. You can also find a link to this method&#8216;s
+documentation in the &quot;Methods&quot; pane on the left.
+
+</li>
+<li>Ruby code:
+
+</li>
+</ul>
+<pre>
+ puts &quot;Ruby code&quot;
+</pre>
+<ul>
+<li>Unix shell command, although the prompt may be left off when obvious:
+
+</li>
+</ul>
+<pre>
+ you@host:myproject&gt; echo &quot;Unix command run from the 'myproject' directory&quot;
+</pre>
+<ul>
+<li>AutomateIt interactive shell command, although the prompt may be left off
+when obvious:
+
+</li>
+</ul>
+<pre>
+ ai&gt; puts &quot;I'm in the Interpreter&quot;
+</pre>
+<h3>Glossary</h3>
+<p>
+AutomateIt uses a number of unique terms:
+</p>
+<ul>
+<li><b>Recipe</b> &#8212; A file that contains AutomateIt commands.
+
+</li>
+<li><b>Project</b> &#8212; A special directory that contains related recipes
+and helper files.
+
+</li>
+<li><b>Interpreter</b> &#8212; The part of AutomateIt that runs commands.
+
+</li>
+<li><b>Plugin</b> &#8212; A part of AutomateIt that describes related features.
+
+</li>
+<li><b>Driver</b> &#8212; An implementation of a plugin. There are often
+multiple drivers per plugin.
+
+</li>
+</ul>
+<h3>Interactive shell</h3>
+<p>
+AutomateIt comes with an interactive shell, which is useful for exploring
+commands and developing recipes.
+</p>
+<p>
+Here&#8216;s what an interactive shell session looks like (text following
+the <tt>#</tt> symbol explains the line and is not actually part of the
+session):
+</p>
+<pre>
+ you@host:tmp&gt; automateit      # Start the AutomateIt interactive shell
+ =&gt; AutomateIt Shell v0.5.0    # Welcome message from AutomateIt
+ ai&gt; puts &quot;Hello world!&quot;       # AutomateIt's prompt and a user command
+ Hello world!                  # Output from the &quot;puts&quot; command
+ =&gt; nil                        # Return value of the &quot;puts&quot; command
+ ai&gt; self.class                # Prompt and another user command
+ =&gt; AutomateIt::Interpreter    # Return value of &quot;self.class&quot;
+ ai&gt; &lt;CTRL-D&gt;                  # Press &lt;CTRL-D&gt; to exit the shell
+ you@host:tmp&gt;                 # We're back to the Unix shell
+</pre>
+<h3>Recipe files</h3>
+<p>
+The Interpreter can run recipe files that contain AutomateIt commands.
+</p>
+<p>
+For example, create a <tt>/tmp/hello.rb</tt> file that contains:
+</p>
+<pre>
+ puts &quot;Hello, I'm an #{self.class}&quot;
+</pre>
+<p>
+Then run the recipe:
+</p>
+<pre>
+ you@host:tmp&gt; automateit /tmp/hello.rb
+ Hello, I'm an AutomateIt::Interpreter
+</pre>
+<h3>String evaluation</h3>
+<p>
+The Interpreter can also evaluate commands as strings:
+</p>
+<pre>
+ you@host:tmp&gt; automateit -e 'puts self.class'
+ AutomateIt::Interpreter
+</pre>
+<h3>Exploring the Interpreter&#8216;s unique methods</h3>
+<p>
+The Interpreter provides some unique methods:
+</p>
+<pre>
+ ai&gt; unique_methods
+ =&gt; [&quot;account_manager&quot;, &quot;address_manager&quot;, &quot;cd&quot;, &quot;chmod&quot;, ...
+</pre>
+<p>
+The names are Interpreter methods. Names ending with <tt>_manager</tt> are
+methods for accessing plugins, while the rest are normal methods. The <a
+href="../classes/AutomateIt/Interpreter.html">AutomateIt::Interpreter</a>
+documentation provides a list of these methods and links to their
+individual documentation.
+</p>
+<p>
+For example, one of the commands listed is <tt>pwd</tt>, which can be used
+like this:
+</p>
+<pre>
+ ai&gt; pwd
+ =&gt; &quot;/tmp&quot;
+</pre>
+<p>
+AutomateIt provides many commands that work just like the Unix shell
+commands you already know, so you&#8216;ll be productive quickly.
+</p>
+<h3>Conditional execution</h3>
+<p>
+AutomateIt executes only the commands needed to achieve a desired state,
+which makes recipes repeatable, reusable and maintainable.
+</p>
+<p>
+Eliminating the distinction between setup and maintenance means the same
+command can perform both tasks without concern for the host&#8216;s
+condition. A properly-written recipe can be run and re-run immediately
+afterwards, and it will do nothing the second time because all changes have
+already been applied.
+</p>
+<p>
+An example can make this clearer &#8212; again the text following the
+<tt>#</tt> symbol explains the commands and is not part of the session:
+</p>
+<pre>
+ you@host:tmp&gt; automateit   # Start the AutomateIt interactive shell
+ =&gt; AutomateIt Shell v0.5.0 # Welcome message
+ ai&gt; mkdir &quot;asdfasdf&quot;       # Create a directory called &quot;asdfasdf&quot;
+ ** mkdir asdfasdf          # Message showing that directory was created
+ =&gt; [&quot;asdfasdf&quot;]            # Return value with array of directories created
+ ai&gt; mkdir &quot;asdfasdf&quot;       # Try to create the same directory again
+ =&gt; false                   # Nothing happened, the directory already exists
+ ai&gt; rmdir &quot;asdfasdf&quot;       # Remove the directory
+ ** rmdir asdfasdf          # Message showing that directory was removed
+ =&gt; [&quot;asdfasdf&quot;]            # Return value with array of directories removed
+ ai&gt; rmdir &quot;asdfasdf&quot;       # Try to remove the directory again
+ =&gt; false                   # Nothing happened, there's no directory to remove
+</pre>
+<p>
+Notice how the second time <tt>mkdir</tt> was run above, it returned
+<tt>false</tt> and didn&#8216;t create a directory? That&#8216;s the
+conditional execution in action, realizing the action has already been
+performed. Similarly, the <tt>rmdir</tt> only ran the first time, but
+returned <tt>false</tt> and took no action when the directory was already
+gone. You can use the return values of these commands to write
+sophisticated logic of your own based on what actions took place.
+</p>
+<h3>Plugins</h3>
+<p>
+AutomateIt uses an extensible plugin architecture to group together related
+commands:
+</p>
+<ul>
+<li><a
+href="../classes/AutomateIt/AccountManager.html">AutomateIt::AccountManager</a>
+&#8212; Manipulates users and groups.
+
+</li>
+<li><a
+href="../classes/AutomateIt/AddressManager.html">AutomateIt::AddressManager</a>
+&#8212; Manipulates host&#8216;s network addresses.
+
+</li>
+<li><a
+href="../classes/AutomateIt/DownloadManager.html">AutomateIt::DownloadManager</a>
+&#8212; Downloads files.
+
+</li>
+<li><a
+href="../classes/AutomateIt/EditManager.html">AutomateIt::EditManager</a>
+&#8212; Edits files and strings.
+
+</li>
+<li><a
+href="../classes/AutomateIt/FieldManager.html">AutomateIt::FieldManager</a>
+&#8212; Queries configuration variables.
+
+</li>
+<li><a
+href="../classes/AutomateIt/PackageManager.html">AutomateIt::PackageManager</a>
+&#8212; Manipulates software packages.
+
+</li>
+<li><a
+href="../classes/AutomateIt/PlatformManager.html">AutomateIt::PlatformManager</a>
+&#8212; Queries platform, such as its OS version.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ServiceManager.html">AutomateIt::ServiceManager</a>
+&#8212; Manipulates services, such as Unix daemons.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ShellManager.html">AutomateIt::ShellManager</a>
+&#8212; Manipulates files and executes Unix commands.
+
+</li>
+<li><a href="../classes/AutomateIt/TagManager.html">AutomateIt::TagManager</a>
+&#8212; Groups hosts by role and queries membership.
+
+</li>
+<li><a
+href="../classes/AutomateIt/TemplateManager.html">AutomateIt::TemplateManager</a>
+&#8212; Renders templates to files.
+
+</li>
+</ul>
+<p>
+Plugins can be accessed from the Interpreter like this:
+</p>
+<pre>
+ ai&gt; shell_manager.pwd
+ =&gt; &quot;/tmp&quot;
+</pre>
+<p>
+The most common plugin methods have aliased shortcuts. For example,
+<tt>pwd</tt> is the alias for <tt>shell_manager.pwd</tt>. These are
+documented in <a
+href="../classes/AutomateIt/Interpreter.html">AutomateIt::Interpreter</a>&#8216;s
+&quot;Aliased methods.&quot;
+</p>
+<h3>Drivers</h3>
+<p>
+Each plugin has one or more drivers that implement its functionality.
+</p>
+<p>
+For example:
+</p>
+<ul>
+<li><a
+href="../classes/AutomateIt/ShellManager.html">AutomateIt::ShellManager</a>
+&#8212; A plugin for running shell commands.
+
+</li>
+<li><a
+href="../classes/AutomateIt/ShellManager/Portable.html">AutomateIt::ShellManager::Portable</a>
+&#8212; A portable but limited-functionality driver that implements the
+ShellManager&#8216;s methods.
+
+</li>
+<li>AutomateIt::ShellManager::Unix &#8212; A full-featured driver implementing
+ShellManager&#8216;s methods that only runs on Unix-like systems.
+
+</li>
+</ul>
+<h3>Plugins provide APIs, drivers provide implementations</h3>
+<p>
+Plugins describe consistent interfaces for related features, and drivers
+implement this API for different tools.
+</p>
+<p>
+For example, AutomateIt provides a common API for all packaging tools: <a
+href="../classes/AutomateIt/PackageManager.html">AutomateIt::PackageManager</a>.
+It provides drivers for packaging tools like APT, YUM, Gem, Egg and others.
+To install a package called <tt>foo</tt> with the <tt>apt</tt> driver:
+</p>
+<pre>
+ ai&gt; package_manager.install &quot;foo&quot;, :with =&gt; :apt
+</pre>
+<p>
+AutomateIt will check if <tt>foo</tt> is installed, install it if needed,
+or do nothing if the package is present. This API is the same for all
+packaging tools, making it easy to get work done by using high-level
+AutomateIt commands instead of cryptic tool-specific commands. Although
+AutomateIt uses the low-level tools, it uses them with best-practices
+approaches and hides the senseless complexity from the user.
+</p>
+<p>
+What&#8216;s the big deal? Consider how one would install packages from the
+Unix shell. Most packaging tools are pathologically dysfunctional and make
+it bafflingly difficult to programmatically install or uninstall packages,
+or tell if a package is installed. Many don&#8216;t use exit values and
+require complex output parsing. Others require user-input even when
+it&#8216;s obvious that none is needed. Almost all make it necessary to
+write conditional code because they&#8216;ll either fail with errors if
+told to install an existing package, destroy an existing setup, or install
+duplicate packages. Writing Unix shell code to handle all these quirks is
+frustrating and risky.
+</p>
+<p>
+Here&#8216;s a sample Unix shell command for installing a package using one
+of the simplest, most reasonable tools available &#8212; although note that
+unlike AutomateIt, this shell command can&#8216;t handle multiple packages,
+is slower, can&#8216;t be previewed, and has no consistent error handling:
+</p>
+<pre>
+ if dpkg-query -W --showformat '${Status}\n' foo 2&gt;&amp;1 | \
+     egrep -q '(^| )installed'; then
+   apt-get install -y -q some_package_name &lt; /dev/null
+ done
+</pre>
+<p>
+Now compare that hideous command to the simple, clear and consistent
+AutomateIt command before it. AutomateIt&#8216;s plugins and drivers are
+easy to install and write. As more are written, more people will hopefully
+be freed from needlessly convoluted low-level commands, and able to get
+simple things done simply. AutomateIt&#8216;s consistent API, multiple
+drivers, sane defaults and conditional-checking make it easier to write
+clear and maintainable recipes than using the low-level directly commands
+from the Unix shell.
+</p>
+<h3>Driver auto-detection</h3>
+<p>
+AutomateIt can automatically detect the most suitable driver for each
+plugin command.
+</p>
+<p>
+For example, the <a
+href="../classes/AutomateIt/PackageManager.html">AutomateIt::PackageManager</a>
+plugin has drivers called <a
+href="../classes/AutomateIt/PackageManager/APT.html">AutomateIt::PackageManager::APT</a>
+and <a
+href="../classes/AutomateIt/PackageManager/YUM.html">AutomateIt::PackageManager::YUM</a>.
+On a Debian system, which uses the <tt>apt-get</tt> packaging tool,
+AutomateIt will default to using the <a
+href="../classes/AutomateIt/PackageManager/APT.html">AutomateIt::PackageManager::APT</a>
+driver:
+</p>
+<pre>
+ ai&gt; package_manager.installed? &quot;apache2&quot;
+ =&gt; true
+</pre>
+<h3>Using a specific driver</h3>
+<p>
+Sometimes it&#8216;s necessary to specify the driver to use. The
+recommended way to do this is to pass a <tt>:with =&gt; :driver_name</tt>
+option to the plugin command.
+</p>
+<p>
+For example, tell the package manager to use the Gem driver:
+</p>
+<pre>
+ ai&gt; package_manager.installed? &quot;automateit&quot;, :with =&gt; :gem
+ =&gt; true
+</pre>
+<p>
+You can also completely bypass the plugin and its auto-detection to
+directly interact with the driver:
+</p>
+<pre>
+ ai&gt; package_manager[:gem].installed? &quot;automateit&quot;
+ =&gt; true
+</pre>
+<h3>Projects</h3>
+<p>
+A project is a special directory that contains related recipes and helper
+files. Although it&#8216;s possible to run recipe files without a project,
+a project provides many useful features, described in the <a
+href="../classes/AutomateIt/Project.html">AutomateIt::Project</a>
+documentation.
+</p>
+<p>
+A project is created by specifying the directory to create:
+</p>
+<pre>
+ you@host:tmp&gt; cd /tmp
+ you@host:tmp&gt; automateit --create myproject
+ ** mkdir -p myproject
+ =&gt; Creating AutomateIt project at: myproject
+ ** cd myproject
+ ** mkdir config
+ ** cd config
+ =&gt; Rendering 'tags.yml' because of it doesn't exist
+ =&gt; Rendering 'fields.yml' because of it doesn't exist
+ =&gt; Rendering 'automateit_env.rb' because of it doesn't exist
+ ** cd -
+ ** mkdir dist
+ ** cd dist
+ =&gt; Rendering 'README.txt' because of it doesn't exist
+ ** cd -
+ ** mkdir lib
+ ** cd lib
+ =&gt; Rendering 'README.txt' because of it doesn't exist
+ ** cd -
+ ** mkdir recipes
+ ** cd recipes
+ =&gt; Rendering 'README.txt' because of it doesn't exist
+ ** cd -
+ =&gt; DONE!
+</pre>
+<p>
+This creates a <tt>/tmp/myproject</tt> directory with the newly-created
+project. It contains directories, each with a <tt>README.txt</tt> file
+explaining the directory&#8216;s purpose, and individual files like
+<tt>tags.yml</tt> that contain comments with basic usage instructions.
+</p>
+<p>
+The project creator is an AutomateIt recipe, so it&#8216;s smart enough to
+only execute the commands needed. If the project creator is re-run against
+an existing project, it won&#8216;t make any changes because none are
+needed:
+</p>
+<pre>
+ you@host:tmp&gt; automateit --create myproject
+ =&gt; Found AutomateIt project at: myproject
+ =&gt; DONE!
+</pre>
+<h3>Project recipes</h3>
+<p>
+To associate a recipe with a project, put it into the project&#8216;s
+<tt>recipes</tt> directory.
+</p>
+<p>
+For example, create a <tt>recipes/hello_project.rb</tt> file with these
+contents:
+</p>
+<pre>
+ puts &quot;Hello, this is: &quot; + project
+</pre>
+<p>
+And run it:
+</p>
+<pre>
+ you@host:myproject&gt; automateit recipes/hello_project.rb
+ Hello, this is: /tmp/myproject
+</pre>
+<p>
+The Interpreter automatically loads the project. The <tt>project</tt>
+method contains the project path and is only available when executing a
+recipe associated with a project.
+</p>
+<h3>Fields</h3>
+<p>
+A project&#8216;s <tt>config/fields.yml</tt> file is meant to store
+configuration constants, like custom paths for applications. Fields
+abstract configuration variables for recipes, improving maintainability by
+separating data and logic. Fields can also be easily queried from Unix
+using the <tt>aifield</tt> command. More information about fields and
+<tt>aifield</tt> can be found in <a
+href="../classes/AutomateIt/FieldManager.html">AutomateIt::FieldManager</a>.
+</p>
+<p>
+For example, consider a fields file with the following contents:
+</p>
+<pre>
+ myuser: dhh
+ myapp:
+   path: /var/www/rails
+</pre>
+<p>
+These fields can be used from the interactive shell like this:
+</p>
+<pre>
+ you@host:myproject&gt; pwd
+ /tmp/myproject
+ you@host:myproject&gt; automateit -p .    # (1) Load project from current directory
+ =&gt; AutomateIt Shell v0.5.0
+ ai&gt; lookup :myuser                     # (2) Lookup string value by symbol key
+ =&gt; &quot;dhh&quot;
+ ai&gt; lookup &quot;myuser&quot;                    # (3) Lookup string value by string key
+ =&gt; &quot;dhh&quot;
+ ai&gt; lookup &quot;myapp&quot;                     # (4) Lookup hash value by string key
+ =&gt; {&quot;path&quot;=&gt;&quot;/var/www/rails&quot;}
+ ai&gt; lookup &quot;myapp#path&quot;                # (5) Lookup string value by compound key
+ =&gt; &quot;/var/www/rails&quot;
+</pre>
+<p>
+To load a project&#8216;s fields, the AutomateIt interactive shell needs to
+know which project to load. On the line annotated (1), <tt>automateit -p
+.</tt> tells it to load the project from the &quot;.&quot; directory, the
+current directory. The argument can be an absolute or relative path. The
+command accepts other arguments and environmental options, run
+<tt>automateit &#8212;help</tt> for details.
+</p>
+<p>
+Fields can be queried by string (2) or symbol (3) keys. The <tt>lookup</tt>
+command can return any associated data, usually a string, but it can be a
+complex type, such as a hash (4). The compound-key (5) syntax is a
+convenient syntax for looking up nested keys in a hash. For example,
+<tt>lookup &quot;myapp#path&quot;</tt> is a shortcut for
+&lt;tt&gt;lookup(&quot;myapp&quot;)[&quot;path&quot;] &#8212; these query
+the <tt>myapp</tt> hash and return the value of its <tt>path</tt> key.
+</p>
+<p>
+The Interpreter loads a project and its fields automatically for recipes,
+so there is no need to specify the <tt>-p</tt> option. For example, a
+project recipe file <tt>recipes/hello_fields.rb</tt> contains:
+</p>
+<pre>
+ puts lookup(&quot;myapp#path&quot;)
+</pre>
+<p>
+This recipe will load its project and fields automatically:
+</p>
+<pre>
+ you@host:myproject&gt; automateit recipes/hello_fields.rb
+ /var/www/rails
+</pre>
+<h3>Tags</h3>
+<p>
+A project&#8216;s <tt>config/tags.yml</tt> file describes tags assigned to
+hosts, grouping together hosts by their roles and attributes.
+</p>
+<p>
+For example, this tags file describes a &quot;desktops&quot; tag with three
+hosts named &quot;satori&quot;, &quot;sunyata&quot; and
+&quot;michiru&quot;, and another tag named &quot;notebooks&quot; with other
+hosts:
+</p>
+<pre>
+  desktops:
+    - satori
+    - sunyata
+    - michiru
+  notebooks:
+    - rheya
+    - avijja
+</pre>
+<p>
+The tags can be accessed like this when run on a host named
+&quot;satori&quot;:
+</p>
+<pre>
+ you@satori:myproject&gt; automateit -p .
+ ai&gt; tags
+ =&gt; [&quot;satori&quot;, &quot;desktops&quot;, &quot;localhost&quot;, ...]        # Tags for this host
+ ai&gt; tagged?(&quot;desktops&quot;)                            # Is this host tagged with &quot;desktops&quot;?
+ =&gt; true
+ ai&gt; tagged?(&quot;notebooks&quot;)
+ =&gt; false
+ ai&gt; tagged?(:satori)                               # Strings and symbols are treated the same.
+ =&gt; true
+ ai&gt; tagged?(&quot;satori&quot;)
+ =&gt; true
+ ai&gt; tagged?(&quot;satori || desktops&quot;)                  # Query by simple boolean expression
+ =&gt; true
+ ai&gt; tagged?(&quot;(satori || desktops) &amp;&amp; !notebooks&quot;)  # Query by complex boolean expression
+ =&gt; true
+</pre>
+<p>
+Role-based behavior can be demonstrated by creating a file called
+<tt>recipes/hello_tags.rb</tt>:
+</p>
+<pre>
+ if tagged?(&quot;localhost&quot;)
+  puts &quot;I'm a localhost!&quot;
+ end
+ if tagged?(&quot;desktops&quot;)
+  puts &quot;Special commands to execute on desktops&quot;
+ elsif tagged?(&quot;notebooks&quot;)
+  puts &quot;Special commands to execute on notebooks&quot;
+ end
+</pre>
+<p>
+Here are the results when executed on a host called &quot;satori&quot;:
+</p>
+<pre>
+ you@satori:myproject&gt; automateit recipes/hello_tags.rb
+ I'm a localhost!
+ Special commands to execute on desktops
+</pre>
+<p>
+Notice how the <tt>notebooks</tt> section wasn&#8216;t executed? Tags make
+it possible to create sophisticated recipes that run commands on only the
+appropriate systems.
+</p>
+<p>
+More documentation on tags can be found in <a
+href="../classes/AutomateIt/TagManager.html">AutomateIt::TagManager</a>.
+</p>
+<h3>Previewing commands</h3>
+<p>
+AutomateIt lets you preview commands the recipe will run without actually
+letting them actually modify the system.
+</p>
+<p>
+The Interpreter has a boolean that determines if it&#8216;ll make changes
+to your system. This one variable can be called from two different ways:
+</p>
+<ul>
+<li><tt>writing?</tt> &#8212; Will it write changes?
+
+</li>
+<li><tt>noop?</tt> &#8212; Will it not write changes and just preview them? The
+<tt>noop</tt> means &quot;no-operation&quot;
+
+</li>
+</ul>
+<p>
+Here&#8216;s an example with the interactive shell, with comments for
+annotations:
+</p>
+<pre>
+ ai&gt; noop true                # Enter noop mode
+ ai&gt; noop?                    # Currently in noop mode?
+ =&gt; true                      # Yes, in noop mode
+ ai&gt; writing?                 # Writing to disk? The opposite of noop
+ =&gt; false                     # No, not writing
+ ai&gt; mkdir &quot;foo&quot;              # Try to create a directory
+ ** mkdir foo                 # Message showing directory will be creating
+ =&gt; [&quot;foo&quot;]                   # Return value with directories to create
+ ai&gt; File.directory? &quot;foo&quot;    # Was the directory actually made?
+ =&gt; false                     # No, noop mode prevented the change
+</pre>
+<p>
+Recipes can take advantage of the noop mode as well, consider a
+<tt>mkdir_example.rb</tt> recipe:
+</p>
+<pre>
+ mkdir &quot;foo&quot;
+</pre>
+<p>
+To run this recipe with noop mode, pass the <tt>-n</tt> option to the
+Interpreter shell:
+</p>
+<pre>
+ you@host:tmp&gt; automateit -n mkdir_example.rb
+ ** mkdir foo
+ you@host:tmp&gt; ls foo
+ ls: foo: No such file or directory
+</pre>
+<p>
+Notice how the directory wasn&#8216;t actually created? This is great
+because you can see exactly what commands AutomateIt will run without
+actually having it apply the changes.
+</p>
+<p>
+<b>WARNING</b>: Previewing code can be dangerous. Read <a
+href="docs/previews_txt.html">previews.txt</a> for instructions on how to
+write code that can be safely previewed.
+</p>
+<h3>Conclusion</h3>
+<p>
+I hope you enjoy working with AutomateIt and look forward to hearing about
+your experiences with it. Drivers, patches, documentation and ideas are
+welcome.
+</p>
+<p>
+Thank you for taking the time to read this!
+</p>
+<ul>
+<li>Igal Koshevoy (igal@pragmaticraft.com)
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

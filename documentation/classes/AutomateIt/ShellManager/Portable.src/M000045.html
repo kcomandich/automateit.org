@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>backup (AutomateIt::ShellManager::Portable)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/shell_manager/portable.rb, line 32</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">backup</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>)
+    <span class="ruby-identifier">sources</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>)
+
+    <span class="ruby-identifier">targets</span> = []
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">source</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">sources</span>
+      <span class="ruby-identifier">is_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">source</span>)
+
+      <span class="ruby-identifier">tempster_opts</span> = {
+        <span class="ruby-identifier">:verbose</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+        <span class="ruby-identifier">:noop</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">noop?</span>,
+        <span class="ruby-identifier">:delete</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+        <span class="ruby-identifier">:dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">source</span>),
+        <span class="ruby-identifier">:prefix</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;%s.%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">source</span>), <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_i</span>],
+        <span class="ruby-identifier">:suffix</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;.bak&quot;</span>,
+        <span class="ruby-identifier">:kind</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">is_dir</span> <span class="ruby-value">? </span><span class="ruby-operator">:</span><span class="ruby-identifier">directory</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">:file</span>,
+      }
+
+      <span class="ruby-identifier">target</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Tempster</span>.<span class="ruby-identifier">tempster</span>(<span class="ruby-identifier">tempster_opts</span>)
+
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">silence</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">WARN</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">level</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_dir</span>
+          <span class="ruby-identifier">cp_opts</span> = {}
+          <span class="ruby-identifier">cp_opts</span>[<span class="ruby-identifier">:recursive</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_dir</span>
+          <span class="ruby-identifier">cp_opts</span>[<span class="ruby-identifier">:preserve</span>] = <span class="ruby-identifier">:try</span>
+
+          <span class="ruby-identifier">source_children</span> = <span class="ruby-identifier">_directory_contents</span>(<span class="ruby-identifier">source</span>)
+          <span class="ruby-comment cmt">#puts &quot;sc: %s&quot; % source_children.inspect</span>
+
+          <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">cp_r</span>(<span class="ruby-identifier">source_children</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">cp_opts</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">cp</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">target</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">targets</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

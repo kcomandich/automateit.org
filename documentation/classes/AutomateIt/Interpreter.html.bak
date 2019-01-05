@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Class: AutomateIt::Interpreter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+        function toggleSource( id )
+        {
+          var elem
+          var link
+
+          if( document.getElementById )
+          {
+            elem = document.getElementById( id )
+            link = document.getElementById( "l_" + id )
+          }
+          else if ( document.all )
+          {
+            elem = eval( "document.all." + id )
+            link = eval( "document.all.l_" + id )
+          }
+          else
+            return false;
+
+          if( elem.style.display == "block" )
+          {
+            elem.style.display = "none"
+            link.innerHTML = "show source"
+          }
+          else
+          {
+            elem.style.display = "block"
+            link.innerHTML = "hide source"
+          }
+        }
+
+        function openCode( url )
+        {
+          window.open( url, "SOURCE_CODE", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=480,width=750" ).focus();
+        }
+      // ]]>
+    </script>
+  </head>
+
+  <body>
+  <table width="100%" border='0' cellpadding='0' cellspacing='0' class='banner'><tr>
+  <td class="file-title"><span class="file-title-prefix">Class</span><br />AutomateIt::Interpreter</td>
+  <td align="right">
+    <table cellspacing="0" cellpadding="2">
+      <tr valign="top">
+        <td>In:</td>
+        <td>
+<a href="../../files/lib/automateit/interpreter_rb.html">lib/automateit/interpreter.rb</a>
+        </td>
+      </tr>
+    <tr>
+      <td>Parent:</td>
+      <td>
+        <a href="Common.html">
+Common
+         </a>
+     </td>
+   </tr>
+         </table>
+        </td>
+        </tr>
+      </table>
+ <!-- banner header -->
+
+  <div id="bodyContent">
+      <div id="content">
+
+  <div class="description"><h2><a href="Interpreter.html">Interpreter</a></h2>
+<p>
+The <a href="Interpreter.html">Interpreter</a> runs AutomateIt commands.
+</p>
+<p>
+The <a href="../../files/TUTORIAL_txt.html">TUTORIAL.txt</a> file provides
+hands-on examples for using the <a href="Interpreter.html">Interpreter</a>.
+</p>
+<h3>Aliased methods</h3>
+<p>
+The <a href="Interpreter.html">Interpreter</a> provides shortcut aliases
+for certain plugin commands.
+</p>
+<p>
+For example, the following commands will run the same method:
+</p>
+<pre>
+  shell_manager.sh &quot;ls&quot;
+
+  sh &quot;ls&quot;
+</pre>
+<p>
+The full <a href="Interpreter.html#M000322">set</a> of aliased methods:
+</p>
+<ul>
+<li>cd &#8212; <a
+href="ShellManager.html#M000159">AutomateIt::ShellManager#cd</a>
+
+</li>
+<li>chmod &#8212; <a
+href="ShellManager.html#M000175">AutomateIt::ShellManager#chmod</a>
+
+</li>
+<li>chmod_R &#8212; <a
+href="ShellManager.html#M000176">AutomateIt::ShellManager#chmod_R</a>
+
+</li>
+<li>chown &#8212; <a
+href="ShellManager.html#M000177">AutomateIt::ShellManager#chown</a>
+
+</li>
+<li>chown_R &#8212; <a
+href="ShellManager.html#M000178">AutomateIt::ShellManager#chown_R</a>
+
+</li>
+<li>chperm &#8212; <a
+href="ShellManager.html#M000157">AutomateIt::ShellManager#chperm</a>
+
+</li>
+<li>cp &#8212; <a
+href="ShellManager.html#M000167">AutomateIt::ShellManager#cp</a>
+
+</li>
+<li>cp_r &#8212; <a
+href="ShellManager.html#M000168">AutomateIt::ShellManager#cp_r</a>
+
+</li>
+<li>edit &#8212; <a
+href="EditManager.html#M000285">AutomateIt::EditManager#edit</a>
+
+</li>
+<li>download &#8212; <a
+href="DownloadManager.html#M000424">AutomateIt::DownloadManager#download</a>
+
+</li>
+<li>hosts_tagged_with &#8212; <a
+href="TagManager.html#M000235">AutomateIt::TagManager#hosts_tagged_with</a>
+
+</li>
+<li>install &#8212; <a
+href="ShellManager.html#M000174">AutomateIt::ShellManager#install</a>
+
+</li>
+<li>ln &#8212; <a
+href="ShellManager.html#M000164">AutomateIt::ShellManager#ln</a>
+
+</li>
+<li>ln_s &#8212; <a
+href="ShellManager.html#M000165">AutomateIt::ShellManager#ln_s</a>
+
+</li>
+<li>ln_sf &#8212; <a
+href="ShellManager.html#M000166">AutomateIt::ShellManager#ln_sf</a>
+
+</li>
+<li>lookup &#8212; <a
+href="FieldManager.html#M000420">AutomateIt::FieldManager#lookup</a>
+
+</li>
+<li>mkdir &#8212; <a
+href="ShellManager.html#M000161">AutomateIt::ShellManager#mkdir</a>
+
+</li>
+<li>mkdir_p &#8212; <a
+href="ShellManager.html#M000162">AutomateIt::ShellManager#mkdir_p</a>
+
+</li>
+<li>mktemp &#8212; <a
+href="ShellManager.html#M000154">AutomateIt::ShellManager#mktemp</a>
+
+</li>
+<li>mktempdir &#8212; <a
+href="ShellManager.html#M000155">AutomateIt::ShellManager#mktempdir</a>
+
+</li>
+<li>mktempdircd &#8212; <a
+href="ShellManager.html#M000156">AutomateIt::ShellManager#mktempdircd</a>
+
+</li>
+<li>mv &#8212; <a
+href="ShellManager.html#M000170">AutomateIt::ShellManager#mv</a>
+
+</li>
+<li>pwd &#8212; <a
+href="ShellManager.html#M000160">AutomateIt::ShellManager#pwd</a>
+
+</li>
+<li>render &#8212; <a
+href="TemplateManager.html#M000223">AutomateIt::TemplateManager#render</a>
+
+</li>
+<li>rm &#8212; <a
+href="ShellManager.html#M000171">AutomateIt::ShellManager#rm</a>
+
+</li>
+<li>rm_r &#8212; <a
+href="ShellManager.html#M000172">AutomateIt::ShellManager#rm_r</a>
+
+</li>
+<li>rm_rf &#8212; <a
+href="ShellManager.html#M000173">AutomateIt::ShellManager#rm_rf</a>
+
+</li>
+<li>rmdir &#8212; <a
+href="ShellManager.html#M000163">AutomateIt::ShellManager#rmdir</a>
+
+</li>
+<li>sh &#8212; <a
+href="ShellManager.html#M000151">AutomateIt::ShellManager#sh</a>
+
+</li>
+<li>tagged? &#8212; AutomateIt::TagManager#tagged?
+
+</li>
+<li>tags &#8212; <a
+href="TagManager.html#M000236">AutomateIt::TagManager#tags</a>
+
+</li>
+<li>tags_for &#8212; <a
+href="TagManager.html#M000238">AutomateIt::TagManager#tags_for</a>
+
+</li>
+<li>touch &#8212; <a
+href="ShellManager.html#M000179">AutomateIt::ShellManager#touch</a>
+
+</li>
+<li>umask &#8212; <a
+href="ShellManager.html#M000158">AutomateIt::ShellManager#umask</a>
+
+</li>
+<li>which &#8212; <a
+href="ShellManager.html#M000152">AutomateIt::ShellManager#which</a>
+
+</li>
+<li>which! &#8212; <a
+href="ShellManager.html#M000152">AutomateIt::ShellManager#which</a>!
+
+</li>
+</ul>
+<p>
+[[[ &lt;a name=&quot;embedding&quot;&gt; ]]]
+</p>
+<h3>Embedding the <a href="Interpreter.html">Interpreter</a></h3>
+<p>
+[[[ &lt;/a&gt; ]]]
+</p>
+<p>
+The AutomateIt <a href="Interpreter.html">Interpreter</a> can be embedded
+inside a Ruby program:
+</p>
+<pre>
+  require 'rubygems'
+  require 'automateit'
+
+  interpreter = AutomateIt.new
+
+  # Use the interpreter as an object:
+  interpreter.sh &quot;ls -la&quot;
+
+  # Have it execute a recipe:
+  interpreter.invoke &quot;myrecipe.rb&quot;
+
+  # Or execute recipes within a block
+  interpreter.instance_eval do
+    puts superuser?
+    sh &quot;ls -la&quot;
+  end
+</pre>
+<p>
+See the <a href="Interpreter.html#M000324">include_in</a> and <a
+href="Interpreter.html#M000325">add_method_missing_to</a> methods for
+instructions on how to more easily dispatch commands from your program to
+the <a href="Interpreter.html">Interpreter</a> instance.
+</p>
+</div>
+
+
+
+  <div class="sectiontitle">Methods</div>
+  <ul>
+  <li><a href="#M000325">add_method_missing_to</a></li>
+  <li><a href="#M000321">dist</a></li>
+  <li><a href="#M000317">euid</a></li>
+  <li><a href="#M000316">euid?</a></li>
+  <li><a href="#M000323">get</a></li>
+  <li><a href="#M000324">include_in</a></li>
+  <li><a href="#M000319">invoke</a></li>
+  <li><a href="#M000320">invoke</a></li>
+  <li><a href="#M000305">log</a></li>
+  <li><a href="#M000310">noop</a></li>
+  <li><a href="#M000311">noop=</a></li>
+  <li><a href="#M000312">noop?</a></li>
+  <li><a href="#M000306">preview</a></li>
+  <li><a href="#M000309">preview=</a></li>
+  <li><a href="#M000307">preview?</a></li>
+  <li><a href="#M000308">preview_for</a></li>
+  <li><a href="#M000322">set</a></li>
+  <li><a href="#M000304">setup</a></li>
+  <li><a href="#M000318">superuser?</a></li>
+  <li><a href="#M000313">writing</a></li>
+  <li><a href="#M000314">writing=</a></li>
+  <li><a href="#M000315">writing?</a></li>
+  </ul>
+
+<div class="sectiontitle">Included Modules</div>
+<ul>
+  <li><a href="../Nitpick.html">Nitpick</a></li>
+</ul>
+
+
+
+
+  <div class="sectiontitle">Attributes</div>
+  <table border='0' cellpadding='5'>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>friendly_exceptions</td>
+    <td class='attr-desc'>
+The <a href="Interpreter.html">Interpreter</a> throws friendly error
+messages by default that make it easier to see what&#8216;s wrong with a
+recipe. These friendly messages display the cause, a snapshot of the
+problematic code, shortened paths, and only the relevant stack frames.
+
+<p>
+However, if there&#8216;s a bug in the AutomateIt internals, these friendly
+messages may inadvertently hide the cause, and it may be necessary to turn
+them off to figure out what&#8216;s wrong.
+</p>
+<p>
+To turn off friendly exceptions:
+</p>
+<pre>
+  # From a recipe or the AutomateIt interactive shell:
+  self.friendly_exceptions = false
+
+  # For an embedded interpreter at instantiation:
+  AutomateIt.new(:friendly_exceptions =&gt; false)
+
+  # From the UNIX command line when invoking a recipe:
+  automateit --trace myrecipe.rb
+</pre>
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>irb</td>
+    <td class='attr-desc'>
+Access IRB instance from an interactive shell.
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[W]
+    </td>
+    <td class='attr-name'>log</td>
+    <td class='attr-desc'>
+Set the <a href="../QueuedLogger.html">QueuedLogger</a> instance for the <a
+href="Interpreter.html">Interpreter</a>.
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>params</td>
+    <td class='attr-desc'>
+Hash of parameters to make available to the <a
+href="Interpreter.html">Interpreter</a>. Mostly useful when needing to pass
+arguments to an embedded <a href="Interpreter.html">Interpreter</a> before
+doing an instance_eval.
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>plugins</td>
+    <td class='attr-desc'>
+Hash of plugin tokens to plugin instances for this <a
+href="Interpreter.html">Interpreter</a>.
+
+</td>
+  </tr>
+  <tr valign='top'>
+    <td class='attr-rw'>
+[RW]
+    </td>
+    <td class='attr-name'>project</td>
+    <td class='attr-desc'>
+<a href="Project.html">Project</a> path for this <a
+href="Interpreter.html">Interpreter</a>. If no path is available, nil.
+
+</td>
+  </tr>
+  </table>
+
+<div class="sectiontitle">Public Class methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000319"></a><b>invoke</b>(recipe, opts={})
+  </div>
+  <div class="description">
+  <p>
+Create an <a href="Interpreter.html">Interpreter</a> with the specified
+<tt>opts</tt> and <a href="Interpreter.html#M000319">invoke</a> the
+<tt>recipe</tt>. The opts are passed to <a
+href="Interpreter.html#M000304">setup</a> for parsing.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000319_source')" id="l_M000319_source">show source</a> ]</p>
+  <div id="M000319_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 390</span>
+390:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">recipe</span>, <span class="ruby-identifier">opts</span>={})
+391:       <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:project</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">recipe</span>), <span class="ruby-value str">&quot;..&quot;</span>)
+392:       <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>).<span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">recipe</span>)
+393:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="sectiontitle">Public Instance methods</div>
+<div class="method">
+  <div class="title">
+    <a name="M000325"></a><b>add_method_missing_to</b>(object)
+  </div>
+  <div class="description">
+  <p>
+Creates method_missing in <tt>object</tt> that dispatches calls to an <a
+href="Interpreter.html">Interpreter</a> instance. If a method_missing is
+already present, it will be preserved as a fall-back using
+alias_method_chain.
+</p>
+<p>
+For example, add method_missing to a Rake session to provide direct access
+to <a href="Interpreter.html">Interpreter</a> instance&#8216;s methods
+whose names don&#8216;t conflict with the names existing variables and
+methods:
+</p>
+<pre>
+  # Rakefile
+
+  require 'automateit'
+  @ai = AutomateIt.new
+  @ai.add_method_missing_to(self)
+
+  task :default do
+    puts preview? # Uses Interpreter#preview?
+    sh &quot;id&quot;       # Uses FileUtils#sh, not Interpreter#sh
+  end
+</pre>
+<p>
+For situations where it&#8216;s necessary to override existing methods,
+such as the <tt>sh</tt> call in the example, consider using <a
+href="Interpreter.html#M000324">include_in</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000325_source')" id="l_M000325_source">show source</a> ]</p>
+  <div id="M000325_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 598</span>
+598:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_method_missing_to</span>(<span class="ruby-identifier">object</span>)
+599:       <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@__automateit</span>, <span class="ruby-keyword kw">self</span>)
+600:       <span class="ruby-identifier">chain</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:method_missing</span>)
+601: 
+602:       <span class="ruby-comment cmt"># XXX The solution below is evil and ugly, but I don't know how else to solve this. The problem is that I want to *only* alter the +object+ instance, and NOT its class. Unfortunately, #alias_method and #alias_method_chain only operate on classes, not instances, which makes them useless for this task.</span>
+603: 
+604:       <span class="ruby-identifier">template</span> = <span class="ruby-value str">&quot;def method_missing&lt;%=chain ? '_with_automateit' : ''%&gt;(method, *args, &amp;block)\n### puts \&quot;mm+a(%s, %s)\&quot; % [method, args.inspect]\nif @__automateit.respond_to?(method)\n@__automateit.send(method, *args, &amp;block)\nelse\n&lt;%-if chain-%&gt;\nmethod_missing_without_automateit(method, *args, &amp;block)\n&lt;%-else-%&gt;\nsuper\n&lt;%-end-%&gt;\nend\nend\n&lt;%-if chain-%&gt;\n@__method_missing_without_automateit = self.method(:method_missing)\n\ndef method_missing_without_automateit(*args)\n### puts \&quot;mm-a %s\&quot; % args.inspect\n@__method_missing_without_automateit.call(*args)\nend\n\ndef method_missing(*args)\n### puts \&quot;mm %s\&quot; % args.inspect\nmethod_missing_with_automateit(*args)\nend\n&lt;%-end-%&gt;\n&quot;</span>
+605: 
+606:       <span class="ruby-identifier">text</span> = <span class="ruby-operator">::</span><span class="ruby-constant">HelpfulERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">template</span>).<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)
+607:       <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">text</span>)
+608:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000321"></a><b>dist</b>()
+  </div>
+  <div class="description">
+  <p>
+Path of this project&#8216;s &quot;<a
+href="Interpreter.html#M000321">dist</a>&quot; directory. If a project
+isn&#8216;t available or the directory doesn&#8216;t exist, this will throw
+a NotImplementedError.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000321_source')" id="l_M000321_source">show source</a> ]</p>
+  <div id="M000321_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 499</span>
+499:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dist</span>
+500:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@project</span>
+501:         <span class="ruby-identifier">result</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;dist/&quot;</span>)
+502:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">result</span>)
+503:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+504:         <span class="ruby-keyword kw">else</span>
+505:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;can't find dist directory at: #{result}&quot;</span>)
+506:         <span class="ruby-keyword kw">end</span>
+507:       <span class="ruby-keyword kw">else</span>
+508:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;can't use dist without a project&quot;</span>)
+509:       <span class="ruby-keyword kw">end</span>
+510:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000317"></a><b>euid</b>()
+  </div>
+  <div class="description">
+  <p>
+Return the effective user id.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000317_source')" id="l_M000317_source">show source</a> ]</p>
+  <div id="M000317_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 368</span>
+368:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">euid</span>
+369:       <span class="ruby-keyword kw">begin</span>
+370:         <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Process</span>.<span class="ruby-identifier">euid</span>
+371:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NoMethodError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+372:         <span class="ruby-identifier">output</span> = <span class="ruby-value">`id -u 2&gt;&amp;1`</span>
+373:         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">output</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">$?</span>.<span class="ruby-identifier">exitstatus</span>.<span class="ruby-identifier">zero?</span>
+374:         <span class="ruby-keyword kw">begin</span>
+375:           <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/(\d+)/</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>
+376:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">IndexError</span>
+377:           <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+378:         <span class="ruby-keyword kw">end</span>
+379:       <span class="ruby-keyword kw">end</span>
+380: 
+381:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000316"></a><b>euid?</b>()
+  </div>
+  <div class="description">
+  <p>
+Does this platform provide <a href="Interpreter.html#M000317">euid</a>
+(Effective User ID)?
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000316_source')" id="l_M000316_source">show source</a> ]</p>
+  <div id="M000316_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 358</span>
+358:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">euid?</span>
+359:       <span class="ruby-keyword kw">begin</span>
+360:         <span class="ruby-identifier">euid</span>
+361:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+362:       <span class="ruby-keyword kw">rescue</span>
+363:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+364:       <span class="ruby-keyword kw">end</span>
+365:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000323"></a><b>get</b>(key)
+  </div>
+  <div class="description">
+  <p>
+Retrieve a params entry.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ params[:foo] = &quot;bar&quot;  # =&gt; &quot;bar&quot;
+ get :foo              # =&gt; &quot;bar&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000323_source')" id="l_M000323_source">show source</a> ]</p>
+  <div id="M000323_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 543</span>
+543:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">key</span>)
+544:       <span class="ruby-identifier">params</span>[<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>]
+545:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000324"></a><b>include_in</b>(object, *methods)
+  </div>
+  <div class="description">
+  <p>
+Creates wrapper methods in <tt>object</tt> to dispatch calls to an <a
+href="Interpreter.html">Interpreter</a> instance.
+</p>
+<p>
+<b>WARNING</b>: This will overwrite all methods and variables in the target
+<tt>object</tt> that have the same names as the <a
+href="Interpreter.html">Interpreter</a>&#8216;s methods. You should
+considerer specifying the <tt>methods</tt> to limit the number of methods
+included to minimize surprises due to collisions. If <tt>methods</tt> is
+left blank, will create wrappers for all <a
+href="Interpreter.html">Interpreter</a> methods.
+</p>
+<p>
+For example, include an <a href="Interpreter.html">Interpreter</a> instance
+into a Rake session, which will override the FileUtils commands with
+AutomateIt equivalents:
+</p>
+<pre>
+  # Rakefile
+
+  require 'automateit'
+  @ai = AutomateIt.new
+  @ai.include_in(self, %w(preview? sh)) # Include #preview? and #sh methods
+
+  task :default do
+    puts preview?   # Uses Interpreter#preview?
+    sh &quot;id&quot;         # Uses Interpreter#sh, not FileUtils#sh
+    cp &quot;foo&quot;, &quot;bar&quot; # Uses FileUtils#cp, not Interpreter#cp
+  end
+</pre>
+<p>
+For situations where you don&#8216;t want to override any existing methods,
+consider using <a
+href="Interpreter.html#M000325">add_method_missing_to</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000324_source')" id="l_M000324_source">show source</a> ]</p>
+  <div id="M000324_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 566</span>
+566:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include_in</span>(<span class="ruby-identifier">object</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">methods</span>)
+567:       <span class="ruby-identifier">methods</span> = [<span class="ruby-identifier">methods</span>].<span class="ruby-identifier">flatten</span>
+568:       <span class="ruby-identifier">methods</span> = <span class="ruby-identifier">unique_methods</span>.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^_/</span>} <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">empty?</span>
+569: 
+570:       <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@__automateit</span>, <span class="ruby-keyword kw">self</span>)
+571: 
+572:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">method</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">methods</span>
+573:         <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-value str">&quot;def \#{method}(*args, &amp;block)\n@__automateit.send(:\#{method}, *args, &amp;block)\nend\n&quot;</span>
+574:       <span class="ruby-keyword kw">end</span>
+575:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000320"></a><b>invoke</b>(recipe)
+  </div>
+  <div class="description">
+  <p>
+Invoke the <tt>recipe</tt>. The recipe may be expressed as a relative or
+fully qualified path. When invoked within a project, the recipe can also be
+the name of a recipe.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ invoke &quot;/tmp/recipe.rb&quot;  # Run &quot;/tmp/recipe.rb&quot;
+ invoke &quot;recipe.rb&quot;       # Run &quot;./recipe.rb&quot;. If not found and in a
+                          # project, will try running &quot;recipes/recipe.rb&quot;
+ invoke &quot;recipe&quot;          # Run &quot;recipes/recipe.rb&quot; in a project
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000320_source')" id="l_M000320_source">show source</a> ]</p>
+  <div id="M000320_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 404</span>
+404:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">recipe</span>)
+405:       <span class="ruby-identifier">filenames</span> = [<span class="ruby-identifier">recipe</span>]
+406:       <span class="ruby-identifier">filenames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">project</span>, <span class="ruby-value str">&quot;recipes&quot;</span>, <span class="ruby-identifier">recipe</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>
+407:       <span class="ruby-identifier">filenames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">project</span>, <span class="ruby-value str">&quot;recipes&quot;</span>, <span class="ruby-identifier">recipe</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.rb&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project</span>
+408: 
+409:       <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">filename</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">filenames</span>
+410:         <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot; invoking &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">filename</span>)
+411:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">filename</span>)
+412:           <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">filename</span>)
+413:           <span class="ruby-keyword kw">begin</span>
+414:             <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">data</span>, <span class="ruby-identifier">filename</span>, <span class="ruby-value">1</span>)
+415:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+416:             <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@friendly_exceptions</span>
+417:               <span class="ruby-comment cmt"># TODO Extract this routine and its companion in HelpfulERB</span>
+418: 
+419:               <span class="ruby-comment cmt"># Capture initial stack in case we add a debug/breakpoint after this</span>
+420:               <span class="ruby-identifier">stack</span> = <span class="ruby-identifier">caller</span>
+421: 
+422:               <span class="ruby-comment cmt"># Extract trace for recipe after the Interpreter#invoke call</span>
+423:               <span class="ruby-identifier">preresult</span> = []
+424:               <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">line</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>
+425:                 <span class="ruby-comment cmt"># Stop at the Interpreter#invoke call</span>
+426:                 <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">first</span>
+427:                 <span class="ruby-identifier">preresult</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+428:               <span class="ruby-keyword kw">end</span>
+429: 
+430:               <span class="ruby-comment cmt"># Extract the recipe filename</span>
+431:               <span class="ruby-identifier">preresult</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^([^:]+):(\d+):in `invoke'/</span>)
+432:               <span class="ruby-identifier">recipe</span> = <span class="ruby-identifier">$1</span>
+433: 
+434:               <span class="ruby-comment cmt"># Extract trace for most recent block</span>
+435:               <span class="ruby-identifier">result</span> = []
+436:               <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">line</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">preresult</span>
+437:                 <span class="ruby-comment cmt"># Ignore manager wrapper and dispatch methods</span>
+438:                 <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">%r{lib/automateit/.+manager\.rb:\d+:in `.+'$}</span>
+439:                 <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+440:                 <span class="ruby-comment cmt"># Stop at the first mention of this recipe</span>
+441:                 <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">line</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/^#{recipe}/</span>
+442:               <span class="ruby-keyword kw">end</span>
+443: 
+444:               <span class="ruby-comment cmt"># Extract line number</span>
+445:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">SyntaxError</span>)
+446:                 <span class="ruby-identifier">line_number</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^[^:]+:(\d+):/</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>
+447:               <span class="ruby-keyword kw">else</span>
+448:                 <span class="ruby-identifier">result</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^([^:]+):(\d+):in `invoke'/</span>)
+449:                 <span class="ruby-identifier">line_number</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>
+450:               <span class="ruby-keyword kw">end</span>
+451: 
+452:               <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;Problem with recipe '#{recipe}' at line #{line_number}\n&quot;</span>
+453: 
+454:               <span class="ruby-comment cmt"># Extract recipe text</span>
+455:               <span class="ruby-keyword kw">begin</span>
+456:                 <span class="ruby-identifier">lines</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">recipe</span>).<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\n/</span>)
+457: 
+458:                 <span class="ruby-identifier">min</span> = <span class="ruby-identifier">line_number</span> <span class="ruby-operator">-</span> <span class="ruby-value">7</span>
+459:                 <span class="ruby-identifier">min</span> = <span class="ruby-value">0</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+460: 
+461:                 <span class="ruby-identifier">max</span> = <span class="ruby-identifier">line_number</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+462:                 <span class="ruby-identifier">max</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">max</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">size</span>
+463: 
+464:                 <span class="ruby-identifier">width</span> = <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">size</span>
+465: 
+466:                 <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">min</span><span class="ruby-operator">..</span><span class="ruby-identifier">max</span>
+467:                   <span class="ruby-identifier">n</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+468:                   <span class="ruby-identifier">marker</span> = <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">line_number</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;*&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+469:                   <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n%2s %#{width}i %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">marker</span>, <span class="ruby-identifier">n</span>, <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">i</span>]]
+470:                 <span class="ruby-keyword kw">end</span>
+471: 
+472:                 <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+473:               <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+474:                 <span class="ruby-comment cmt"># Ignore</span>
+475:               <span class="ruby-keyword kw">end</span>
+476: 
+477:               <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n(#{e.exception.class}) #{e.message}&quot;</span>
+478: 
+479:               <span class="ruby-comment cmt"># Append shortened trace</span>
+480:               <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">line</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">result</span>
+481:                 <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n  &quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">line</span>
+482:               <span class="ruby-keyword kw">end</span>
+483: 
+484:               <span class="ruby-comment cmt"># Remove project path</span>
+485:               <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-node">/#{@project}\/?/</span>, <span class="ruby-value str">''</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@project</span>
+486: 
+487:               <span class="ruby-identifier">raise</span> <span class="ruby-constant">AutomateIt</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">e</span>)
+488:             <span class="ruby-keyword kw">else</span>
+489:               <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+490:             <span class="ruby-keyword kw">end</span>
+491:           <span class="ruby-keyword kw">end</span>
+492:         <span class="ruby-keyword kw">end</span>
+493:       <span class="ruby-keyword kw">end</span>
+494:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">recipe</span>)
+495:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000305"></a><b>log</b>(value=nil)
+  </div>
+  <div class="description">
+  <p>
+Get or <a href="Interpreter.html#M000322">set</a> the <a
+href="../QueuedLogger.html">QueuedLogger</a> instance for the <a
+href="Interpreter.html">Interpreter</a>, a special wrapper around the Ruby
+<a href="../Logger.html">Logger</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000305_source')" id="l_M000305_source">show source</a> ]</p>
+  <div id="M000305_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 277</span>
+277:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log</span>(<span class="ruby-identifier">value</span>=<span class="ruby-keyword kw">nil</span>)
+278:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+279:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@log</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@log</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+280:       <span class="ruby-keyword kw">else</span>
+281:         <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">value</span>
+282:       <span class="ruby-keyword kw">end</span>
+283:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000310"></a><b>noop</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000310">noop</a> (no-operation mode) to
+<tt>value</tt>. Alias for <a href="Interpreter.html#M000306">preview</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000310_source')" id="l_M000310_source">show source</a> ]</p>
+  <div id="M000310_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 328</span>
+328:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">noop</span>(<span class="ruby-identifier">value</span>)
+329:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">noop</span> = <span class="ruby-identifier">value</span>
+330:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000311"></a><b>noop=</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000310">noop</a> (no-operation mode) to
+<tt>value</tt>. Alias for <a href="Interpreter.html#M000306">preview</a>=.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000311_source')" id="l_M000311_source">show source</a> ]</p>
+  <div id="M000311_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 333</span>
+333:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">noop=</span>(<span class="ruby-identifier">value</span>)
+334:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-identifier">value</span>
+335:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000312"></a><b>noop?</b>()
+  </div>
+  <div class="description">
+  <p>
+Are we in <a href="Interpreter.html#M000310">noop</a> (no-operation) mode?
+Alias for <a href="Interpreter.html#M000306">preview</a>?.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000312_source')" id="l_M000312_source">show source</a> ]</p>
+  <div id="M000312_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 338</span>
+338:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">noop?</span>
+339:       <span class="ruby-identifier">preview?</span>
+340:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000306"></a><b>preview</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000306">preview</a> mode to <tt>value</tt>.
+See warnings in <a href="ShellManager.html">ShellManager</a> to learn how
+to correctly write code for <a href="Interpreter.html#M000306">preview</a>
+mode.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000306_source')" id="l_M000306_source">show source</a> ]</p>
+  <div id="M000306_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 287</span>
+287:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview</span>(<span class="ruby-identifier">value</span>)
+288:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-identifier">value</span>
+289:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000309"></a><b>preview=</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000306">preview</a> mode to +value.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000309_source')" id="l_M000309_source">show source</a> ]</p>
+  <div id="M000309_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 323</span>
+323:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview=</span>(<span class="ruby-identifier">value</span>)
+324:       <span class="ruby-ivar">@preview</span> = <span class="ruby-identifier">value</span>
+325:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000307"></a><b>preview?</b>()
+  </div>
+  <div class="description">
+  <p>
+Is <a href="Interpreter.html">Interpreter</a> running in <a
+href="Interpreter.html#M000306">preview</a> mode?
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000307_source')" id="l_M000307_source">show source</a> ]</p>
+  <div id="M000307_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 292</span>
+292:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview?</span>
+293:       <span class="ruby-ivar">@preview</span>
+294:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000308"></a><b>preview_for</b>(message, &amp;block)
+  </div>
+  <div class="description">
+  <p>
+Preview a block of custom commands. When in <a
+href="Interpreter.html#M000306">preview</a> mode, displays the
+<tt>message</tt> but doesn&#8216;t execute the <tt>block</tt>. When not
+previewing, will execute the block and not display the <tt>message</tt>.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  preview_for(&quot;FOO&quot;) do
+    puts &quot;BAR&quot;
+  end
+</pre>
+<p>
+In <a href="Interpreter.html#M000306">preview</a> mode, this displays:
+</p>
+<pre>
+  =&gt; FOO
+</pre>
+<p>
+When not previewing, displays:
+</p>
+<pre>
+  BAR
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000308_source')" id="l_M000308_source">show source</a> ]</p>
+  <div id="M000308_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 313</span>
+313:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">preview_for</span>(<span class="ruby-identifier">message</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+314:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">preview?</span>
+315:         <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-identifier">message</span>)
+316:         <span class="ruby-identifier">:preview</span>
+317:       <span class="ruby-keyword kw">else</span>
+318:         <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+319:       <span class="ruby-keyword kw">end</span>
+320:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000322"></a><b>set</b>(key, value)
+  </div>
+  <div class="description">
+  <p>
+Set value to share throughout the <a
+href="Interpreter.html">Interpreter</a>. Use this instead of globals so
+that different Interpreters don&#8216;t see each other&#8216;s variables.
+Creates a method that returns the value and also adds a params entry.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ set :asdf, 9 # =&gt; 9
+ asdf         # =&gt; 9
+</pre>
+<p>
+This is best used for frequently-used variables, like paths. For
+infrequently-used variables, use lookup and params. A good place to use the
+<a href="Interpreter.html#M000322">set</a> is in the <a
+href="Project.html">Project</a>&#8216;s <tt>config/automateit_env.rb</tt>
+file so that paths are exposed to all recipes like this:
+</p>
+<pre>
+ set :helpers, project+&quot;/helpers&quot;
+</pre>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000322_source')" id="l_M000322_source">show source</a> ]</p>
+  <div id="M000322_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 526</span>
+526:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+527:       <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>
+528:       <span class="ruby-identifier">params</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span>
+529:       <span class="ruby-identifier">eval</span> <span class="ruby-value str">&quot;def \#{key}\nreturn params[:\#{key}]\nend\n&quot;</span>
+530:       <span class="ruby-identifier">value</span>
+531:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000304"></a><b>setup</b>(opts={})
+  </div>
+  <div class="description">
+  <p>
+Setup the <a href="Interpreter.html">Interpreter</a>. This method is also
+called from Interpreter#new.
+</p>
+<p>
+Options for users:
+</p>
+<ul>
+<li>:verbosity &#8212; Alias for :log_level
+
+</li>
+<li>:log_level &#8212; Log level to use, defaults to Logger::INFO.
+
+</li>
+<li>:<a href="Interpreter.html#M000306">preview</a> &#8212; Turn on <a
+href="Interpreter.html#M000306">preview</a> mode, defaults to false.
+
+</li>
+<li>:project &#8212; <a href="Project.html">Project</a> directory to use.
+
+</li>
+<li>:tags &#8212; Array of tags to add to this run.
+
+</li>
+</ul>
+<p>
+Options for internal use:
+</p>
+<ul>
+<li>:parent &#8212; Parent plugin instance.
+
+</li>
+<li>:<a href="Interpreter.html#M000305">log</a> &#8212; <a
+href="../QueuedLogger.html">QueuedLogger</a> instance.
+
+</li>
+<li>:guessed_project &#8212; Boolean of whether the project path was guessed.
+If guessed, won&#8216;t throw exceptions if project wasn&#8216;t found at
+the specified path. If not guessed, will throw exception in such a
+situation.
+
+</li>
+<li>:friendly_exceptions &#8212; Throw user-friendly exceptions that make it
+easier to see errors in recipes, defaults to true.
+
+</li>
+</ul>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000304_source')" id="l_M000304_source">show source</a> ]</p>
+  <div id="M000304_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 142</span>
+142:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">opts</span>={})
+143:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:interpreter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>))
+144: 
+145:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">params</span> <span class="ruby-operator">||=</span> {}
+146: 
+147:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:irb</span>]
+148:         <span class="ruby-ivar">@irb</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:irb</span>]
+149:       <span class="ruby-keyword kw">end</span>
+150: 
+151:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:parent</span>]
+152:         <span class="ruby-ivar">@parent</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:parent</span>]
+153:       <span class="ruby-keyword kw">end</span>
+154: 
+155:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log</span>]
+156:         <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log</span>]
+157:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@log</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">nil?</span>
+158:         <span class="ruby-ivar">@log</span> = <span class="ruby-constant">QueuedLogger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$stdout</span>)
+159:         <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">level</span> = <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>
+160:       <span class="ruby-keyword kw">end</span>
+161: 
+162:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log_level</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>]
+163:         <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">level</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log_level</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>]
+164:       <span class="ruby-keyword kw">end</span>
+165: 
+166:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preview</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-comment cmt"># can be false</span>
+167:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">preview?</span>
+168:       <span class="ruby-keyword kw">else</span>
+169:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preview</span>]
+170:       <span class="ruby-keyword kw">end</span>
+171: 
+172:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:friendly_exceptions</span>].<span class="ruby-identifier">nil?</span>
+173:         <span class="ruby-ivar">@friendly_exceptions</span> = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@friendly_exceptions</span>)
+174:       <span class="ruby-keyword kw">else</span>
+175:         <span class="ruby-ivar">@friendly_exceptions</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:friendly_exceptions</span>]
+176:       <span class="ruby-keyword kw">end</span>
+177: 
+178:       <span class="ruby-comment cmt"># Instantiate core plugins so they're available to the project</span>
+179:       <span class="ruby-identifier">_instantiate_plugins</span>
+180: 
+181:       <span class="ruby-comment cmt"># Add optional run-time tags</span>
+182:       <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:tags</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:tags</span>]
+183: 
+184:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project_path</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:project</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;AUTOMATEIT_PROJECT&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;AIP&quot;</span>]
+185:         <span class="ruby-comment cmt"># Only load a project if we find its env file</span>
+186:         <span class="ruby-identifier">env_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">project_path</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;automateit_env.rb&quot;</span>)
+187:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">env_file</span>)
+188:           <span class="ruby-ivar">@project</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">project_path</span>)
+189:           <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project from path: #{@project}&quot;</span>)
+190: 
+191:           <span class="ruby-identifier">lib_files</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;*.rb&quot;</span>)] <span class="ruby-operator">+</span> <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;**&quot;</span>, <span class="ruby-value str">&quot;init.rb&quot;</span>)]
+192:           <span class="ruby-identifier">lib_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lib</span><span class="ruby-operator">|</span>
+193:             <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project library: #{lib}&quot;</span>)
+194:             <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">lib</span>)
+195:           <span class="ruby-keyword kw">end</span>
+196:           
+197:           <span class="ruby-identifier">tag_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;tags.yml&quot;</span>)
+198:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">tag_file</span>)
+199:             <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project tags: #{tag_file}&quot;</span>)
+200:             <span class="ruby-identifier">tag_manager</span>[<span class="ruby-identifier">:yaml</span>].<span class="ruby-identifier">setup</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tag_file</span>)
+201:           <span class="ruby-keyword kw">end</span>
+202: 
+203:           <span class="ruby-identifier">field_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;fields.yml&quot;</span>)
+204:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">field_file</span>)
+205:             <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project fields: #{field_file}&quot;</span>)
+206:             <span class="ruby-identifier">field_manager</span>[<span class="ruby-identifier">:yaml</span>].<span class="ruby-identifier">setup</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">field_file</span>)
+207:           <span class="ruby-keyword kw">end</span>
+208: 
+209:           <span class="ruby-comment cmt"># Instantiate project's plugins so they're available to the environment</span>
+210:           <span class="ruby-identifier">_instantiate_plugins</span>
+211: 
+212:           <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">env_file</span>)
+213:             <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project env: #{env_file}&quot;</span>)
+214:             <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">env_file</span>)
+215:           <span class="ruby-keyword kw">end</span>
+216:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:guessed_project</span>]
+217:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Couldn't find project at: #{project_path}&quot;</span>)
+218:         <span class="ruby-keyword kw">end</span>
+219:       <span class="ruby-keyword kw">end</span>
+220:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000318"></a><b>superuser?</b>()
+  </div>
+  <div class="description">
+  <p>
+Does the current user have superuser (root) privileges?
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000318_source')" id="l_M000318_source">show source</a> ]</p>
+  <div id="M000318_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 384</span>
+384:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">superuser?</span>
+385:       <span class="ruby-identifier">euid</span>.<span class="ruby-identifier">zero?</span>
+386:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000313"></a><b>writing</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000313">writing</a> to <tt>value</tt>. This
+is the opposite of <a href="Interpreter.html#M000306">preview</a>.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000313_source')" id="l_M000313_source">show source</a> ]</p>
+  <div id="M000313_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 343</span>
+343:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">writing</span>(<span class="ruby-identifier">value</span>)
+344:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">writing</span> = <span class="ruby-identifier">value</span>
+345:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000314"></a><b>writing=</b>(value)
+  </div>
+  <div class="description">
+  <p>
+Set <a href="Interpreter.html#M000313">writing</a> to <tt>value</tt>. This
+is the opposite of <a href="Interpreter.html#M000306">preview</a>=.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000314_source')" id="l_M000314_source">show source</a> ]</p>
+  <div id="M000314_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 348</span>
+348:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">writing=</span>(<span class="ruby-identifier">value</span>)
+349:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-operator">!</span><span class="ruby-identifier">value</span>
+350:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+<div class="method">
+  <div class="title">
+    <a name="M000315"></a><b>writing?</b>()
+  </div>
+  <div class="description">
+  <p>
+Is <a href="Interpreter.html">Interpreter</a> <a
+href="Interpreter.html#M000315">writing?</a> This is the opposite of <a
+href="Interpreter.html#M000306">preview</a>?.
+</p>
+  </div>
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000315_source')" id="l_M000315_source">show source</a> ]</p>
+  <div id="M000315_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 353</span>
+353:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">writing?</span>
+354:       <span class="ruby-operator">!</span><span class="ruby-identifier">preview?</span>
+355:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+</div>
+</div>
+
+  </div>
+
+    </body>
+</html>

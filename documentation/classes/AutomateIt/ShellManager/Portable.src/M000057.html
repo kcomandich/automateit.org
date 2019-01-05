@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cp (AutomateIt::ShellManager::Portable)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/shell_manager/portable.rb, line 210</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cp</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-comment cmt"># TODO ShellManager::Portable#cp -- rather funky, needs a code review</span>
+    <span class="ruby-identifier">fu_opts</span> = <span class="ruby-identifier">_fileutils_opts</span>
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">opt</span> <span class="ruby-keyword kw">in</span> [<span class="ruby-identifier">:noop</span>, <span class="ruby-identifier">:verbose</span>]
+      <span class="ruby-identifier">opt</span> = <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-identifier">fu_opts</span>[<span class="ruby-identifier">opt</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">opt</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">opt</span>]
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">fu_opts_with_preserve</span> = <span class="ruby-identifier">fu_opts</span>.<span class="ruby-identifier">clone</span>
+    <span class="ruby-identifier">fu_opts_with_preserve</span>[<span class="ruby-identifier">:preserve</span>] = \
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preserve</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:try</span>
+        <span class="ruby-identifier">fsim</span> = <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">Stat</span>.<span class="ruby-identifier">instance_methods</span>
+        (<span class="ruby-identifier">fsim</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;uid&quot;</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">fsim</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;gid&quot;</span>) <span class="ruby-keyword kw">and</span>
+         <span class="ruby-identifier">fsim</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;mode&quot;</span>) <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">fsim</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;atime&quot;</span>))
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preserve</span>]
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">changed</span> = []
+    <span class="ruby-identifier">sources_a</span> = [<span class="ruby-identifier">sources</span>].<span class="ruby-identifier">flatten</span>
+    <span class="ruby-identifier">sources_a</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">parent</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Find</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">parent</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">child</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">source_fn</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">child</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">child</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;/&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">child</span>
+        <span class="ruby-identifier">target_dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">target</span>)
+        <span class="ruby-identifier">target_fn</span> = <span class="ruby-identifier">peer_for</span>(<span class="ruby-identifier">source_fn</span>, <span class="ruby-identifier">target</span>)
+
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;comparing %s =&gt; %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">source_fn</span>, <span class="ruby-identifier">target_fn</span>])
+        <span class="ruby-identifier">source_st</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">source_fn</span>)
+        <span class="ruby-identifier">is_copy</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">target_st</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">target_fn</span>)
+
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">target_dir</span>
+              <span class="ruby-comment cmt"># Is the file obviously different?</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">file?</span>
+                <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">kind</span> <span class="ruby-keyword kw">in</span> <span class="ruby-node">%w(size mtime)</span>
+                  <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">kind</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;mtime&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preserve</span>]
+                  <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">kind</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">target_st</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">kind</span>)
+                    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s not same %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">target_fn</span>, <span class="ruby-identifier">kind</span>])
+                    <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>.<span class="ruby-identifier">new</span>
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+
+                <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">identical?</span>(<span class="ruby-identifier">source_fn</span>, <span class="ruby-identifier">target_fn</span>)
+                  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s not identical&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">target_fn</span>)
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">EOFError</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-comment cmt"># File just needs to be altered</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preserve</span>]
+                <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">mode</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">target_st</span>.<span class="ruby-identifier">mode</span>
+                  <span class="ruby-identifier">changed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+                  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s not same mode&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">target_fn</span>)
+                  <span class="ruby-identifier">chmod</span>(<span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">target_fn</span>, <span class="ruby-identifier">fu_opts</span>)
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">uid</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">target_st</span>.<span class="ruby-identifier">uid</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">gid</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">target_st</span>.<span class="ruby-identifier">gid</span>
+                  <span class="ruby-identifier">changed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+                  <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s not same uid/gid&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">target_fn</span>)
+                  <span class="ruby-identifier">chown</span>(<span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">uid</span>, <span class="ruby-identifier">source_st</span>.<span class="ruby-identifier">gid</span>, <span class="ruby-identifier">target_fn</span>, <span class="ruby-identifier">fu_opts</span>)
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">EOFError</span>
+            <span class="ruby-identifier">changed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+            <span class="ruby-identifier">is_copy</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>
+          <span class="ruby-identifier">changed</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s not present&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">target_fn</span>)
+          <span class="ruby-identifier">is_copy</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">is_copy</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PEXEC</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;cp%s %s %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recursive</span>] <span class="ruby-operator">?</span> <span class="ruby-value str">' -r'</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>, <span class="ruby-identifier">source_fn</span>, <span class="ruby-identifier">target_fn</span>])
+          <span class="ruby-comment cmt">## puts &quot;fo %s&quot; % fu_opts.inspect</span>
+          <span class="ruby-comment cmt">## puts &quot;fowp %s&quot; % fu_opts_with_preserve.inspect</span>
+          <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">cp_r</span>(<span class="ruby-identifier">source_fn</span>, <span class="ruby-identifier">target_fn</span>, <span class="ruby-identifier">fu_opts_with_preserve</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">result</span> = \
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sources_a</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+          <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">first</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">changed</span>.<span class="ruby-identifier">uniq</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

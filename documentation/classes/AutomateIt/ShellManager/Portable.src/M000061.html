@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rm (AutomateIt::ShellManager::Portable)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/shell_manager/portable.rb, line 325</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rm</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">kind</span> = \
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recursive</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:force</span>]
+        <span class="ruby-identifier">:rm_rf</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recursive</span>]
+        <span class="ruby-identifier">:rm_r</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">:rm</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">present</span> = [<span class="ruby-identifier">targets</span>].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">select</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">entry</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">_present?</span>(<span class="ruby-identifier">entry</span>)}
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">present</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">msg</span> = <span class="ruby-value str">&quot;rm&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recursive</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:force</span>]
+      <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -rf&quot;</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:recursive</span>]
+      <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -r&quot;</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:force</span>]
+      <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; -f&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">present</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PEXEC</span><span class="ruby-operator">+</span><span class="ruby-identifier">msg</span>)
+
+    <span class="ruby-identifier">present</span> = <span class="ruby-identifier">present</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">present</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+
+    <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">present</span>, <span class="ruby-identifier">_fileutils_opts</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">present</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

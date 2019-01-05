@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>edit (AutomateIt::EditManager::EditSession)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 108</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;no file or text specified for editing&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:file</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:text</span>]
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:file</span>]
+      <span class="ruby-ivar">@contents</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:text</span>]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:params</span>] <span class="ruby-operator">||</span> {}
+    <span class="ruby-ivar">@is_backup</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>]
+    <span class="ruby-ivar">@comment_prefix</span> = <span class="ruby-value str">&quot;# &quot;</span>
+    <span class="ruby-ivar">@comment_suffix</span> = <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@contents</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">_read</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:create</span>]
+        <span class="ruby-ivar">@contents</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@original_contents</span> = <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">clone</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;no block given&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@filename</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">different?</span>
+        <span class="ruby-identifier">_backup</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@is_backup</span>
+        <span class="ruby-identifier">_write</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">chperm_opts</span> = {}
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">in</span> [<span class="ruby-identifier">:owner</span>, <span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:group</span>, <span class="ruby-identifier">:mode</span>]
+        <span class="ruby-identifier">chperm_opts</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">key</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">key</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">chperm</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-identifier">chperm_opts</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">chperm_opts</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">different?</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">contents</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

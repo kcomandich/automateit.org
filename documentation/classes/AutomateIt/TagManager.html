@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::TagManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::TagManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/automateit/tag_manager_rb.html">
+                lib/automateit/tag_manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Plugin/Manager.html">
+                AutomateIt::Plugin::Manager
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="TagManager.html">TagManager</a></h2>
+<p>
+The <a href="TagManager.html">TagManager</a> provides a way of querying <a
+href="TagManager.html#M000409">tags</a>. Tags are keywords associated with
+a specific hostname or group. These are useful for grouping together hosts
+and defining common behavior for them.
+</p>
+<h3>Basics</h3>
+<p>
+The <a href="TagManager.html#M000409">tags</a> are typically stored in a <a
+href="Project.html">Project</a>&#8216;s <tt>config/tags.yml</tt> file.
+</p>
+<p>
+For example, consider this <tt>config/tags.yml</tt> file:
+</p>
+<pre>
+  desktops:
+    - satori
+    - sunyata
+    - michiru
+  notebooks:
+    - rheya
+    - avijja
+</pre>
+<p>
+With the above file, if we&#8216;re on the host called &quot;satori&quot;,
+we can query the fields like this:
+</p>
+<pre>
+  tags # =&gt; [&quot;satori&quot;, &quot;desktops&quot;, &quot;localhost&quot;, ...]
+
+  tagged?(&quot;desktops&quot;) # =&gt; true
+  tagged?(&quot;notebooks&quot;) # =&gt; false
+  tagged?(:satori) # =&gt; true
+  tagged?(&quot;satori&quot;) # =&gt; true
+  tagged?(&quot;satori || desktops&quot;) # =&gt; true
+  tagged?(&quot;(satori || desktops) &amp;&amp; !notebooks&quot;) # =&gt; true
+</pre>
+<h3>Traits</h3>
+<p>
+Your system may also automatically add <a
+href="TagManager.html#M000409">tags</a> that describe your system&#8216;s
+traits, such as the name of the operating system, distribution release,
+hardware architecture, hostnames, IP addresses, etc.
+</p>
+<p>
+For example, here is a full set of <a
+href="TagManager.html#M000409">tags</a> for a system:
+</p>
+<pre>
+ ai&gt; pp tags.sort                # Pretty print the tags in sorted order
+ [&quot;10.0.0.6&quot;,                    # IPv4 addresses
+  &quot;127.0.0.1&quot;,                   # ...
+  &quot;192.168.130.1&quot;,               # ...
+  &quot;::1/128&quot;,                     # IPv6 addresses
+  &quot;fe80::250:56ff:fec0:8/64&quot;,    # ...
+  &quot;fe80::250:8dff:fe95:8fe9/64&quot;, # ...
+  &quot;i686&quot;,                        # Hardware architecture
+  &quot;linux&quot;,                       # OS
+  &quot;linux_i686&quot;,                  # OS and architecture
+  &quot;localhost&quot;,                   # Variants of hostname
+  &quot;localhost.localdomain&quot;,       # ...
+  &quot;michiru&quot;,                     # ...
+  &quot;michiru.koshevoy&quot;,            # ...
+  &quot;michiru.koshevoy.net&quot;,        # ...
+  &quot;myapp_servers&quot;,               # User defined tags
+  &quot;rails_servers&quot;,               # ...
+  &quot;ubuntu&quot;,                      # OS distribution name
+  &quot;ubuntu_6.06&quot;]                 # OS distribution name and release version
+</pre>
+<p>
+To execute code only on an Ubuntu system:
+</p>
+<pre>
+  if tagged?(&quot;ubuntu&quot;)
+    # Code will only be run on Ubuntu systems
+  end
+</pre>
+<p>
+These additional <a href="TagManager.html#M000409">tags</a> are retrieved
+from the <a href="PlatformManager.html">PlatformManager</a> and <a
+href="AddressManager.html">AddressManager</a>. If your platform does not
+provide drivers for these, you will not get these <a
+href="TagManager.html#M000409">tags</a>. If you&#8216;re on an unsupported
+platform and do not want to write drivers, you can work around this by
+manually declaring the missing <a href="TagManager.html#M000409">tags</a>
+in <tt>config/tags.yml</tt> on a host-by-host basis.
+</p>
+<h3>Inclusion and negation</h3>
+<p>
+You can include and negate <a href="TagManager.html#M000409">tags</a>
+declaratively by giving &quot;@&quot; and &quot;!&quot; prefixes to
+arguments.
+</p>
+<p>
+For example, consider this <tt>config/tags.yml</tt> file:
+</p>
+<pre>
+  apache_servers:
+    - kurou
+    - shirou
+  apache_servers_except_kurou:
+    - @apache_servers
+    - !kurou
+</pre>
+<p>
+This will produce the following results:
+</p>
+<pre>
+  ai&gt; hosts_tagged_with(&quot;apache_servers&quot;)
+  =&gt; [&quot;kurou&quot;, &quot;shirou&quot;]
+  ai&gt; hosts_tagged_with(&quot;apache_servers_except_kurou&quot;)
+  =&gt; [&quot;shirou&quot;]
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000408">hosts_tagged_with</a>&nbsp;&nbsp;
+      <a href="#M000410">tagged?</a>&nbsp;&nbsp;
+      <a href="#M000409">tags</a>&nbsp;&nbsp;
+      <a href="#M000411">tags_for</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="TagManager/BaseDriver.html" class="link">AutomateIt::TagManager::BaseDriver</a><br />
+Class <a href="TagManager/Struct.html" class="link">AutomateIt::TagManager::Struct</a><br />
+Class <a href="TagManager/TagParser.html" class="link">AutomateIt::TagManager::TagParser</a><br />
+Class <a href="TagManager/YAML.html" class="link">AutomateIt::TagManager::YAML</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000408" class="method-detail">
+        <a name="M000408"></a>
+
+        <div class="method-heading">
+          <a href="#M000408" class="method-signature">
+          <span class="method-name">hosts_tagged_with</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a list of hosts that match the query. See tagged? for information on
+query syntax.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000408-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000408-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/tag_manager.rb, line 96</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hosts_tagged_with</span>(<span class="ruby-identifier">query</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">query</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000410" class="method-detail">
+        <a name="M000410"></a>
+
+        <div class="method-heading">
+          <a href="#M000410" class="method-signature">
+          <span class="method-name">tagged?</span><span class="method-args">(query, hostname=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this host tagged with the <tt>query</tt>?
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  tags # =&gt; [&quot;localhost&quot;, &quot;foo&quot;, &quot;bar&quot;, ...]
+
+  tagged?(:localhost) # =&gt; true
+  tagged?(&quot;localhost&quot;) # =&gt; true
+  tagged?(&quot;localhost &amp;&amp; foo&quot;) # =&gt; true
+  tagged?(&quot;localhost || foo&quot;) # =&gt; true
+  tagged?(&quot;!foo&quot;) # =&gt; false
+  tagged?(&quot;(localhost || foo) &amp;&amp; bar&quot;) # =&gt; true
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000410-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000410-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/tag_manager.rb, line 112</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tagged?</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">hostname</span>=<span class="ruby-keyword kw">nil</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">hostname</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000409" class="method-detail">
+        <a name="M000409"></a>
+
+        <div class="method-heading">
+          <a href="#M000409" class="method-signature">
+          <span class="method-name">tags</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a list of <a href="TagManager.html#M000409">tags</a> for this host.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000409-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000409-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/tag_manager.rb, line 99</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000411" class="method-detail">
+        <a name="M000411"></a>
+
+        <div class="method-heading">
+          <a href="#M000411" class="method-signature">
+          <span class="method-name">tags_for</span><span class="method-args">(hostname)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a list of <a href="TagManager.html#M000409">tags</a> for the host.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000411-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000411-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/tag_manager.rb, line 115</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags_for</span>(<span class="ruby-identifier">hostname</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">hostname</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

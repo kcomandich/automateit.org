@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::ShellManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::ShellManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/automateit/shell_manager_rb.html">
+                lib/automateit/shell_manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Plugin/Manager.html">
+                AutomateIt::Plugin::Manager
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="ShellManager.html">ShellManager</a></h2>
+<p>
+The <a href="ShellManager.html">ShellManager</a> provides Unix-like shell
+commands for manipulating files and executing commands.
+</p>
+<p>
+<b>WARNING</b>: Previewing code can be dangerous. Read <a
+href="../../files/docs/previews_txt.html">previews.txt</a> for instructions
+on how to write code that can be safely previewed.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000329">backup</a>&nbsp;&nbsp;
+      <a href="#M000338">cd</a>&nbsp;&nbsp;
+      <a href="#M000354">chmod</a>&nbsp;&nbsp;
+      <a href="#M000355">chmod_R</a>&nbsp;&nbsp;
+      <a href="#M000356">chown</a>&nbsp;&nbsp;
+      <a href="#M000357">chown_R</a>&nbsp;&nbsp;
+      <a href="#M000336">chperm</a>&nbsp;&nbsp;
+      <a href="#M000346">cp</a>&nbsp;&nbsp;
+      <a href="#M000348">cp_R</a>&nbsp;&nbsp;
+      <a href="#M000347">cp_r</a>&nbsp;&nbsp;
+      <a href="#M000353">install</a>&nbsp;&nbsp;
+      <a href="#M000343">ln</a>&nbsp;&nbsp;
+      <a href="#M000344">ln_s</a>&nbsp;&nbsp;
+      <a href="#M000345">ln_sf</a>&nbsp;&nbsp;
+      <a href="#M000340">mkdir</a>&nbsp;&nbsp;
+      <a href="#M000341">mkdir_p</a>&nbsp;&nbsp;
+      <a href="#M000333">mktemp</a>&nbsp;&nbsp;
+      <a href="#M000334">mktempdir</a>&nbsp;&nbsp;
+      <a href="#M000335">mktempdircd</a>&nbsp;&nbsp;
+      <a href="#M000349">mv</a>&nbsp;&nbsp;
+      <a href="#M000328">provides_link?</a>&nbsp;&nbsp;
+      <a href="#M000325">provides_mode?</a>&nbsp;&nbsp;
+      <a href="#M000326">provides_ownership?</a>&nbsp;&nbsp;
+      <a href="#M000327">provides_symlink?</a>&nbsp;&nbsp;
+      <a href="#M000339">pwd</a>&nbsp;&nbsp;
+      <a href="#M000350">rm</a>&nbsp;&nbsp;
+      <a href="#M000351">rm_r</a>&nbsp;&nbsp;
+      <a href="#M000352">rm_rf</a>&nbsp;&nbsp;
+      <a href="#M000342">rmdir</a>&nbsp;&nbsp;
+      <a href="#M000330">sh</a>&nbsp;&nbsp;
+      <a href="#M000358">touch</a>&nbsp;&nbsp;
+      <a href="#M000337">umask</a>&nbsp;&nbsp;
+      <a href="#M000331">which</a>&nbsp;&nbsp;
+      <a href="#M000332">which!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000329" class="method-detail">
+        <a name="M000329"></a>
+
+        <div class="method-heading">
+          <a href="#M000329" class="method-signature">
+          <span class="method-name">backup</span><span class="method-args">(*sources)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Backup <tt>sources</tt> if they exist. Returns the names of the backups
+created.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:quiet &#8212; Don&#8216;t display output? Default is false.
+
+</li>
+</ul>
+<p>
+These backups are copies of the original sources saved into the same
+directories as the originals. The pathnames of these copies are timestamped
+and guaranteed to be unique, so you can have multiple backups of the same
+sources.
+</p>
+<p>
+<b>WARNING</b>: This method is not conditional. It will make a <a
+href="ShellManager.html#M000329">backup</a> every time it&#8216;s called if
+the sources exist. Therefore, only execute this method when its needed.
+</p>
+<p>
+For example, <a href="ShellManager.html#M000329">backup</a> a file:
+</p>
+<pre>
+  backup(&quot;/tmp/myfile&quot;) # =&gt; &quot;/tmp/myfile.1190994237_M2xhLrC6Sj.bak
+</pre>
+<p>
+In the above example, the <a
+href="ShellManager.html#M000329">backup</a>&#8216;s name contains two
+special strings. The &quot;1190994237&quot; is the time the <a
+href="ShellManager.html#M000329">backup</a> was made in seconds since the
+Epoch. The &quot;M2xhLrC6Sj&quot; is a random string used to guarantee the
+uniqueness of this <a href="ShellManager.html#M000329">backup</a> in case
+two are made at exactly the same time.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000329-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000329-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 51</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">backup</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000338" class="method-detail">
+        <a name="M000338"></a>
+
+        <div class="method-heading">
+          <a href="#M000338" class="method-signature">
+          <span class="method-name">cd</span><span class="method-args">(dir, opts={}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Changes the directory into the specified <tt>dir</tt>. If called with a
+block, changes to the directory for the duration of the block, and then
+changes back to the previous directory at the end.
+</p>
+<p>
+<b>WARNING</b>: Previewing code can be dangerous. Read <a
+href="../../files/docs/previews_txt.html">previews.txt</a> for instructions
+on how to write code that can be safely previewed.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000338-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000338-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 143</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cd</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000354" class="method-detail">
+        <a name="M000354"></a>
+
+        <div class="method-heading">
+          <a href="#M000354" class="method-signature">
+          <span class="method-name">chmod</span><span class="method-args">(mode, targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the permission <tt>mode</tt> of the <tt>targets</tt>. Returns an
+array of targets modified or <tt>false</tt> if all have the desired mode.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000354-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000354-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 238</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">chmod</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000355" class="method-detail">
+        <a name="M000355"></a>
+
+        <div class="method-heading">
+          <a href="#M000355" class="method-signature">
+          <span class="method-name">chmod_R</span><span class="method-args">(mode, targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the permission <tt>mode</tt> of the <tt>targets</tt> recursively.
+Returns an array of targets modified or <tt>false</tt> if all have the
+desired mode.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000355-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000355-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 242</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">chmod_R</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000356" class="method-detail">
+        <a name="M000356"></a>
+
+        <div class="method-heading">
+          <a href="#M000356" class="method-signature">
+          <span class="method-name">chown</span><span class="method-args">(user, group, targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the <tt>user</tt> and <tt>group</tt> ownership of the
+<tt>targets</tt>. You can leave either the user or group as nil if you
+don&#8216;t want to change it. Returns an array of targets modified or
+<tt>false</tt> if all have the desired ownership.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000356-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000356-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 248</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">chown</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">group</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">group</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000357" class="method-detail">
+        <a name="M000357"></a>
+
+        <div class="method-heading">
+          <a href="#M000357" class="method-signature">
+          <span class="method-name">chown_R</span><span class="method-args">(user, group, targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the <tt>user</tt> and <tt>group</tt> ownership of the
+<tt>targets</tt> recursively. You can leave either the user or group as nil
+if you don&#8216;t want to change it. Returns an array of targets modified
+or <tt>false</tt> if all have the desired ownership.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000357-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000357-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 254</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">chown_R</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">group</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">group</span>, <span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000336" class="method-detail">
+        <a name="M000336"></a>
+
+        <div class="method-heading">
+          <a href="#M000336" class="method-signature">
+          <span class="method-name">chperm</span><span class="method-args">(targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the permissions of the <tt>targets</tt>. This command is like the <a
+href="ShellManager.html#M000354">chmod</a> and <a
+href="ShellManager.html#M000356">chown</a> in a single command.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:recursive &#8212; Change files and directories recursively. Defaults to
+false.
+
+</li>
+<li>:user &#8212; User name to change ownership to.
+
+</li>
+<li>:group &#8212; Group name to change ownership to.
+
+</li>
+<li>:mode &#8212; Mode to use as octal, e.g., <tt>0400</tt> to make a file
+readable only to its owner.
+
+</li>
+<li>:details &#8212; Reports the files modified, rather than the arguments
+modified. An argument might be a single directory, but this may result in
+modifications to many files within that directory. Use :details for
+situations when there&#8216;s a need to see all files actually changed. The
+reason :details is off by default is that it will flood the screen with a
+list of all files modified in a large directory, <a
+href="ShellManager.html#M000331">which</a> is overwhelming and probably
+unnecessary unless you actually need to see these details. Defaults to
+false.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000336-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000336-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 127</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">chperm</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000346" class="method-detail">
+        <a name="M000346"></a>
+
+        <div class="method-heading">
+          <a href="#M000346" class="method-signature">
+          <span class="method-name">cp</span><span class="method-args">(sources, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copy the <tt>sources</tt> to the <tt>target</tt>. Returns an array of
+sources copied or <tt>false</tt> if all are present.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:preserve &#8212; Preserve file modification time and ownership. Defaults
+to false. Can be <tt>true</tt>, <tt>false</tt>, or :try. If :try, the
+properties will be preserved if possible on the platform, whereas
+<tt>true</tt> will raise an exception if not available.
+
+</li>
+<li>:recursive &#8212; Copy files and directories recursively, boolean.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000346-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000346-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 206</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cp</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000348" class="method-detail">
+        <a name="M000348"></a>
+
+        <div class="method-heading">
+          <a href="#M000348" class="method-signature">
+          <span class="method-name">cp_R</span><span class="method-args">(sources, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copy the <tt>sources</tt> to the <tt>target</tt> recursively. Returns an
+array of sources copied or <tt>false</tt> if all are present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000348-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000348-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 214</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cp_R</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000347" class="method-detail">
+        <a name="M000347"></a>
+
+        <div class="method-heading">
+          <a href="#M000347" class="method-signature">
+          <span class="method-name">cp_r</span><span class="method-args">(sources, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copy the <tt>sources</tt> to the <tt>target</tt> recursively. Returns an
+array of sources copied or <tt>false</tt> if all are present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000347-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000347-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 210</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cp_r</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000353" class="method-detail">
+        <a name="M000353"></a>
+
+        <div class="method-heading">
+          <a href="#M000353" class="method-signature">
+          <span class="method-name">install</span><span class="method-args">(source, target, mode)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copy the <tt>source</tt> to the <tt>target</tt> and set its <tt>mode</tt>.
+Returns true if the file was installed or <tt>false</tt> if already
+present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000353-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000353-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 234</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">mode</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">mode</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000343" class="method-detail">
+        <a name="M000343"></a>
+
+        <div class="method-heading">
+          <a href="#M000343" class="method-signature">
+          <span class="method-name">ln</span><span class="method-args">(source, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a hard link between the <tt>source</tt> and <tt>target</tt>. Your
+platform must support hard links to use this. Returns the target created or
+<tt>false</tt> if the link is already present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000343-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000343-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 184</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ln</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000344" class="method-detail">
+        <a name="M000344"></a>
+
+        <div class="method-heading">
+          <a href="#M000344" class="method-signature">
+          <span class="method-name">ln_s</span><span class="method-args">(sources, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a symbolic link between the <tt>sources</tt> and <tt>target</tt>.
+Your platform must support symbolic links to use this. Returns an array of
+sources linked or <tt>false</tt> if all are already present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000344-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000344-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 189</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ln_s</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000345" class="method-detail">
+        <a name="M000345"></a>
+
+        <div class="method-heading">
+          <a href="#M000345" class="method-signature">
+          <span class="method-name">ln_sf</span><span class="method-args">(sources, target, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a symbolic link between the <tt>sources</tt> and <tt>target</tt>. If
+the <tt>target</tt> already exists, will remove it and recreate it. Your
+platform must support symbolic links to use this. Returns an array of
+sources linked or <tt>false</tt> if all are already present.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000345-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000345-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 195</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ln_sf</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000340" class="method-detail">
+        <a name="M000340"></a>
+
+        <div class="method-heading">
+          <a href="#M000340" class="method-signature">
+          <span class="method-name">mkdir</span><span class="method-args">(dirs, opts={}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a directory or directories. Returns an array of directories created
+or <tt>false</tt> if all directories are already present.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:parents &#8212; Create parents, like &quot;<a
+href="ShellManager.html#M000340">mkdir</a> -p&quot;. Boolean.
+
+</li>
+<li>:mode, :user, :group &#8212; See <a
+href="ShellManager.html#M000336">chperm</a>
+
+</li>
+</ul>
+<p>
+<b>WARNING</b>: Previewing code can be dangerous. Read <a
+href="../../files/docs/previews_txt.html">previews.txt</a> for instructions
+on how to write code that can be safely previewed.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000340-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000340-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 158</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">dirs</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">dirs</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000341" class="method-detail">
+        <a name="M000341"></a>
+
+        <div class="method-heading">
+          <a href="#M000341" class="method-signature">
+          <span class="method-name">mkdir_p</span><span class="method-args">(dirs, opts={}, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a directory or directories with their parents. Returns an array of
+directories created or <tt>false</tt> if all directories are already
+present.
+</p>
+<p>
+Options same as <a href="ShellManager.html#M000340">mkdir</a>.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  File.exists?(&quot;/tmp/foo&quot;) # =&gt; false
+  mkdir_p(&quot;/tmp/foo/bar&quot;)
+  File.exists?(&quot;/tmp/foo&quot;) # =&gt; true
+  File.exists?(&quot;/tmp/foo/bar&quot;) # =&gt; true
+</pre>
+<p>
+<b>WARNING</b>: Previewing code can be dangerous. Read <a
+href="../../files/docs/previews_txt.html">previews.txt</a> for instructions
+on how to write code that can be safely previewed.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000341-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000341-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 174</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">dirs</span>, <span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">dirs</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000333" class="method-detail">
+        <a name="M000333"></a>
+
+        <div class="method-heading">
+          <a href="#M000333" class="method-signature">
+          <span class="method-name">mktemp</span><span class="method-args">(name=nil) {|path| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a temporary file. Optionally takes a <tt>name</tt> argument <a
+href="ShellManager.html#M000331">which</a> is purely cosmetic, e.g., if the
+<tt>name</tt> is &quot;foo&quot;, the routine may create a temporary file
+named <tt>/tmp/foo_qeKo7nJk1s</tt>.
+</p>
+<p>
+When called with a block, invokes the block with the path of the temporary
+file and deletes the file at the end of the block.
+</p>
+<p>
+Without a block, returns the path of the temporary file and you&#8216;re
+responsible for removing it when done.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000333-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000333-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 74</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mktemp</span>(<span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: path</span>
+    <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000334" class="method-detail">
+        <a name="M000334"></a>
+
+        <div class="method-heading">
+          <a href="#M000334" class="method-signature">
+          <span class="method-name">mktempdir</span><span class="method-args">(name=nil) {|path| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates a temporary directory. See <a
+href="ShellManager.html#M000333">mktemp</a> for details on the
+<tt>name</tt> argument.
+</p>
+<p>
+When called with a block, invokes the block with the path of the temporary
+directory and recursively deletes the directory and its contents at the end
+of the block.
+</p>
+<p>
+Without a block, returns the path of the temporary directory and
+you&#8216;re responsible for removing it when done.
+</p>
+<p>
+CAUTION: Read notes at the top of <a
+href="ShellManager.html">ShellManager</a> for potentially problematic
+situations that may be encountered if using this command in preview mode!
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000334-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000334-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 91</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mktempdir</span>(<span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: path</span>
+    <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000335" class="method-detail">
+        <a name="M000335"></a>
+
+        <div class="method-heading">
+          <a href="#M000335" class="method-signature">
+          <span class="method-name">mktempdircd</span><span class="method-args">(name=nil) {|path| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="ShellManager.html#M000334">mktempdir</a> but performs a <a
+href="ShellManager.html#M000338">cd</a> into the directory for the duration
+of the block.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  puts pwd # =&gt; &quot;/home/bubba&quot;
+  mktempdircd do |path|
+    puts path # =&gt; &quot;/tmp/tempster_qeKo7nJk1s&quot;
+    puts pwd  # =&gt; &quot;/tmp/tempster_qeKo7nJk1s&quot;
+  end
+  puts File.exists?(&quot;/tmp/tempster_qeKo7nJk1s&quot;) # =&gt; false
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000335-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000335-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 106</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mktempdircd</span>(<span class="ruby-identifier">name</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: path</span>
+    <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000349" class="method-detail">
+        <a name="M000349"></a>
+
+        <div class="method-heading">
+          <a href="#M000349" class="method-signature">
+          <span class="method-name">mv</span><span class="method-args">(sources, target)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Move the <tt>sources</tt> to the <tt>target</tt>. Returns an array of
+sources copied or <tt>false</tt> if none of the sources exist.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000349-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000349-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 218</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mv</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">sources</span>, <span class="ruby-identifier">target</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000328" class="method-detail">
+        <a name="M000328"></a>
+
+        <div class="method-heading">
+          <a href="#M000328" class="method-signature">
+          <span class="method-name">provides_link?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See ShellManager#provides_mode?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000328-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000328-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 25</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">provides_link?</span>() <span class="ruby-identifier">dispatch_safely</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000325" class="method-detail">
+        <a name="M000325"></a>
+
+        <div class="method-heading">
+          <a href="#M000325" class="method-signature">
+          <span class="method-name">provides_mode?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See ShellManager#provides_mode?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000325-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000325-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 16</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">provides_mode?</span>() <span class="ruby-identifier">dispatch_safely</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000326" class="method-detail">
+        <a name="M000326"></a>
+
+        <div class="method-heading">
+          <a href="#M000326" class="method-signature">
+          <span class="method-name">provides_ownership?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See ShellManager#provides_mode?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000326-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000326-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 19</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">provides_ownership?</span>() <span class="ruby-identifier">dispatch_safely</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000327" class="method-detail">
+        <a name="M000327"></a>
+
+        <div class="method-heading">
+          <a href="#M000327" class="method-signature">
+          <span class="method-name">provides_symlink?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See ShellManager#provides_mode?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000327-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000327-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 22</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">provides_symlink?</span>() <span class="ruby-identifier">dispatch_safely</span> <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000339" class="method-detail">
+        <a name="M000339"></a>
+
+        <div class="method-heading">
+          <a href="#M000339" class="method-signature">
+          <span class="method-name">pwd</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the current directory.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000339-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000339-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 146</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pwd</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000350" class="method-detail">
+        <a name="M000350"></a>
+
+        <div class="method-heading">
+          <a href="#M000350" class="method-signature">
+          <span class="method-name">rm</span><span class="method-args">(targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the <tt>targets</tt>. Returns a list of targets removed or
+<tt>false</tt> if none of them exist.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000350-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000350-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 222</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rm</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000351" class="method-detail">
+        <a name="M000351"></a>
+
+        <div class="method-heading">
+          <a href="#M000351" class="method-signature">
+          <span class="method-name">rm_r</span><span class="method-args">(targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the <tt>targets</tt> recursively. Returns a list of targets removed
+or <tt>false</tt> if none of them exist.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000351-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000351-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 226</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rm_r</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000352" class="method-detail">
+        <a name="M000352"></a>
+
+        <div class="method-heading">
+          <a href="#M000352" class="method-signature">
+          <span class="method-name">rm_rf</span><span class="method-args">(targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the <tt>targets</tt> recursively and forcefully. Returns a list of
+targets removed or <tt>false</tt> if none of them exist.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000352-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000352-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 230</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rm_rf</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000342" class="method-detail">
+        <a name="M000342"></a>
+
+        <div class="method-heading">
+          <a href="#M000342" class="method-signature">
+          <span class="method-name">rmdir</span><span class="method-args">(dirs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove a directory or directories. The directories must be empty or an
+exception is thrown. Returns the directories removed or <tt>false</tt> if
+none of the directories exist.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000342-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000342-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 179</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rmdir</span>(<span class="ruby-identifier">dirs</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">dirs</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000330" class="method-detail">
+        <a name="M000330"></a>
+
+        <div class="method-heading">
+          <a href="#M000330" class="method-signature">
+          <span class="method-name">sh</span><span class="method-args">(*commands)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Execute a shell command.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000330-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000330-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sh</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">commands</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">commands</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000358" class="method-detail">
+        <a name="M000358"></a>
+
+        <div class="method-heading">
+          <a href="#M000358" class="method-signature">
+          <span class="method-name">touch</span><span class="method-args">(targets, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create the <tt>targets</tt> as files if needed and update their
+modification time. Unlike most other commands provided by <a
+href="ShellManager.html">ShellManager</a>, this one will always modify the
+targets. Returns an array of targets modified.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:like &#8212; Touch the targets like this file. Defaults to none.
+
+</li>
+<li>:stamp &#8212; Set the targets to the specified timestamp. Defaults to
+Time.now.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000358-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000358-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 263</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">touch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>={}) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">targets</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000337" class="method-detail">
+        <a name="M000337"></a>
+
+        <div class="method-heading">
+          <a href="#M000337" class="method-signature">
+          <span class="method-name">umask</span><span class="method-args">(mode=nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the <a href="ShellManager.html#M000337">umask</a> to <tt>mode</tt>. If
+given a block, changes the <a href="ShellManager.html#M000337">umask</a>
+only for the duration of the block and changes it back to its previous
+setting at the end.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000337-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000337-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 132</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">umask</span>(<span class="ruby-identifier">mode</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000331" class="method-detail">
+        <a name="M000331"></a>
+
+        <div class="method-heading">
+          <a href="#M000331" class="method-signature">
+          <span class="method-name">which</span><span class="method-args">(command)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+What is the path for this command? Returns <tt>nil</tt> if command
+isn&#8216;t found.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  which(&quot;ls&quot;) # =&gt; &quot;/bin/ls&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000331-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000331-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 60</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">which</span>(<span class="ruby-identifier">command</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">command</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000332" class="method-detail">
+        <a name="M000332"></a>
+
+        <div class="method-heading">
+          <a href="#M000332" class="method-signature">
+          <span class="method-name">which!</span><span class="method-args">(command)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="ShellManager.html#M000331">which</a> but throws an
+ArgumentError if command isn&#8216;t found.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000332-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000332-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/shell_manager.rb, line 63</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">which!</span>(<span class="ruby-identifier">command</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">command</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_started_and_stopped_helper (AutomateIt::ServiceManager::SYSV)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/service_manager/sysv.rb, line 54</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_started_and_stopped_helper</span>(<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">service</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">expected</span> = \
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">kind</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:started?</span>
+        <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:stopped?</span>
+        <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">else</span> 
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;unknown kind argument: #{kind}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">tell</span>(<span class="ruby-identifier">service</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:check</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+    <span class="ruby-identifier">nitpick</span>(<span class="ruby-value str">&quot;_sash top: k=%s r=%s e=%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">result</span>, <span class="ruby-identifier">expected</span>])
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">expected</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:wait</span>]
+      <span class="ruby-identifier">timeout</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:wait</span>]
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">timeout</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot; ServiceManager#%s waiting on '%s' for %0.1f more seconds&quot;</span> <span class="ruby-operator">%</span>
+          [<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">service</span>, <span class="ruby-identifier">timeout</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>])
+        <span class="ruby-identifier">sleep</span> <span class="ruby-value">0</span><span class="ruby-value">.5</span>
+        <span class="ruby-identifier">result</span> = <span class="ruby-identifier">tell</span>(<span class="ruby-identifier">service</span>, <span class="ruby-identifier">:status</span>, <span class="ruby-identifier">:check</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+        <span class="ruby-identifier">nitpick</span>(<span class="ruby-value str">&quot;_sash rep: k=%s r=%s e=%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">result</span>, <span class="ruby-identifier">expected</span>])
+        <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">expected</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">result</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot; ServiceManager#%s finished waiting for '%s', got: %s&quot;</span> <span class="ruby-operator">%</span>
+        [<span class="ruby-identifier">kind</span>, <span class="ruby-identifier">service</span>, <span class="ruby-identifier">result</span>])
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>install (AutomateIt::PackageManager::CPAN)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/package_manager/cpan.rb, line 76</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">_install_helper</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">perl</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:perl</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">perl</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;#{perl} #{CPAN_WRAPPER} --install #{list.join(' ')}&quot;</span>
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &gt; /dev/null&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>]
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; 2&gt;&amp;1&quot;</span>
+
+      <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">sh</span>(<span class="ruby-identifier">cmd</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

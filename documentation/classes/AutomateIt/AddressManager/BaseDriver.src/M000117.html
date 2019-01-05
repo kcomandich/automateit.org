@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>mask_to_cidr (AutomateIt::AddressManager::BaseDriver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 50</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mask_to_cidr</span>(<span class="ruby-identifier">mask</span>)
+    <span class="ruby-comment cmt"># TODO Find less horrible solution which can handle IPv6.</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-value str">''</span>
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">chunk</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">mask</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;.&quot;</span>)
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">dec2bin</span>(<span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">to_i</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/1/</span>).<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

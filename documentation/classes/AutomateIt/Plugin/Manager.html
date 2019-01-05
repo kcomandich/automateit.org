@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::Plugin::Manager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::Plugin::Manager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/automateit/plugin/manager_rb.html">
+                lib/automateit/plugin/manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Base.html">
+                Base
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="Manager.html">Plugin::Manager</a></h2>
+<p>
+A manager provides high-level wrappers for features, e.g. installing
+software packages. It does not actually implement these features, but
+instead manages a set of drivers. When one of the manager&#8216;s wrapper
+methods is called, it queries the drivers to find the most suitable one and
+dispatches the user&#8216;s request to that driver.
+</p>
+<p>
+For example, the <a href="../PlatformManager.html">PlatformManager</a> is a
+<a href="Manager.html">Manager</a> class that manages a set of <a
+href="Driver.html">Driver</a> instances, including <a
+href="../PlatformManager/Uname.html">PlatformManager::Uname</a> and <a
+href="../PlatformManager/LSB.html">PlatformManager::LSB</a>. When you
+invoke the high-level <a
+href="../PlatformManager.html#M000241">PlatformManager#query</a> wrapper
+method, it interrogates the drivers to find which one is best-suited for
+this method and then dispatches the request to that driver&#8216;s
+low-level implementation of this method.
+</p>
+<p>
+The manager subclasses typically have no functionality of their own and
+just contain wrapper methods and documentation.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000300">[]</a>&nbsp;&nbsp;
+      <a href="#M000295">abstract_manager</a>&nbsp;&nbsp;
+      <a href="#M000296">alias_methods</a>&nbsp;&nbsp;
+      <a href="#M000309">available?</a>&nbsp;&nbsp;
+      <a href="#M000301">default</a>&nbsp;&nbsp;
+      <a href="#M000302">default=</a>&nbsp;&nbsp;
+      <a href="#M000303">dispatch</a>&nbsp;&nbsp;
+      <a href="#M000306">dispatch_safely</a>&nbsp;&nbsp;
+      <a href="#M000305">dispatch_safely_to</a>&nbsp;&nbsp;
+      <a href="#M000304">dispatch_to</a>&nbsp;&nbsp;
+      <a href="#M000297">driver_classes</a>&nbsp;&nbsp;
+      <a href="#M000308">driver_for</a>&nbsp;&nbsp;
+      <a href="#M000307">driver_suitability_levels_for</a>&nbsp;&nbsp;
+      <a href="#M000299">instantiate_drivers</a>&nbsp;&nbsp;
+      <a href="#M000298">setup</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">drivers</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Drivers for this manager as a hash of driver tokens to driver instances.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000295" class="method-detail">
+        <a name="M000295"></a>
+
+        <div class="method-heading">
+          <a href="#M000295" class="method-signature">
+          <span class="method-name">abstract_manager</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declare that this manager class is abstract. It can be subclassed but will
+not be instantiated by the <a href="../Interpreter.html">Interpreter</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000295-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000295-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 32</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">abstract_manager</span>
+        <span class="ruby-identifier">classes</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-keyword kw">self</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000296" class="method-detail">
+        <a name="M000296"></a>
+
+        <div class="method-heading">
+          <a href="#M000296" class="method-signature">
+          <span class="method-name">alias_methods</span><span class="method-args">(*methods)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Methods to alias into the <a href="../Interpreter.html">Interpreter</a>,
+specified as an array of symbols.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000296-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000296-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 40</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">alias_methods</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">methods</span>)
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">aliased_methods</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">aliased_methods</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">flatten</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000297" class="method-detail">
+        <a name="M000297"></a>
+
+        <div class="method-heading">
+          <a href="#M000297" class="method-signature">
+          <span class="method-name">driver_classes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Driver.html">Driver</a> classes used by this <a
+href="Manager.html">Manager</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000297-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000297-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 50</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">driver_classes</span>
+        <span class="ruby-constant">Driver</span>.<span class="ruby-identifier">classes</span>[<span class="ruby-identifier">token</span>] <span class="ruby-operator">||</span> []
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000300" class="method-detail">
+        <a name="M000300"></a>
+
+        <div class="method-heading">
+          <a href="#M000300" class="method-signature">
+          <span class="method-name">[]</span><span class="method-args">(token)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Driver.html">Driver</a> with the specified token.
+E.g., +:apt+ will return the <tt>APT</tt> driver.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000300-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000300-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 90</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">token</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">token</span>]
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000309" class="method-detail">
+        <a name="M000309"></a>
+
+        <div class="method-heading">
+          <a href="#M000309" class="method-signature">
+          <span class="method-name">available?</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is a driver available for this <tt>method</tt> and <tt>args</tt>? Uses
+automatic-detection routines and returns a boolean to indicate if a
+suitable driver is available. Unlike <a
+href="Manager.html#M000308">driver_for</a>, this will not raise an
+exception.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000309-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000309-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 214</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">available?</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">driver_for</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+          <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NotImplementedError</span>
+          <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000301" class="method-detail">
+        <a name="M000301"></a>
+
+        <div class="method-heading">
+          <a href="#M000301" class="method-signature">
+          <span class="method-name">default</span><span class="method-args">(token=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Manipulate the <a href="Manager.html#M000301">default</a> driver. Without
+arguments, gets the driver token as a symbol. With argument, sets the <a
+href="Manager.html#M000301">default</a> driver to the <tt>token</tt>, e.g.,
+the argument <tt>:apt</tt> will make the <tt>APT</tt> driver the <a
+href="Manager.html#M000301">default</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000301-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000301-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 97</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default</span>(<span class="ruby-identifier">token</span>=<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">token</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-ivar">@default</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-ivar">@default</span> = <span class="ruby-identifier">token</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000302" class="method-detail">
+        <a name="M000302"></a>
+
+        <div class="method-heading">
+          <a href="#M000302" class="method-signature">
+          <span class="method-name">default=</span><span class="method-args">(token)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the <a href="Manager.html#M000301">default</a> driver to the
+<tt>token</tt>. See also <a href="Manager.html#M000301">default</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000302-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000302-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 106</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default=</span>(<span class="ruby-identifier">token</span>)
+        <span class="ruby-identifier">default</span>(<span class="ruby-identifier">token</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000303" class="method-detail">
+        <a name="M000303"></a>
+
+        <div class="method-heading">
+          <a href="#M000303" class="method-signature">
+          <span class="method-name">dispatch</span><span class="method-args">(*args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dispatch a method by guessing its name. This is the recommended way to
+write wrappers for a <a href="Manager.html">Manager</a> methods.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class MyManager &lt; Plugin::Manager
+    # Your RDoc here
+    def my_method(*args)
+      # Will guess that you want to +dispatch_to+ the +my_method+ by
+      # introspecting the name of the wrapper method.
+      dispatch(*args)
+    end
+    ...
+  end
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000303-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000303-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 123</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-comment cmt"># Extract caller's method as symbol to save user from having to specify it</span>
+        <span class="ruby-identifier">method</span> = <span class="ruby-identifier">caller</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/:in `(.+?)'/</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_sym</span>
+        <span class="ruby-identifier">dispatch_to</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000306" class="method-detail">
+        <a name="M000306"></a>
+
+        <div class="method-heading">
+          <a href="#M000306" class="method-signature">
+          <span class="method-name">dispatch_safely</span><span class="method-args">(*args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="Manager.html#M000303">dispatch</a> but returns nil if
+couldn&#8216;t <a href="Manager.html#M000303">dispatch</a>, rather than
+raising an exception.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000306-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000306-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 171</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch_safely</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">method</span> = <span class="ruby-identifier">caller</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/:in `(.+?)'/</span>)[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_sym</span>
+        <span class="ruby-identifier">dispatch_safely_to</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000305" class="method-detail">
+        <a name="M000305"></a>
+
+        <div class="method-heading">
+          <a href="#M000305" class="method-signature">
+          <span class="method-name">dispatch_safely_to</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Same as <a href="Manager.html#M000304">dispatch_to</a> but returns nil if
+couldn&#8216;t <a href="Manager.html#M000303">dispatch</a>, rather than
+raising an exception.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000305-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000305-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 161</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch_safely_to</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">dispatch_to</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">NotImplementedError</span>
+          <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000304" class="method-detail">
+        <a name="M000304"></a>
+
+        <div class="method-heading">
+          <a href="#M000304" class="method-signature">
+          <span class="method-name">dispatch_to</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dispatch the <tt>method</tt> with <tt>args</tt> and <tt>block</tt> to the
+appropriate driver. If the arguments include an option of the form
+<tt>:with =&gt; :mytoken</tt> argument, then the method will be dispatched
+to the driver represented by <tt>:mytoken</tt>. If no :with argument is
+specified, the most-suitable driver will be automatically selected. If no
+suitable driver is available, a NotImplementedError will be raised.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  # Run 'hostnames' method on most appropriate AddressManager driver:
+  address_manager.dispatch_to(:hostnames)
+
+  # Run AddressManager::Portable#hostnames
+  address_manager.dispatch_to(:hostnames, :with =&gt; :portable)
+</pre>
+<p>
+You will typically not want to use this method directly and instead write
+wrappers that call <a href="Manager.html#M000303">dispatch</a> because it
+can guess the name of the <tt>method</tt> argument for you.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000304-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000304-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 146</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch_to</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">list</span>, <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+        <span class="ruby-identifier">driver</span> = \
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]
+            <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>].<span class="ruby-identifier">to_sym</span>]
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">default</span>
+            <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">default</span>.<span class="ruby-identifier">to_sym</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">driver_for</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000308" class="method-detail">
+        <a name="M000308"></a>
+
+        <div class="method-heading">
+          <a href="#M000308" class="method-signature">
+          <span class="method-name">driver_for</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the most suitable driver for this <tt>method</tt> and <tt>args</tt>.
+Uses automatic-detection routines and returns the most suitable driver
+instance found, else raises a NotImplementedError if no suitable driver is
+found.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000308-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000308-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 201</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">driver_for</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">driver</span>, <span class="ruby-identifier">level</span> = <span class="ruby-identifier">driver_suitability_levels_for</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">sort_by</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>}.<span class="ruby-identifier">last</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">driver</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">level</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">driver</span>]
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;can't find driver for method '#{method}' with arguments: #{args.inspect}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000307" class="method-detail">
+        <a name="M000307"></a>
+
+        <div class="method-heading">
+          <a href="#M000307" class="method-signature">
+          <span class="method-name">driver_suitability_levels_for</span><span class="method-args">(method, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns structure which helps choose a suitable driver for the
+<tt>method</tt> and <tt>args</tt>. Result is a hash of driver tokens and
+their suitability levels.
+</p>
+<p>
+For example, if we ask the <a
+href="../AddressManager.html">AddressManager</a> for suitability levels for
+the AddressManager#hostnames method, we might find that there are two
+drivers (:portable is the token for <a
+href="../AddressManager/Portable.html">AddressManager::Portable</a>) and
+that the :linux driver is most appropriate because it has the highest
+suitability level:
+</p>
+<pre>
+  address_manager.driver_suitability_levels_for(:hostnames)
+  # =&gt; {:portable=&gt;1, :linux=&gt;2}
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000307-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000307-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 188</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">driver_suitability_levels_for</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">results</span> = {}
+        <span class="ruby-ivar">@drivers</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">driver</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>)
+          <span class="ruby-identifier">results</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">suitability</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">results</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000299" class="method-detail">
+        <a name="M000299"></a>
+
+        <div class="method-heading">
+          <a href="#M000299" class="method-signature">
+          <span class="method-name">instantiate_drivers</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Instantiate drivers for this manager. This method is smart enough that it
+can be called multiple times and will only instantiate drivers it
+hasn&#8216;t instantiated yet. All drivers will share an instance of the <a
+href="../Interpreter.html">Interpreter</a>, thus providing common state
+storage.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000299-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000299-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 73</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instantiate_drivers</span>
+        <span class="ruby-ivar">@drivers</span> <span class="ruby-operator">||=</span> {}
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">driver_classes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">driver_class</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">driver_token</span> = <span class="ruby-identifier">driver_class</span>.<span class="ruby-identifier">token</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">driver_token</span>]
+            <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">driver_token</span>] = <span class="ruby-identifier">driver_class</span>.<span class="ruby-identifier">allocate</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">driver_classes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">driver_class</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">driver_token</span> = <span class="ruby-identifier">driver_class</span>.<span class="ruby-identifier">token</span>
+          <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">driver_token</span>].<span class="ruby-identifier">setup</span>(
+            <span class="ruby-identifier">:interpreter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@interpreter</span>, <span class="ruby-identifier">:manager</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000298" class="method-detail">
+        <a name="M000298"></a>
+
+        <div class="method-heading">
+          <a href="#M000298" class="method-signature">
+          <span class="method-name">setup</span><span class="method-args">(opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Options:
+</p>
+<ul>
+<li>:<a href="Manager.html#M000301">default</a> &#8212; The token of the driver
+to set as the <a href="Manager.html#M000301">default</a>.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000298-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000298-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/plugin/manager.rb, line 56</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">opts</span>={})
+        <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">opts</span>)
+
+        <span class="ruby-ivar">@default</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">nil</span>
+
+        <span class="ruby-identifier">instantiate_drivers</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">driver</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:driver</span>]
+          <span class="ruby-identifier">default</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:default</span>]
+          <span class="ruby-ivar">@drivers</span>[<span class="ruby-identifier">driver</span>].<span class="ruby-identifier">setup</span>(<span class="ruby-identifier">opts</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

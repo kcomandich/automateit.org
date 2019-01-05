@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: package_manager.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>package_manager.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>lib/automateit/package_manager.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Nov 04 20:51:52 -0800 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>PackageManager</h2>
+<p>
+The PackageManager provides a way to manage packages, e.g., install,
+uninstall and query if the Apache package is installed with APT.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  package_manager.installed?(&quot;apache2&quot;) # =&gt; false
+  package_manager.install(&quot;apache2&quot;) # =&gt; true
+  package_manager.installed?(&quot;apache2&quot;) # =&gt; true
+  package_manager.uninstall(&quot;apache2&quot;) # =&gt; true
+  package_manager.not_installed(&quot;apache2&quot;) # =&gt; true
+</pre>
+<p>
+Commands can accept arrays:
+</p>
+<pre>
+  package_manager.install(&quot;apache2&quot;, &quot;bash&quot;)
+  package_manager.installed? %w(apache2 bash)
+</pre>
+<p>
+Commands can also accept a single, annotated string as a manifest &#8212;
+useful for installing large numbers of packages at once:
+</p>
+<pre>
+  package_manager.install &lt;&lt;HERE, :with =&gt; :apt
+    # One per line
+    apache
+    bash
+
+    # Or many on the same line
+    sysvconfig sysv-rc-conf
+  HERE
+</pre>
+<p>
+Commands can also accept a hash of names to paths &#8212; necessary for
+installing packages stored on the filesystem:
+</p>
+<pre>
+  # Is the package called &quot;TracTags&quot; installed? If not, run the installer
+  # with the &quot;/tmp/tractags_latest&quot; path as an argument:
+  package.manager.install({&quot;TracTags&quot; =&gt; &quot;/tmp/tractags_latest&quot;}, :with =&gt; :egg)
+</pre>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      automateit/package_manager/dpkg&nbsp;&nbsp;
+      automateit/package_manager/apt&nbsp;&nbsp;
+      automateit/package_manager/yum&nbsp;&nbsp;
+      automateit/package_manager/gem&nbsp;&nbsp;
+      automateit/package_manager/egg&nbsp;&nbsp;
+      automateit/package_manager/portage&nbsp;&nbsp;
+      automateit/package_manager/pear&nbsp;&nbsp;
+      automateit/package_manager/pecl&nbsp;&nbsp;
+      automateit/package_manager/cpan&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::Project</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::Project</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/automateit/project_rb.html">
+                lib/automateit/project.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Common.html">
+                Common
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="Project.html">Project</a></h1>
+<p>
+An AutomateIt <a href="Project.html">Project</a> is a collection of related
+recipes, tags, fields and custom plugins.
+</p>
+<h3>Create a project</h3>
+<p>
+You can <a href="Project.html#M000265">create</a> a project by running the
+following from the Unix shell:
+</p>
+<pre>
+  automateit --create myproject
+</pre>
+<p>
+This will <a href="Project.html#M000265">create</a> a directory called
+<tt>myproject</tt> with a number of directories and files. Each directory
+has a <tt>README.txt</tt> that explains what it&#8216;s used for.
+</p>
+<h3>Advantages of a project over raw recipe files</h3>
+<p>
+Although you can run recipes without a project, putting your recipes into a
+project provides you with the following benefits:
+</p>
+<ol>
+<li>Directory structure to organize your files.
+
+</li>
+<li>Automatically loads tags from project&#8216;s <tt>config/tags.yml</tt>
+file.
+
+</li>
+<li>Loads fields from the <tt>config/fields.yml</tt> file.
+
+</li>
+<li>Loads all custom plugins and libraries found in the <tt>lib</tt> directory.
+
+</li>
+<li>Provides a <tt>dist</tt> method that corresponds to your project&#8216;s
+<tt>dist</tt> directory. Using this method will save you from having to
+type paths for files you intend to distribute from recipes, e.g.:
+
+<pre>
+ cp(dist+&quot;/source.txt&quot;, &quot;/tmp/target.txt&quot;)
+</pre>
+</li>
+</ol>
+<h3>Using a project</h3>
+<p>
+For example, <a href="Project.html#M000265">create</a> a new project:
+</p>
+<pre>
+  automateit --create hello_project
+</pre>
+<p>
+Inside this project, edit its fields, which are stored in the
+<tt>config/fields.yml</tt> file, and make it look like this:
+</p>
+<pre>
+  greeting: Hello world!
+</pre>
+<p>
+Then <a href="Project.html#M000265">create</a> a recipe in the
+<tt>recipes/greet.rb</tt> file:
+</p>
+<pre>
+  puts lookup(:greeting)
+</pre>
+<p>
+You can run the recipe:
+</p>
+<pre>
+  automateit recipes/greet.rb
+</pre>
+<p>
+And you should get the following output:
+</p>
+<pre>
+  Hello world!
+</pre>
+<h3>Partitioning recipes</h3>
+<p>
+You should split up your recipe code into different recipe files. This will
+improve the clarity of your code because each file can perform one task,
+and you&#8216;ll also be able to easily execute a specific recipe.
+</p>
+<p>
+For example, you can use a task-specific <tt>recipes/postgresql.rb</tt> to
+set up the PostgreSQL database server, and a <tt>recipes/apache.rb</tt> to
+setup the Apache web server.
+</p>
+<h3>Running recipes from other recipes</h3>
+<p>
+You can run one recipe from another. It&#8216;s a good idea to <a
+href="Project.html#M000265">create</a> a top-level recipe that invokes the
+other recipes. This lets you run a single recipe that will in turn run all
+your other recipes in the correct order, such as setting up the database
+server before the web server so that websites.
+</p>
+<p>
+For example, consider a <tt>recipes/all.rb</tt> file with these lines:
+</p>
+<pre>
+ invoke 'postgresql' if tagged? :postgresql_server
+ invoke 'nginx' if tagged? :nginx_server
+ invoke 'apache' if tagged? :apache_server
+</pre>
+<p>
+The first line above checks to see if the current host has the
+<tt>postgresql_server</tt> tag, and if it does, invokes the
+<tt>recipes/postgresql.rb</tt> recipe.
+</p>
+<p>
+You must run recipes from other recipes using AutomateIt&#8216;s
+<tt>invoke</tt> method and not Ruby&#8216;s <tt>require</tt>, because the
+<tt>invoke</tt> passes along the AutomateIt interpreter to the other
+recipes so they can continue execution.
+</p>
+<h3>Using project libraries</h3>
+<p>
+Any files ending with <tt>.rb</tt> that you put into the project&#8216;s
+<tt>lib</tt> directory will be loaded before your recipe starts executing.
+This is a good way to add common features, custom plugins and such.
+</p>
+<p>
+For example, put the following into a new <tt>lib/meow.rb</tt> file:
+</p>
+<pre>
+  def meow
+    &quot;MEOW!&quot;
+  end
+</pre>
+<p>
+Now <a href="Project.html#M000265">create</a> a new recipe that uses this
+method in <tt>recipes/speak.rb</tt>
+</p>
+<pre>
+  puts meow
+</pre>
+<p>
+Now you can run it:
+</p>
+<pre>
+  automateit recipes/speak.rb
+</pre>
+<p>
+And you&#8216;ll get this:
+</p>
+<pre>
+  MEOW!
+</pre>
+<h3>Specifying project paths on the Unix shell</h3>
+<p>
+AutomateIt will load the project automatically if you&#8216;re executing a
+recipe that&#8216;s inside a project&#8216;s <tt>recipes</tt> directory.
+</p>
+<p>
+For example, assume that you&#8216;ve <a
+href="Project.html#M000265">create</a> your project as
+<tt>/tmp/hello_project</tt> and have a recipe at
+<tt>/tmp/hello_project/recipes/greet.rb</tt>.
+</p>
+<p>
+You can execute the recipe with a full path:
+</p>
+<pre>
+  automateit /tmp/hello_project/recipes/greet.rb
+</pre>
+<p>
+Or execute it with a relative path:
+</p>
+<pre>
+  cd /tmp/hello_project/recipes
+  automateit greet.rb
+</pre>
+<p>
+Or you can prepend a header to the <tt>greet.rb</tt> recipe so it looks
+like this
+</p>
+<pre>
+  #!/usr/bin/env automateit
+
+  puts lookup(:greeting)
+</pre>
+<p>
+And then make the file executable:
+</p>
+<pre>
+  chmod a+x /tmp/hello_project/recipes/greet.rb
+</pre>
+<p>
+And execute the recipe directly:
+</p>
+<pre>
+  /tmp/hello_project/recipes/greet.rb
+</pre>
+<h3>Specifying project paths for embedded programs</h3>
+<p>
+If you&#8216;re embedding the <a href="Interpreter.html">Interpreter</a>
+into another Ruby program, you can run recipes and they&#8216;ll
+automatically load the project if applicable. For example:
+</p>
+<pre>
+  require 'rubygems'
+  require 'automateit'
+  AutomateIt.invoke(&quot;/tmp/hello_project/recipes/greet.rb&quot;)
+</pre>
+<p>
+Or if you may specify the project path explicitly:
+</p>
+<pre>
+  require 'rubygems'
+  require 'automateit'
+  interpreter = AutomateIt.new(:project =&gt; &quot;/tmp/hello_project&quot;)
+  puts interpreter.lookup(&quot;greeting&quot;)
+</pre>
+<h3>Tag and field command-line helpers</h3>
+<p>
+You can access a project&#8216;s tags and fields from the Unix shell. This
+helps other programs access configuration data and make use of your roles.
+</p>
+<p>
+For example, with the <tt>hello_project</tt> we&#8216;ve created, we can
+lookup fields from the Unix shell like this:
+</p>
+<pre>
+  aifield -p /tmp/hello_project greeting
+</pre>
+<p>
+The <tt>-p</tt> specifies the project path (its an alias for
+<tt>&#8212;project</tt>).
+</p>
+<p>
+More commands are available. For documentation and examples run the
+following commands from the Unix shell:
+</p>
+<pre>
+  aifield --help
+  aitag --help
+</pre>
+<p>
+Sometimes it&#8216;s convenient to set a default project path so you
+don&#8216;t need to type as much by specifing the
+<tt>AUTOMATEIT_PROJECT</tt> environmental variable (or <tt>AIP</tt> if you
+want a shortcut) and use it like this:
+</p>
+<pre>
+  export AUTOMATEIT_PROJECT=/tmp/hello_project
+  aifield greeting
+</pre>
+<h3>Sharing a project between systems</h3>
+<p>
+If you want to share a project between different hosts, you&#8216;re
+responsible for distributing the files between them. This isn&#8216;t a big
+deal though because these are just text files and your OS has dozens of
+excellent ways to distribute these.
+</p>
+<p>
+<a href="Common.html">Common</a> approaches to distribution:
+</p>
+<ul>
+<li><b>Shared directory</b>: Your hosts mount a shared network directory (e.g.,
+<tt>nfs</tt> or <tt>smb</tt>) with your project. This is very easy if your
+hosts already have a shared directory, but can be a nuisance otherwise
+because it opens potential security holes and risks having you hosts hang
+if the master goes offline.
+
+</li>
+<li><b>Client pull</b>: Your hosts download the latest copy of your project
+from a master repository using a remote copy tool (e.g., <tt>rsync</tt>) or
+a revision control system (e.g., <tt>cvs</tt>, <tt>svn</tt>, <tt>hg</tt>).
+This is a safe, simple and secure option.
+
+</li>
+<li><b>Server push</b>: You have a master push out the project files to clients
+using a remote copy tool and then invoke <tt>automateit</tt> on them via
+SSH. This can be awkward and time-consuming because the server must go
+through a list of all hosts and copy files to them individually.
+
+</li>
+</ul>
+<p>
+An example of a complete solution for distributing system configuration
+management files:
+</p>
+<ol>
+<li>Setup an <tt>svn</tt> or other version control repository to store your
+project and <a href="Project.html#M000265">create</a> a special account for
+the hosts to use to checkout code.
+
+</li>
+<li>Write a wrapper script for running the recipes, for example, write a
+&quot;/usr/bin/myautomateit&quot; shell script like:
+
+<pre>
+ #!/bin/sh
+ cd /var/local/myautomateit
+ svn update --quiet
+ automateit recipe/default.rb
+</pre>
+</li>
+<li>Run this wrapper once an hour using cron so that your systems are always up
+to date. AutomateIt only prints output when it makes a change, so cron will
+only email you when you commit new code to the repository and the hosts
+make changes.
+
+</li>
+<li>If you need to run a recipe on the machine right now, SSH into it and run
+the wrapper.
+
+</li>
+<li>If you need to run the script early on a bunch of machines and don&#8216;t
+want to manually SSH into each one, you can leverage the <tt>aitag</tt>
+(see <tt>aitag &#8212;help</tt>) to execute a Unix command across multiple
+systems. For example, you could use a Unix shell command like this to
+execute the wrapper on all hosts tagged with <tt>apache_servers</tt>:
+
+<pre>
+ for host in `aitag -p /var/local/myautomateit -w apache_server`; do
+     echo &quot;# $host&quot;
+     ssh $host myautomateit
+ done
+</pre>
+</li>
+</ol>
+<h3>Curios</h3>
+<p>
+In case you&#8216;re interested, the project creator is actually an
+AutomateIt recipe. You can read the recipe source code by looking at the
+AutomateIt::Project::create method.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000265">create</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RECIPE_HELLO_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">&lt;&lt;-'EOB' #:nodoc puts &quot;Hello, I'm an #{self.class} -- pleased to meet you!&quot; puts &quot;I'm in preview mode&quot; if preview?     EOB</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RAKEFILE_CONTENT</td>
+          <td>=</td>
+          <td class="context-item-value">&lt;&lt;-EOB #:nodoc require &quot;automateit&quot;  # Create an Interpreter for project in current directory. @interpreter = AutomateIt.new(:project =&gt; &quot;.&quot;)  # Include Interpreter's methods into Rake session. @interpreter.include_in(self)  task :default =&gt; :shell  desc &quot;Interactive AutomateIt shell&quot; task :shell do   AutomateIt::CLI.run end  desc &quot;Run a recipe&quot; task :hello do   invoke &quot;hello&quot; end  desc &quot;Preview action, e.g, 'rake preview hello'&quot; task :preview do   preview true end     EOB</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000265" class="method-detail">
+        <a name="M000265"></a>
+
+        <div class="method-heading">
+          <a href="#M000265" class="method-signature">
+          <span class="method-name">create</span><span class="method-args">(opts)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a new project.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:<a href="Project.html#M000265">create</a> &#8212; <a
+href="Project.html">Project</a> path to <a
+href="Project.html#M000265">create</a>. Required.
+
+</li>
+<li>All other options are passed to the <a
+href="Interpreter.html">AutomateIt::Interpreter</a>.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000265-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000265-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/project.rb, line 217</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">display</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>) }
+
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:create</span>) \
+        <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;:create option not specified&quot;</span>)
+      <span class="ruby-identifier">interpreter</span> = <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-comment cmt"># +render+ only files that don't exist.</span>
+        <span class="ruby-identifier">template_manager</span>.<span class="ruby-identifier">default_check</span> = <span class="ruby-identifier">:exists</span>
+
+        <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">created</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">display</span>.<span class="ruby-identifier">call</span> <span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s AutomateIt project at: %s&quot;</span> <span class="ruby-operator">%</span>
+            [<span class="ruby-identifier">created</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;Creating&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;Updating&quot;</span>, <span class="ruby-identifier">path</span>]
+
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">WELCOME_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;README_AutomateIt.txt&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RAKEFILE_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Rakefile&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;config&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TAGS_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/tags.yml&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">FIELDS_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/fields.yml&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ENV_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/automateit_env.rb&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;dist&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">DIST_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dist/README_AutomateIt_dist.txt&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;lib&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">BASE_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;lib/README_AutomateIt_lib.txt&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;recipes&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RECIPE_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recipes/README_AutomateIt_recipes.txt&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RECIPE_HELLO_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recipes/hello.rb&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>]
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">'-----------------------------------------------------------------------'</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-constant">WELCOME_MESSAGE</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">'-----------------------------------------------------------------------'</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># of interpreter.instance_eval</span>
+    <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

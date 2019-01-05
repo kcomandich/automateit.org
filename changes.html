@@ -1,0 +1,1041 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Changes</title>
+    <link href='http://automateit.org/changes.rss' rel='alternate' type='application/rss+xml' />
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>AutomateIt changes</h1>
+                <h2>Notifications</h2>
+                <p>Subscribe to the <a href="changes.rss"><span class="caps">RSS</span> changes feed</a> for release notifications.</p>
+                <h2>Annotations</h2>
+                <ul>
+                	<li><code>(!)</code> breaks backwards compatibility</li>
+                	<li><code>(%)</code> fixes significant bug</li>
+                	<li><code>(+)</code> adds notable feature</li>
+                </ul>
+                <h2>Changes</h2>
+                <p>
+                  <dl>
+                    <dt>
+                      Version
+                      0.91104
+                      &mdash;
+                      released
+                      November 11, 2009
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed AddressManager, it now works with versions of Ruby that don&apos;t allow modifications to sets during iteration.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed PackageManager::Gem, it now works with newer versions of Open4 that may incorrectly return nil STDOUT.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed AutomateIt&apos;s test suite, it now works with newer versions of RSpec.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed PackageManager::Cpan, it now works with newer versions of CPAN when installing a package that&apos;s been uninstalled before.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed ShellManager#ln_s, it can now link a directory to a directory and understand a target symlink&apos;s relative path.
+                        </li>
+                        <li>
+                          <code>(+)</code> Improved HelpfulERB, it now displays friendly errors containing filename and line number in templates, including &quot;fields.yml&quot; and &quot;tags.yml&quot;, and will honor the &quot;--trace&quot; flag to optionally display backtraces.
+                        </li>
+                        <li>
+                          <code>(+)</code> Improved DownloadManager, it will now only download if the file isn&apos;t already present, but you can override this with a :force option.
+                        </li>
+                        <li>
+                          <code>(+)</code> Improved PackageManager::Gem, it can now install a specific version of a gem: `package_manager.install(&quot;rails&quot;, :with =&gt; :gem, :version =&gt; &quot;2.3.4&quot;)`
+                        </li>
+                        <li>
+                          Improved PackageManager::Gem, it will now clear the local Gem cache so that &quot;require&quot; calls can see newly-installed packages without restarting AutomateIt.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.80624
+                      &mdash;
+                      released
+                      June 24, 2008
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Fixed collision of time conversion methods when loading AutomateIt into Rails.
+                        </li>
+                        <li>
+                          Improved documentation, reworked Rakefile, updated TODO.txt.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.80607
+                      &mdash;
+                      released
+                      June 06, 2008
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed ShellManager#rm and ShellManager#mv, can now remove and move invalid symlinks.
+                        </li>
+                        <li>
+                          Improved Object#unique_methods, it now returns an array of symbols.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.80116
+                      &mdash;
+                      released
+                      January 16, 2008
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(!)</code> Fixed bug that prevented AutomateIt from working without the Builder gem&apos;s &quot;blankslate&quot; library. This fix should completely eliminate AutomateIt&apos;s dependence on Builder and ActiveSupport, like 0.71230 was supposed to do. This error was missed because other gems provide a &quot;blankslate&quot;-workalike and thus merely uninstalling Builder wasn&apos;t enough to confirm the previous fix.
+                        </li>
+                        <li>
+                          <code>(+)</code> Improved PackageManager::Gem, it can now use commands other than &quot;gem&quot; to manage RubyGem packages, such as &quot;gem1.8&quot;. It now detects the best available command, but also lets you specify a default or choose one on a per-call basis. See the PackageManager::Gem documentation for examples. Comments are sought on the new syntax.
+                        </li>
+                        <li>
+                          Improved PackageManager#_list_normalizer, it now accepts comments mid-way through a line and can parse arrays of strings.
+                        </li>
+                        <li>
+                          Updated misc/setup_rubygems.sh, a simple shell script that downloads and install RubyGems 1.0.1, useful for bootstrapping a system to get AutomateIt running on it.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71230
+                      &mdash;
+                      released
+                      December 30, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(!)</code> Removed all code that relied on the ActiveSupport and Builder libraries. The new, AutomateIt-specific replacements for these libraries are guaranteed to work correctly and load much more quickly.
+                        </li>
+                        <li>
+                          <code>(!)</code> Removed the &quot;--to-xml&quot; option from &quot;aitag&quot; and &quot;aifield&quot;. If anyone relied on this functionality, post to the mailing list and I&apos;ll write a replacement.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed PlatformManager::LSB, it no longer converts OS release versions like &quot;7.10&quot; into &quot;7.1&quot;.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed &quot;aitags&quot; with &quot;--tags&quot; options, it now returns a sorted array instead of a set.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed case/when statements to work with Ruby 1.9.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed TemplateManager#render, it now only runs file-related checks when rendering to a file.
+                        </li>
+                        <li>
+                          Improved PackageManager::CPAN&apos;s &quot;cpan_wrapper.pl&quot;. It&apos;s now just a single file that can be used as both a command and library.
+                        </li>
+                        <li>
+                          Improved EditManager. In preview mode, it now checks to make sure the file is readable, rather than failing due to permission denied errors.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71226.1
+                      &mdash;
+                      released
+                      December 26, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Same as previous version. Something went wrong with Rubyforge and the gem was only partially uploaded, so trying again.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71226
+                      &mdash;
+                      released
+                      December 26, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed PackageManager::CPAN driver. It now provides a workaround to activate CPAN if it wasn&apos;t already configured, previously it&apos;d hang as CPAN tried to get input. It now provides a workaround for rejecting all CPAN inputs because the CPAN default options are surprisingly dangerous. It now tries harder to execute the Perl helper files, previously these wouldn&apos;t be executed on some OSes. The helpers&apos; core logic has been abstracted into a wrapper library.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71221
+                      &mdash;
+                      released
+                      December 23, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed PackageManager::APT driver. In 0.71220, the DPKG driver was selected as the default driver over APT. The fix chooses APT as the default over DPKG, like before.
+                        </li>
+                        <li>
+                          Fixed Rakefile to work with latest version of RubyGems.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71220
+                      &mdash;
+                      released
+                      December 20, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(+)</code> Added PackageManager::CPAN for managing Perl packages. Thanks go out to Jesse Hallett for assisting me with research on how to use the CPAN APIs.
+                        </li>
+                        <li>
+                          Fixed PackageManager#install when called with a single Symbol argument.
+                        </li>
+                        <li>
+                          Added PackageManager::DPKG for local installation of .deb packages. Added logic to help it install a hash of package names to file names. Added spec to validate this.
+                        </li>
+                        <li>
+                          Refactored PackageManager::APT to defer to PackageManager::DPKG&apos;s logic when possible.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71219
+                      &mdash;
+                      released
+                      December 19, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Created a bunch of workarounds needed because of bugs and backwards incompatible changes in new versions of third-party libraries...
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed &quot;gem install automateit&quot;. Created workaround for new ActiveSupport bug which doesn&apos;t install the Builder gem.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed &quot;rake regem&quot; which generates the AutomateIt gem. Created workaround for new RubyGems bug which no longer installs the necessary Gem::Format dependency. Created workaround for new Rake bug which causes FileList to act like a string instead of an array. Created workaround for new Rake/RubyGems bugs that don&apos;t load &apos;rubygems&apos; by default.
+                        </li>
+                        <li>
+                          Improved PasswdExpect, no longer passing username/password on command-line to improve security.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71112
+                      &mdash;
+                      released
+                      November 12, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed ShellManager::WhichWindows#which, forgot to include helper file in gem.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71111
+                      &mdash;
+                      released
+                      November 11, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(+)</code> Improved AccountManager::Etc detection logic, it now tries to run commands rather than relying on blacklists. This better supports Windows and JRuby.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added ShellManager::WhichWindows, it simulates the #which command on Windows.
+                        </li>
+                        <li>
+                          WARNING: AccountManager::POSIX#add_groups_to_user and add_users_to_group
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71104
+                      &mdash;
+                      released
+                      November 04, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bugs in startup sequence when run on Microsoft Windows. Added support for Vista.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed bugs encountered on Windows in Plugin::Driver. Dependency checks are now done in specific order and stop as soon as a missing dependency is detected.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71103
+                      &mdash;
+                      released
+                      November 03, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(+)</code> Added &quot;aissh&quot; command, provides an easy way to run commands on a group of hosts. For example, see if there&apos;s a Rails process running on all hosts matching the &quot;rails_servers&quot; tag: &quot;aissh -p . rails_servers &apos;ps -ef | grep rails&apos;&quot;
+                        </li>
+                        <li>
+                          Improved PackageManager, it can now accept package names as Symbols.
+                        </li>
+                        <li>
+                          Improved AccountManager spec with additional examples for checking password changes.
+                        </li>
+                        <li>
+                          Improved AccountManager::NSCD with refactoring and additional tests.
+                        </li>
+                        <li>
+                          Improved AddressManager spec with additional tests for address conversion routines and code generation helpers.
+                        </li>
+                        <li>
+                          Improved Plugin spec with more checks against invalid managers and drivers, and unavailable dependencies.
+                        </li>
+                        <li>
+                          Improved ShellManager spec with more checks against hard links and symbolic links; for #cp when contents, modes or ownership changes; for #rm with :force option: for #umask with and without block, and with caught exceptions.
+                        </li>
+                        <li>
+                          Added spec for String#shell_escape.
+                        </li>
+                        <li>
+                          Added spec for Object&apos;s extensions for #unique_methods and #args_and_opts.
+                        </li>
+                        <li>
+                          Added spec for NestedError.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71102
+                      &mdash;
+                      released
+                      November 02, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Improved PackageManager::PEAR and PackageManager::PECL, can now :force installation of unstable packages.
+                        </li>
+                        <li>
+                          Refactored PackageManager spec and added :force to get PEAR and PECL to workaround systems that refuse to load the unstable testing packages.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71101.2
+                      &mdash;
+                      released
+                      November 01, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in TagParser, it couldn&apos;t parse hostnames with non-letter characters. Added tests. Thanks for the report, David Brewer.
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed bug in TagManager, adding a run-time tag caused it to not parse tags.yml. Added tests.
+                        </li>
+                        <li>
+                          <code>(+)</code> Improved TagManager, it now makes run-time tags available to the interpreter when parsing tags.yml, which provides greater flexibility in defining tags. Added tests. Thanks for the suggestion, David Brewer.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71101.1
+                      &mdash;
+                      released
+                      November 01, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in Interpreter, which only set optional run-time tags specified on the command-line AFTER it loaded the fields/tags files. Thanks for the report, David Brewer.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71101
+                      &mdash;
+                      released
+                      November 01, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in TagManager#tagged? when checking tag names containing dashes (&quot;-&quot;), refactored to improve tag tokenizing rules, added test. Thank you, David Brewer.
+                        </li>
+                        <li>
+                          Fixed bug in TemplateManager#render when rendering templates to strings, added tests. Thank you for the report, David Brewer.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71031.2
+                      &mdash;
+                      released
+                      October 31, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(+)</code> Added PackageManager::PEAR and PackageManager::PECL, graciously contributed by David Brewer.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71031.1
+                      &mdash;
+                      released
+                      October 31, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in EditSession methods, these weren&apos;t escaping regular expression characters in strings. Refactored some of these methods for clarity.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71031
+                      &mdash;
+                      released
+                      October 31, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Improved Project libraries so they&apos;re loaded before Tags and Fields. This makes it possible to, for example, write a library helper that&apos;s called from within the fields.yml file via ERB.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71030
+                      &mdash;
+                      released
+                      October 30, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in AddressManager#add_user when called with multiple groups. Improved AddressManager spec.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added documentation to Project explaining how to partition recipes, and run recipes from other recipes.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added AddressManager::POSIX which provides support for Linux and SunOS, and eliminated the OS-specific drivers for these.
+                        </li>
+                        <li>
+                          Added AddressManager::NSCD by extracting methods from old OS-specific drivers.
+                        </li>
+                        <li>
+                          Added AddressManager::PasswdExpect which uses Expect for much more reliable password changes.
+                        </li>
+                        <li>
+                          Improved AddressManager::PasswdPty by adding retry capability.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71021
+                      &mdash;
+                      released
+                      October 21, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Added PlatformManager::OpenBSD.
+                        </li>
+                        <li>
+                          Added AddressManager::OpenBSD.
+                        </li>
+                        <li>
+                          Added AddressManager::FreeBSD.
+                        </li>
+                        <li>
+                          Added AddressManager::BSD which assists SunOS, FreeBSD and OpenBSD.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71017
+                      &mdash;
+                      released
+                      October 17, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed, created workaround so AutomateIt can run using the newly-released ActiveSupport 1.4.4 (part of Rails 2.0 PR1), because this new library breaks backwards compatibility by depending on new #extract_options method.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71012
+                      &mdash;
+                      released
+                      October 12, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed #touch, it worked fine but was corrupting log output
+                        </li>
+                        <li>
+                          <code>(%)</code> Fixed AccountManager::Linux, it now only runs when the OS detected is Linux.
+                        </li>
+                        <li>
+                          Added PlatformManager::SunOS.
+                        </li>
+                        <li>
+                          Added AddressManager::SunOS.
+                        </li>
+                        <li>
+                          Improved #render, added default :backup option to save files before overwriting them.
+                        </li>
+                        <li>
+                          Improved #backup, added :quiet option to prevent output.
+                        </li>
+                        <li>
+                          Improved #chperm, it now displays the exact changes made rather than approximations.
+                        </li>
+                        <li>
+                          Improved ServiceManager::SysV spec to validate :wait and :pause options with safe mocks.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71006
+                      &mdash;
+                      released
+                      October 06, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed EditSession#delete to delete lines matching substrings rather than exact matches.
+                        </li>
+                        <li>
+                          Fixed EditSession#comment to not comment already commented-out lines.
+                        </li>
+                        <li>
+                          Fixed SessionManager#start and #stop so these don&apos;t check status when called with :force option.
+                        </li>
+                        <li>
+                          Improved SessionManager#restart to use :wait option.
+                        </li>
+                        <li>
+                          Improved #download to accept array or hash as arguments.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.71003
+                      &mdash;
+                      released
+                      October 03, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Fixed bug in #backup on JRuby because it lacks methods to query properties. It now copies the file and timestamp, but not the owner/group/mode because these can&apos;t be queried on JRuby.
+                        </li>
+                        <li>
+                          Improved #cp with new :preserve =&gt; :try option so that properties are preserved when possible, but no exception is thrown when these can&apos;t be preserved.
+                        </li>
+                        <li>
+                          Improved #touch with options for :like and :stamp options.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70930
+                      &mdash;
+                      released
+                      September 30, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Fixed ShellManager#rm to display output like &apos;rm -rf&apos; rather than &apos;rm_rf&apos;.
+                        </li>
+                        <li>
+                          Fixed #tags, removed the standalone tag for the distro&apos;s version (e.g., &quot;7.04&quot;), it must now be qualified with the distro&apos;s name, &quot;ubuntu_7.04&quot;.
+                        </li>
+                        <li>
+                          Improved bin/automateit so it doesn&apos;t display error trace when user types &apos;exit&apos; into irb.
+                        </li>
+                        <li>
+                          Improved comments in basic/examples recipes.
+                        </li>
+                        <li>
+                          Improved #tag_for to return a sorted Array instead of a Set.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70928
+                      &mdash;
+                      released
+                      September 28, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed #cp, #ln and #install when called with relative path source and directory target. These tried to create items which included the relative path, rather than discarding it.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added an &quot;--add TAGS&quot; feature to executables: automateit, aifield, aitag. This makes it easy to define tag(s) for a specific run.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added #backup command to save copies of files, it&apos;s now used by default when using #edit to modify a file.
+                        </li>
+                        <li>
+                          <code>(+)</code> Added #download command to retrieve data via HTTP and FTP to a file or directory.
+                        </li>
+                        <li>
+                          Improved specs and provided coverage for more exception handling.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70923
+                      &mdash;
+                      released
+                      September 23, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Fixed hard link and symlink detection on Windows, spec will now skip these examples.
+                        </li>
+                        <li>
+                          Fixed cli_spec so it can invoke Windows version of rake.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70922
+                      &mdash;
+                      released
+                      September 22, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Refactored AccountManager::Linux and extracted Passwd driver.
+                        </li>
+                        <li>
+                          Refactored Shellmanager::Portable and extracted Which, Link and Symlink drivers.
+                        </li>
+                        <li>
+                          Improved Plugin::Driver, added a depends_on :libraries option.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70921
+                      &mdash;
+                      released
+                      September 21, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Improved AccountManager::Linux to work around a race condition in PTY/Expect that happens about 1% of the time when setting a password.
+                        </li>
+                        <li>
+                          Improved executables (e.g., bin/automateit) to display help with &quot;-h&quot;, in addition to &quot;--help&quot;.
+                        </li>
+                        <li>
+                          Improved executables (e.g., bin/automateit) to display version with &quot;-v&quot; and &quot;--version&quot;.
+                        </li>
+                        <li>
+                          Refactored EditSession and its documentation.
+                        </li>
+                        <li>
+                          Refactored TemplateManager, moved common logic into BaseDriver.
+                        </li>
+                        <li>
+                          Refactored Rakefile for clarity.
+                        </li>
+                        <li>
+                          Replaced GemSpec with Hoe in preparation to uploading AutomateIt to RubyForge.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70919
+                      &mdash;
+                      released
+                      September 19, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(!)</code> Normalized PackageManager methods and ShellManager#chperm to use consistent &apos;:details =&gt; true&apos; option.
+                        </li>
+                        <li>
+                          <code>(!)</code> Refactored PackageManager with :details mode to return both a boolean and list of affected packages, previously it only returned packages.
+                        </li>
+                        <li>
+                          Fixed bug in ShellManager and Tempster that created temporary files and directories in preview mode.
+                        </li>
+                        <li>
+                          Created &apos;preview&apos; methods to replace old &apos;noop&apos; commands. Improved documentation for previewing commands.
+                        </li>
+                        <li>
+                          Made it easier to embed the Interpreter using new methods &apos;include_in&apos; and &apos;add_method_missing_to&apos;. Included Rakefile with default and example projects to demonstrate embedding.
+                        </li>
+                        <li>
+                          Improved AccountManager, it can set and change passwords on user accounts.
+                        </li>
+                        <li>
+                          Improved TagManager, it lazy-loads tags to speed startup.
+                        </li>
+                        <li>
+                          Improved ShellManager, TemplateManager and EditManager so they translate :owner to :user for Cfengine refugees.
+                        </li>
+                        <li>
+                          Improved support for Darwin and JRuby. Reworked methods and drivers to let these access more features.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70915
+                      &mdash;
+                      released
+                      September 15, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Improved Interpreter with friendly error messages that make it easier for users to see what&apos;s wrong with a recipe. These new messages display the cause, a snapshot of the problematic code, shortened paths, and only the relevant stack frames. Also provided way to get complete, raw backtraces for debugging internals.
+                        </li>
+                        <li>
+                          Improved plugins that use ERB by creating a new HelpfulERB class that provides sane behavior and provides friendly, contextual error messages making it much easier for users to identify and fix problems in templates.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70914
+                      &mdash;
+                      released
+                      September 14, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in ShellManager::Portable that caused &apos;cp&apos; to actually copy even when in &apos;noop&apos; mode.
+                        </li>
+                        <li>
+                          Ported code to work with JRuby.
+                        </li>
+                        <li>
+                          Wrote TagParser that works with JRuby and handles arbitrarily complex and deep rules with correct precedence.
+                        </li>
+                        <li>
+                          Improved PackageManager commands to accept hash of names to paths, e.g., if package &apos;TracTags&apos; isn&apos;t present, installs it from a directory.
+                        </li>
+                        <li>
+                          Improved PackageManager commands to accept annotated, free-form strings with comments.
+                        </li>
+                        <li>
+                          Improved Interpreter.invoke to search a project&apos;s recipes directory, making it easier for recipes to invoke other recipes.
+                        </li>
+                        <li>
+                          Improved EditSession to provide easier access to Interpreter methods.
+                        </li>
+                        <li>
+                          Improved ServiceManager to provide &apos;start_and_enable&apos; and &apos;start_or_restart&apos; convenience commands.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70913
+                      &mdash;
+                      released
+                      September 13, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug in PackageManager::Gem, it wasn&apos;t recognizing packages installed multiple times as being installed.
+                        </li>
+                        <li>
+                          Provided complete support for CentOS and RedHat.
+                        </li>
+                        <li>
+                          Provided complete support for Gentoo with new PackageManager::Portage and ServiceManager::RC_Update drivers.
+                        </li>
+                        <li>
+                          Provided basic support for FreeBSD with new PlatformManager::FreeBSD.
+                        </li>
+                        <li>
+                          Rewrote AddressManager::Linux using pure &apos;ifconfig&apos; calls, which provide more universal support than &apos;iproute&apos;.
+                        </li>
+                        <li>
+                          Reworked examples to create a user for the application, demonstrating the use of AccountManager and eliminating need for workarounds to platform-specific differences for the &apos;nobody&apos; account.
+                        </li>
+                        <li>
+                          Added new &apos;depends_on&apos; option to check complex dependencies using callbacks, e.g., ensure a specific version of ifconfig.
+                        </li>
+                        <li>
+                          Included examples/basic in Gem distribution, the code used in the Screenshots.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70912
+                      &mdash;
+                      released
+                      September 12, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(%)</code> Fixed bug where a project&apos;s fields were sometimes accidentally cleared. Wrote tests to make sure this won&apos;t happen again.
+                        </li>
+                        <li>
+                          Added tests for examples/basic recipes.
+                        </li>
+                        <li>
+                          Added ServiceManager started? and stopped? methods with wait timeouts.
+                        </li>
+                        <li>
+                          <code>(!)</code> Reworked Plugins so drivers find managers by inheritance, rather than by name. Simplifies code and allows drivers in different namespaces than their manager. Should be one of the last changes that breaks backwards-compatibility in Plugins for a while.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70909
+                      &mdash;
+                      released
+                      September 09, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          Added initial support for Apple Mac OS X. Includes a PlatformManager driver for Darwin, and assorted changes needed for AutomateIt to run on the old Ruby 1.8.2 bundled with Tiger.
+                        </li>
+                        <li>
+                          Fixed AddressManager by eliminating exceptions raised on misconfigured systems that didn&apos;t have IPs for local hostnames.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                  <dl>
+                    <dt>
+                      Version
+                      0.70907
+                      &mdash;
+                      released
+                      September 07, 2007
+                    </dt>
+                    <dd>
+                      <ul>
+                        <li>
+                          <code>(!)</code> Created AbstractDriver classes for each plugin and made the concrete drivers subclass these.
+                        </li>
+                        <li>
+                          Wrote tests for CLI, which create projects, invoke recipes, run the interactive shell, etc.
+                        </li>
+                        <li>
+                          Eliminated need for custom drivers to run &apos;setup&apos; on their associated plugin instance.
+                        </li>
+                      </ul>
+                    </dd>
+                  </dl>
+                </p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

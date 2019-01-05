@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: TESTING.txt</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>TESTING.txt</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>TESTING.txt
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Nov 04 18:02:43 -0800 2009</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>AutomateIt&#8216;s self-test</h2>
+<p>
+AutomateIt ensures that it works correctly, and stays working, by using a
+rigorous self-test suite. This suite is written using the RSpec tool and
+its files are stored in the software installation&#8216;s <tt>spec</tt>
+directory. You must install the <tt>rake</tt> and <tt>rspec</tt> Gems to
+run the tests.
+</p>
+<h3>Types of tests</h3>
+<p>
+<b>Unit tests</b> are quick and safe because they don&#8216;t write to the
+disk or alter your system.
+</p>
+<p>
+For example, <tt>spec/unit/template_manager_erb_spec.rb</tt> exercises <a
+href="../classes/AutomateIt/TemplateManager/ERB.html">AutomateIt::TemplateManager::ERB</a>
+by rendering templates to memory. Because it doesn&#8216;t write to the
+disk, you can safely run it without worrying about it damaging your system.
+</p>
+<p>
+<b>Integration tests</b> are slow and potentially dangerous because they
+write to disk and alter your system. Great care is taken to make sure these
+don&#8216;t cause damage, but because they modify the system, there is a
+potential risk. These tests are designed to fail before doing anything if
+they detect that they might cause damage. The tests will clean up after
+themselves when done to remove any changes made to the system. To put
+&quot;dangerous&quot; in context, these tests are run before every release,
+so the likelihood of actual damage is very low.
+</p>
+<p>
+For example, the <tt>spec/integration/account_manager_spec.rb</tt>
+exercises the <a
+href="../classes/AutomateIt/AccountManager.html">AutomateIt::AccountManager</a>
+by adding and deleting users and groups. To make sure it doesn&#8216;t
+cause harm, it uses dummy users with names like
+<tt>automateit_testuser</tt>. Before it starts the test, it will check for
+these users and fail the entire test if they&#8216;re present. This ensures
+that it won&#8216;t destroy an existing account in the unlikely event that
+you have a user with such a name.
+</p>
+<h3>Understanding warnings</h3>
+<p>
+When the tests can&#8216;t check something, they&#8216;ll print warning
+messages. These warnings are normal and expected. They are <b>not</b>
+errors and do not imply that something is broken.
+</p>
+<p>
+For example, if you run the integration test suite as a non-root user, it
+will warn you that it can&#8216;t test some commands because you
+don&#8216;t have the necessary privileges:
+</p>
+<pre>
+ NOTE: Must be root to check 'chown' in ./spec/integration/shell_manager_spec.rb
+</pre>
+<p>
+You will also get warnings about drivers that are not available on your
+platform. For example, Ubuntu systems don&#8216;t include the YUM package
+manager, so there&#8216;s no way to test it on an Ubuntu system. So if you
+run the integration tests on an Ubuntu system, you&#8216;ll get a warning
+like:
+</p>
+<pre>
+ NOTE: Can't check AutomateIt::PackageManager::YUM on this platform, ./spec/integration/package_manager_spec.rb
+</pre>
+<h3>Running an individual test</h3>
+<p>
+Run an individual test, like
+<tt>spec/unit/template_manager_erb_spec.rb</tt>, by executing the Unix
+shell command:
+</p>
+<pre>
+ spec spec/unit/template_manager_erb_spec.rb
+</pre>
+<h3>Running test suites</h3>
+<p>
+To run the <tt>unit</tt> test suite, execute the following command from the
+Unix shell:
+</p>
+<pre>
+ rake spec
+</pre>
+<p>
+To run all the test suites, including <tt>unit</tt> and
+<tt>integration</tt>, execute the following command from the Unix shell:
+</p>
+<pre>
+ rake spec:all
+</pre>
+<p>
+The integration test can take a few minutes and will pause for long periods
+of time while appearing to do nothing. This is normal, expected and
+there&#8216;s nothing that can be done to &quot;fix&quot; this. For
+example, when testing the PackageManager::Gem driver, the test must wait
+for the <tt>gem</tt> program to download fresh package indexes and this can
+take a long time.
+</p>
+<h3>Code coverage reports</h3>
+<p>
+You can generate a code coverage report for the <tt>unit</tt> test suite by
+running:
+</p>
+<pre>
+ rake rcov
+</pre>
+<p>
+Or a report for all the suites, including <tt>unit</tt> and
+<tt>integration</tt>, by running:
+</p>
+<pre>
+ rake rcov:all
+</pre>
+<p>
+These tasks will create a <tt>coverage</tt> directory with the report
+files.
+</p>
+<p>
+Note that because no single platform can run all the code, you&#8216;ll
+never be able to get 100% coverage.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

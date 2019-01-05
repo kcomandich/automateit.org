@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remove_users_from_group (AutomateIt::AccountManager::POSIX)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/account_manager/posix.rb, line 115</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_users_from_group</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">groupname</span>)
+    <span class="ruby-identifier">_remove_users_from_group_helper</span>(<span class="ruby-identifier">users</span>, <span class="ruby-identifier">groupname</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">present</span>, <span class="ruby-identifier">groupname</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">u2g</span> = <span class="ruby-identifier">users_to_groups</span>
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">username</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">present</span>
+        <span class="ruby-identifier">user_groups</span> = <span class="ruby-identifier">u2g</span>[<span class="ruby-identifier">username</span>]
+        <span class="ruby-comment cmt"># FIXME tries to include non-present groups, should use some variant of present</span>
+        <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;usermod -G #{(user_groups.to_a-[groupname]).join(',')} #{username}&quot;</span>
+        <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">sh</span>(<span class="ruby-identifier">cmd</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

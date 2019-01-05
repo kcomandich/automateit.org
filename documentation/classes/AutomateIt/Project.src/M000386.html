@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create (AutomateIt::Project)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/project.rb, line 219</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">display</span> = <span class="ruby-identifier">lambda</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">message</span><span class="ruby-operator">|</span> <span class="ruby-identifier">puts</span> <span class="ruby-identifier">message</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>] <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>) }
+
+      <span class="ruby-identifier">path</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:create</span>) \
+        <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;:create option not specified&quot;</span>)
+      <span class="ruby-identifier">interpreter</span> = <span class="ruby-constant">AutomateIt</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">opts</span>)
+      <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-comment cmt"># +render+ only files that don't exist.</span>
+        <span class="ruby-identifier">template_manager</span>.<span class="ruby-identifier">default_check</span> = <span class="ruby-identifier">:exists</span>
+
+        <span class="ruby-identifier">mkdir_p</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">created</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">display</span>.<span class="ruby-identifier">call</span> <span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;%s AutomateIt project at: %s&quot;</span> <span class="ruby-operator">%</span>
+            [<span class="ruby-identifier">created</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;Creating&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;Updating&quot;</span>, <span class="ruby-identifier">path</span>]
+
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">WELCOME_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;README_AutomateIt.txt&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RAKEFILE_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;Rakefile&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;config&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">TAGS_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/tags.yml&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">FIELDS_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/fields.yml&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ENV_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;config/automateit_env.rb&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;dist&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">DIST_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;dist/README_AutomateIt_dist.txt&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;lib&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">BASE_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;lib/README_AutomateIt_lib.txt&quot;</span>)
+
+          <span class="ruby-identifier">mkdir</span>(<span class="ruby-value str">&quot;recipes&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RECIPE_README_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recipes/README_AutomateIt_recipes.txt&quot;</span>)
+          <span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">RECIPE_HELLO_CONTENT</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;recipes/hello.rb&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>]
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">'-----------------------------------------------------------------------'</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-constant">WELCOME_MESSAGE</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-value str">'-----------------------------------------------------------------------'</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># of interpreter.instance_eval</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

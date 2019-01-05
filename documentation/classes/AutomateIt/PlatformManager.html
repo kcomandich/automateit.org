@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::PlatformManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::PlatformManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/automateit/platform_manager_rb.html">
+                lib/automateit/platform_manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Plugin/Manager.html">
+                AutomateIt::Plugin::Manager
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="PlatformManager.html">PlatformManager</a></h2>
+<p>
+The <a href="PlatformManager.html">PlatformManager</a> provides a way to <a
+href="PlatformManager.html#M000241">query</a> platform identifiers, such as
+the operating system distribution&#8216;s version.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000241">query</a>&nbsp;&nbsp;
+      <a href="#M000242">single_vendor?</a>&nbsp;&nbsp;
+      <a href="#M000243">tags</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="PlatformManager/BaseDriver.html" class="link">AutomateIt::PlatformManager::BaseDriver</a><br />
+Class <a href="PlatformManager/Darwin.html" class="link">AutomateIt::PlatformManager::Darwin</a><br />
+Class <a href="PlatformManager/Debian.html" class="link">AutomateIt::PlatformManager::Debian</a><br />
+Class <a href="PlatformManager/FreeBSD.html" class="link">AutomateIt::PlatformManager::FreeBSD</a><br />
+Class <a href="PlatformManager/Gentoo.html" class="link">AutomateIt::PlatformManager::Gentoo</a><br />
+Class <a href="PlatformManager/LSB.html" class="link">AutomateIt::PlatformManager::LSB</a><br />
+Class <a href="PlatformManager/OpenBSD.html" class="link">AutomateIt::PlatformManager::OpenBSD</a><br />
+Class <a href="PlatformManager/Struct.html" class="link">AutomateIt::PlatformManager::Struct</a><br />
+Class <a href="PlatformManager/SunOS.html" class="link">AutomateIt::PlatformManager::SunOS</a><br />
+Class <a href="PlatformManager/Uname.html" class="link">AutomateIt::PlatformManager::Uname</a><br />
+Class <a href="PlatformManager/Windows.html" class="link">AutomateIt::PlatformManager::Windows</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000241" class="method-detail">
+        <a name="M000241"></a>
+
+        <div class="method-heading">
+          <a href="#M000241" class="method-signature">
+          <span class="method-name">query</span><span class="method-args">(search)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Query the <tt>search</tt> field. The <tt>search</tt> can either be a key or
+a set of keys separated by &quot;#&quot; signs.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  query(:os) # =&gt; &quot;linux&quot;
+  query(&quot;arch&quot;) # =&gt; &quot;i686&quot;
+  query(&quot;os#arch&quot;) # =&gt; &quot;linux_i686&quot;
+  query(&quot;os#arch#distro#release&quot;) # =&gt; &quot;linux_i686_ubuntu_6.06&quot;
+</pre>
+<p>
+Fields that may be provided by drivers:
+</p>
+<ul>
+<li>:arch &#8212; Hardware architecture, e.g., &quot;i686&quot;
+
+</li>
+<li>:os &#8212; Operating system, e.g., &quot;linux&quot;
+
+</li>
+<li>:distro &#8212; Operating system distribution, e.g., &quot;ubuntu&quot;
+
+</li>
+<li>:release &#8212; Operating system distribution release, e.g.,
+&quot;6.06&quot;
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000241-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000241-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/platform_manager.rb, line 20</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">query</span>(<span class="ruby-identifier">search</span>) <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">search</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000242" class="method-detail">
+        <a name="M000242"></a>
+
+        <div class="method-heading">
+          <a href="#M000242" class="method-signature">
+          <span class="method-name">single_vendor?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this a single-vendor operating system? E.g., <a
+href="PlatformManager/Windows.html">Windows</a> is, while Linux
+isn&#8216;t. This method helps the <a href="TagManager.html">TagManager</a>
+determine how to name <a href="PlatformManager.html#M000243">tags</a>. A
+single-vendor product uses the &quot;os#release&quot; format (e.g.,
+&quot;windows_xp&quot;), while a multi-vendor product uses a
+&quot;distro#release&quot; format (&quot;ubuntu_6.06&quot;).
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000242-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000242-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/platform_manager.rb, line 27</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">single_vendor?</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000243" class="method-detail">
+        <a name="M000243"></a>
+
+        <div class="method-heading">
+          <a href="#M000243" class="method-signature">
+          <span class="method-name">tags</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of <a href="PlatformManager.html#M000243">tags</a> for this
+platform.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000243-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000243-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/platform_manager.rb, line 30</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tags</span>() <span class="ruby-identifier">dispatch</span>() <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

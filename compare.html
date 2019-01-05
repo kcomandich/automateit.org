@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Comparison</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>Comparing AutomateIt</h1>
+                <p>AutomateIt provides a better way to solve real-world automation problems. It incorporates lessons learned from over a decade of experience using automation tools, including eight years with Cfengine. It addresses their shortcomings, adds features, and provides an entirely different architecture that can cope with the challenges encountered in the field.</p>
+                <h2>Topics</h2>
+                <ul>
+                	<li><a href="#shell">AutomateIt versus shell scripts</a></li>
+                	<li><a href="#cfengine_and_puppet">AutomateIt versus Cfengine and Puppet</a></li>
+                	<li><a href="#consider">When to consider AutomateIt</a></li>
+                </ul>
+                <h2><a name="shell">AutomateIt versus shell scripts</a></h2>
+                <p><strong><em>Advantages</em></strong></p>
+                <ul>
+                	<li><strong>Conditional</strong>: Commands are only run when needed. No need to write checks.</li>
+                	<li><strong>Previewable</strong>: See what commands will be run, without executing them.</li>
+                	<li><strong>Traceable</strong>: See what actions are taken in a concise form. No need to &#8220;echo&#8221; status.</li>
+                	<li><strong>Consistent APIs</strong>: Commands have similar APIs and abstract implementation details. For example, all packages are installed using the same command, regardless of the underlying tool. No more quirky, tool-specific commands for common actions.</li>
+                	<li><strong>Multi-platform</strong>: Automatically detects the platform (e.g., Ubuntu 7.10) and makes it easy to run code on specific platforms. No need to implement your own tricky OS detection logic.</li>
+                	<li><strong>Roles</strong>: Group hosts by roles and elegantly manage hosts with different roles from a single recipe.</li>
+                	<li><strong>Powerful</strong>: Provides a full-featured programming language to tackle the toughest tasks. No need invoke a bigger language for complex actions.</li>
+                </ul>
+                <p><strong><em>Disadvantages</em></strong></p>
+                <ul>
+                	<li><strong>Dependencies</strong>: Need to install extra software.</li>
+                </ul>
+                <h2><a name="cfengine_and_puppet">AutomateIt versus Cfengine and Puppet</a></h2>
+                <p><strong><em>Advantages</em></strong></p>
+                <ul>
+                	<li><strong>Simpler setup</strong>: Create a project with one command. No need to setup daemons, open firewall ports, create certificates, or make arcane files and directories.</li>
+                	<li><strong>Easier to understand</strong>: Any Unix user can understand basic recipes and write new ones using familiar conventions. No need to learn a language that needlessly rejects conventions and awkwardly reinvents the wheel.</li>
+                	<li><strong>Faster development</strong>: Finish writing recipes faster and with less code. Develop and preview recipes individually or in an interactive shell. Can use a full-featured debugger for tricky problems. No boilerplate, unpredictable dependency graphs, cryptic hacks, obscured bugs, or lengthy test cycles.</li>
+                	<li><strong>More powerful</strong>: Harness a full-featured programming language. No need to suffer with a language deliberately designed <i>not</i> to be used for programming.</li>
+                	<li><strong>Greater accessibility</strong>: Easily access external programs and data from inside AutomateIt &#8212; or have Unix programs access AutomateIt and its data from outside. No need to put up with a black box you can&#8217;t get data into or out of.</li>
+                	<li><strong>Fully extensible</strong>: Easily add functionality, provide platform-specific drivers or change existing behavior. Just drop files into your project&#8217;s &#8220;lib&#8221; directory and they&#8217;ll be loaded automatically. No need to the fork code or write elaborate hacks to run external commands and marshal data between them.</li>
+                	<li><strong>Totally testable</strong>: Includes a self-test suite so you can verify that AutomateIt works. No more catastrophes because your tool vendor has no way to sanity check their tool.</li>
+                </ul>
+                <p><strong><em>Disadvantages</em></strong></p>
+                <ul>
+                	<li><strong>Beta-quality</strong>: AutomateIt is a new product and, despite the comprehensive test suite, beta users must be willing to accept rough spots, work through problems and upgrade frequently until the production release ships.</li>
+                	<li><strong>Limited drivers</strong>: AutomateIt provides more platform-specific drivers than Cfengine, but not as many as Puppet. More drivers will be written.</li>
+                </ul>
+                <h2><a name="consider">Consider AutomateIt</a></h2>
+                <p>Evaluate AutomateIt if you:</p>
+                <ul>
+                	<li>Want a better way to manage systems</li>
+                	<li>Are in active development</li>
+                	<li>Are not tied down to another tool</li>
+                	<li>Feel frustrated with an existing tool</li>
+                	<li>Can accept beta-quality software</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>result (HelpfulERB)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/helpful_erb.rb, line 27</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">result</span>(<span class="ruby-identifier">binder</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@erb</span>.<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binder</span>)
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-identifier">stack</span> = <span class="ruby-identifier">caller</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-identifier">l</span> = <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>[<span class="ruby-identifier">i</span>]
+        <span class="ruby-comment cmt">#puts &quot;%s %s&quot; % [i, l];</span>
+        <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^([^:]+):(\d+):in `(render|result)'$/</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">template</span> = <span class="ruby-identifier">$1</span>
+      <span class="ruby-identifier">line_number</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Caught ERB error but couldn't find line number in backtrace:\n#{e.backtrace.join(&quot;\n&quot;)}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">line_number</span>
+
+      <span class="ruby-identifier">lines</span> = <span class="ruby-ivar">@text</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\n/</span>)
+
+      <span class="ruby-identifier">min</span> = <span class="ruby-identifier">line_number</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@lines_before</span>
+      <span class="ruby-identifier">min</span> = <span class="ruby-value">0</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">min</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">0</span>
+
+      <span class="ruby-identifier">max</span> = <span class="ruby-identifier">line_number</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@lines_after</span>
+      <span class="ruby-identifier">max</span> = <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">max</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">lines</span>.<span class="ruby-identifier">size</span>
+
+      <span class="ruby-identifier">width</span> = <span class="ruby-identifier">max</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">size</span>
+
+      <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;Problem with template '#{template}' at line #{line_number}:\n&quot;</span>
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">min</span><span class="ruby-operator">..</span><span class="ruby-identifier">max</span>
+        <span class="ruby-identifier">n</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+        <span class="ruby-identifier">marker</span> = <span class="ruby-identifier">n</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">line_number</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;*&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+        <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n%2s %#{width}i %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">marker</span>, <span class="ruby-identifier">n</span>, <span class="ruby-identifier">lines</span>[<span class="ruby-identifier">i</span>]]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\n(#{e.exception.class}) #{e.message}&quot;</span>
+
+
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">NestedError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">e</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>tempster (Tempster)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/tempster.rb, line 60</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">tempster</span>(<span class="ruby-identifier">opts</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">kind</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:kind</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;'kind' option not specified&quot;</span>)
+    <span class="ruby-identifier">prefix</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:prefix</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:name</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_PREFIX</span>
+    <span class="ruby-identifier">suffix</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:suffix</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">dir</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:dir</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">tmpdir</span>
+    <span class="ruby-identifier">cd</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:cd</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">noop</span> =  <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:noop</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">verbose</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:verbose</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">delete</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:delete</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">block</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+    <span class="ruby-identifier">tries</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:tries</span>) <span class="ruby-operator">||</span> <span class="ruby-value">10</span>
+    <span class="ruby-identifier">armor</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:armor</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_ARMOR_LENGTH</span>
+    <span class="ruby-identifier">message_callback</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:message_callback</span>) <span class="ruby-operator">||</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">message_prefix</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:message_prefix</span>) <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-identifier">mode</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:mode</span>) <span class="ruby-operator">||</span> \
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">kind</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:file</span>
+        <span class="ruby-constant">DEFAULT_FILE_MODE</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:directory</span>
+        <span class="ruby-constant">DEFAULT_DIRECTORY_MODE</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;unknown kind: #{kind}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;can only use 'delete' option with block&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">delete</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;can only use 'cd' with directories and blocks&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cd</span> <span class="ruby-keyword kw">and</span> (<span class="ruby-keyword kw">not</span> <span class="ruby-identifier">dir</span> <span class="ruby-keyword kw">or</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;unknown extra options: #{opts.inspect}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">messager</span> = <span class="ruby-constant">Messager</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">verbose</span>, <span class="ruby-identifier">message_callback</span>, <span class="ruby-identifier">message_prefix</span>)
+
+    <span class="ruby-identifier">path</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">success</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">tries</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">name</span> = <span class="ruby-identifier">prefix</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;_&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">_armor_string</span>(<span class="ruby-identifier">armor</span>)
+        <span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">suffix</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">suffix</span>
+        <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>, <span class="ruby-identifier">name</span>)
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">noop</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">kind</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:file</span>
+            <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">path</span>, <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">RDWR</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span><span class="ruby-operator">|</span><span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">EXCL</span>).<span class="ruby-identifier">close</span>
+            <span class="ruby-constant">File</span>.<span class="ruby-identifier">chmod</span>(<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">path</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:directory</span>
+            <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">mode</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;unknown kind: #{kind}&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-value str">&quot;mktempster --mode=0%o --kind=%s --dir=%s --prefix=%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">mode</span>, <span class="ruby-identifier">kind</span>, <span class="ruby-identifier">dir</span>, <span class="ruby-identifier">prefix</span>]
+        <span class="ruby-identifier">message</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-value str">&quot; --suffix=%s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">suffix</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">suffix</span>
+        <span class="ruby-identifier">message</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-value str">&quot; # =&gt; %s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+        <span class="ruby-identifier">success</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EEXIST</span>
+        <span class="ruby-comment cmt"># Try again</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">IOError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;couldn't create temporary #{kind}, &quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">success</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+      <span class="ruby-identifier">previous</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cd</span>
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cd</span>
+          <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">noop</span>
+          <span class="ruby-identifier">messager</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;pushd #{path}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">path</span>)
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-comment cmt"># Re-throw exception after cleaning up</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword kw">ensure</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cd</span>
+          <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-identifier">previous</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">noop</span>
+          <span class="ruby-identifier">messager</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;popd # =&gt; #{previous}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">delete</span>
+          <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm_rf</span>(<span class="ruby-identifier">path</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">noop</span>
+          <span class="ruby-identifier">messager</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-node">&quot;rm -rf #{path}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">path</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

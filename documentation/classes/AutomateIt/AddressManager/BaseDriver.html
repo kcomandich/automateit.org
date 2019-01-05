@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::AddressManager::BaseDriver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::AddressManager::BaseDriver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/automateit/address_manager/base_rb.html">
+                lib/automateit/address_manager/base.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Plugin/Driver.html">
+                AutomateIt::Plugin::Driver
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="BaseDriver.html">AddressManager::BaseDriver</a></h2>
+<p>
+Base class for all <a href="../AddressManager.html">AddressManager</a>
+drivers.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000075">_add_helper</a>&nbsp;&nbsp;
+      <a href="#M000079">_ifconfig_helper</a>&nbsp;&nbsp;
+      <a href="#M000078">_interface_and_label</a>&nbsp;&nbsp;
+      <a href="#M000077">_normalize_opts</a>&nbsp;&nbsp;
+      <a href="#M000076">_remove_helper</a>&nbsp;&nbsp;
+      <a href="#M000074">bin2dec</a>&nbsp;&nbsp;
+      <a href="#M000072">cidr_to_mask</a>&nbsp;&nbsp;
+      <a href="#M000073">dec2bin</a>&nbsp;&nbsp;
+      <a href="#M000070">has?</a>&nbsp;&nbsp;
+      <a href="#M000068">hostnames</a>&nbsp;&nbsp;
+      <a href="#M000069">hostnames_for</a>&nbsp;&nbsp;
+      <a href="#M000071">mask_to_cidr</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="#M000070" class="method-signature">
+          <span class="method-name">has?</span><span class="method-args">(opts)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See AddressManager#has?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000070-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000070-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 32</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has?</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;:device or :address must be specified&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]
+    <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-identifier">result</span> <span class="ruby-operator">&amp;=</span> <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">interfaces</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]
+    <span class="ruby-identifier">result</span> <span class="ruby-operator">&amp;=</span> <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">interfaces</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>]<span class="ruby-operator">+</span><span class="ruby-value str">&quot;:&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]
+    <span class="ruby-identifier">result</span> <span class="ruby-operator">&amp;=</span> <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="#M000068" class="method-signature">
+          <span class="method-name">hostnames</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See AddressManager#hostnames
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000068-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000068-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 8</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hostnames</span>()
+    <span class="ruby-comment cmt"># NOTE: depends on driver's implementation of addresses</span>
+    <span class="ruby-identifier">names</span> = <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">address</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># Some addresses can't be resolved, bummer.</span>
+      <span class="ruby-identifier">sum</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-constant">Resolv</span>.<span class="ruby-identifier">getnames</span>(<span class="ruby-identifier">address</span>)) <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Resolv</span><span class="ruby-operator">::</span><span class="ruby-constant">ResolvError</span>; <span class="ruby-identifier">sum</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;localhost&quot;</span>
+    <span class="ruby-identifier">names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">gethostname</span>
+    <span class="ruby-identifier">names</span> <span class="ruby-operator">+=</span> <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">gethostbyname</span>(<span class="ruby-constant">Socket</span>.<span class="ruby-identifier">gethostname</span>)[<span class="ruby-value">1</span>] <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">SocketError</span>
+    <span class="ruby-identifier">names</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">hostnames_for</span>(<span class="ruby-identifier">name</span>)}.<span class="ruby-identifier">flatten</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">names</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">uniq</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="#M000069" class="method-signature">
+          <span class="method-name">hostnames_for</span><span class="method-args">(hostname)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See AddressManager#hostname_for
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000069-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000069-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 22</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hostnames_for</span>(<span class="ruby-identifier">hostname</span>)
+    <span class="ruby-identifier">results</span> = []
+    <span class="ruby-identifier">elements</span> = <span class="ruby-identifier">hostname</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;.&quot;</span>)
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword kw">in</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">elements</span>.<span class="ruby-identifier">size</span>
+      <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">elements</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">i</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;.&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">results</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000075" class="method-detail">
+        <a name="M000075"></a>
+
+        <div class="method-heading">
+          <a href="#M000075" class="method-signature">
+          <span class="method-name">_add_helper</span><span class="method-args">(opts, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Helper for add method.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000075-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000075-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 86</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_add_helper</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:announcements</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:announcements</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">||</span> <span class="ruby-constant">AutomateIt</span><span class="ruby-operator">::</span><span class="ruby-constant">AddressManager</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULT_ANNOUNCEMENTS</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">SecurityError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;you must be root&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">superuser?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;:device and :address must be specified&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">has?</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000079" class="method-detail">
+        <a name="M000079"></a>
+
+        <div class="method-heading">
+          <a href="#M000079" class="method-signature">
+          <span class="method-name">_ifconfig_helper</span><span class="method-args">(action, opts, helper_opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a string used to construct an ifconfig command, e.g.
+</p>
+<pre>
+  ifconfig hme0 192.9.2.106 netmask 255.255.255.0 up
+  ifconfig hme0:1 172.40.30.4 netmask 255.255.0.0 up
+</pre>
+<p>
+Options:
+</p>
+<ul>
+<li>:device &#8212; Interface, e.g., &quot;eth0&quot;. String.
+
+</li>
+<li>:label &#8212; Alias label, e.g., &quot;1&quot;. String.
+
+</li>
+<li>:address &#8212; IP address, e.g., &quot;127.0.0.1&quot;. String.
+
+</li>
+<li>:mask &#8212; Netmask, e.g., &quot;255.255.255.0&quot; or 24. String or
+Fixnum.
+
+</li>
+</ul>
+<p>
+Helper options:
+</p>
+<ul>
+<li>:append &#8212; Array of strings to append to end of command, e.g.,
+[&quot;-alias&quot;].
+
+</li>
+<li>:prepend &#8212; Array of strings to prepend to string, adding them after
+after &quot;ifconfig&quot;, e.g., [&quot;inet&quot;].
+
+</li>
+<li>:state &#8212; Whether to list &quot;up&quot; and &quot;down&quot; in
+command. Defaults to true.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000079-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000079-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 144</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_ifconfig_helper</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">opts</span>, <span class="ruby-identifier">helper_opts</span>={})
+    <span class="ruby-identifier">_raise_unless_available</span>
+
+    <span class="ruby-comment cmt"># Translate common names</span>
+    <span class="ruby-identifier">action</span> = <span class="ruby-identifier">:del</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span>.<span class="ruby-identifier">to_sym</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:remove</span>
+
+    <span class="ruby-comment cmt"># Defaults</span>
+    <span class="ruby-identifier">_normalize_opts</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:state</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:state</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-identifier">ipcmd</span> = <span class="ruby-value str">&quot;ifconfig&quot;</span>
+    <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">_interface_and_label</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:prepend</span>]
+      <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:prepend</span>]].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; %s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]
+    <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; netmask %s&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>]
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:state</span>]
+      <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; up&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:add</span>
+      <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; down&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">action</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:del</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:append</span>]
+      <span class="ruby-identifier">ipcmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:append</span>]].<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ipcmd</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000078" class="method-detail">
+        <a name="M000078"></a>
+
+        <div class="method-heading">
+          <a href="#M000078" class="method-signature">
+          <span class="method-name">_interface_and_label</span><span class="method-args">(opts)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the interface and label specified in <tt>opts</tt> hash, e.g.,
+&quot;eth0:1&quot;.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000078-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000078-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 118</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_interface_and_label</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-keyword kw">return</span>(
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]
+        <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>]
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]
+        <span class="ruby-value str">&quot;%s:%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>], <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:label</span>]]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Can't derive interface and label for: #{opts.inspect}&quot;</span>)
+      <span class="ruby-keyword kw">end</span>
+    )
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000077" class="method-detail">
+        <a name="M000077"></a>
+
+        <div class="method-heading">
+          <a href="#M000077" class="method-signature">
+          <span class="method-name">_normalize_opts</span><span class="method-args">(opts)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alter <tt>opts</tt> hash to add alternative names for various options.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000077-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000077-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 104</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_normalize_opts</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-comment cmt"># Accept common alternative names</span>
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:netmask</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:netmask</span>]
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:alias</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:alias</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:alias</span>]
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interface</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:interface</span>]
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>].<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/\./</span>)
+      <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>] = <span class="ruby-identifier">cidr_to_mask</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mask</span>])
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">opts</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000076" class="method-detail">
+        <a name="M000076"></a>
+
+        <div class="method-heading">
+          <a href="#M000076" class="method-signature">
+          <span class="method-name">_remove_helper</span><span class="method-args">(opts, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Helper for remove method.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000076-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000076-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 96</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_remove_helper</span>(<span class="ruby-identifier">opts</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">manager</span>.<span class="ruby-identifier">has?</span>(<span class="ruby-identifier">opts</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">SecurityError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;you must be root&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">superuser?</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;:device and :address must be specified&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:device</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:address</span>]
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">opts</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000074" class="method-detail">
+        <a name="M000074"></a>
+
+        <div class="method-heading">
+          <a href="#M000074" class="method-signature">
+          <span class="method-name">bin2dec</span><span class="method-args">(s)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert a binary number to decimal.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ bin2dec(&quot;11111111&quot;) # =&gt; 255
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000074-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000074-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 81</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bin2dec</span>(<span class="ruby-identifier">s</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_i</span>(<span class="ruby-value">2</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="#M000072" class="method-signature">
+          <span class="method-name">cidr_to_mask</span><span class="method-args">(cidr)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert CIDR to mask.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ cidr_to_mask(24) # =&gt; &quot;255.255.255.0&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000072-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000072-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 62</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cidr_to_mask</span>(<span class="ruby-identifier">cidr</span>)
+    <span class="ruby-comment cmt"># TODO Find less horrible solution which can handle IPv6.</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-value str">'ipaddr'</span>
+    <span class="ruby-constant">IPAddr</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;0.0.0.0/#{cidr}&quot;</span>).<span class="ruby-identifier">inspect</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">%r{/([\d\.]+)&gt;}</span>)[<span class="ruby-value">1</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000073" class="method-detail">
+        <a name="M000073"></a>
+
+        <div class="method-heading">
+          <a href="#M000073" class="method-signature">
+          <span class="method-name">dec2bin</span><span class="method-args">(n)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert a decimal number to binary notation.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ dec2bin(255) # =&gt; &quot;11111111&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000073-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000073-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 72</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dec2bin</span>(<span class="ruby-identifier">n</span>)
+    <span class="ruby-comment cmt"># dec2bin(255)</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-value str">&quot;%b&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">n</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="#M000071" class="method-signature">
+          <span class="method-name">mask_to_cidr</span><span class="method-args">(mask)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert a mask to a CIDR.
+</p>
+<p>
+Example:
+</p>
+<pre>
+ mask_to_cidr(&quot;255.255.255.0&quot;) # =&gt; 24
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000071-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000071-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/address_manager/base.rb, line 49</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mask_to_cidr</span>(<span class="ruby-identifier">mask</span>)
+    <span class="ruby-comment cmt"># TODO Find less horrible solution which can handle IPv6.</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-value str">''</span>
+    <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">chunk</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">mask</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;.&quot;</span>)
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">dec2bin</span>(<span class="ruby-identifier">chunk</span>.<span class="ruby-identifier">to_i</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/1/</span>).<span class="ruby-identifier">size</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

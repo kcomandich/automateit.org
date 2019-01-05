@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>installed? (AutomateIt::PackageManager::Portage)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/package_manager/portage.rb, line 13</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">installed?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">_installed_helper?</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">packages</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">list</span>, <span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment cmt"># Emerge throws an error when called with invalid packages, so it's</span>
+      <span class="ruby-comment cmt"># necessary to find the invalid packages and re-run the command without</span>
+      <span class="ruby-comment cmt"># them to find out what is actually installed.</span>
+      <span class="ruby-identifier">missing</span> = []
+      <span class="ruby-identifier">available</span> = []
+      <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">true</span>
+        <span class="ruby-identifier">cmd</span> = <span class="ruby-value str">&quot;emerge --color n --nospinner --tree --usepkg --quiet --pretend &quot;</span> <span class="ruby-operator">+</span> \
+          (<span class="ruby-identifier">list</span><span class="ruby-operator">-</span><span class="ruby-identifier">missing</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot; &lt; /dev/null 2&gt;&amp;1&quot;</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PEXEC</span><span class="ruby-operator">+</span><span class="ruby-identifier">cmd</span>)
+        <span class="ruby-identifier">output</span> = <span class="ruby-node">`#{cmd}`</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">output</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/no ebuilds to satisfy &quot;(.+)&quot;/</span>)
+          <span class="ruby-identifier">invalid</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;PackageManager::Portage.installed? skipping invalid package '#{invalid}'&quot;</span>)
+          <span class="ruby-identifier">missing</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">invalid</span>
+          <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">list</span><span class="ruby-operator">-</span><span class="ruby-identifier">missing</span>).<span class="ruby-identifier">size</span>.<span class="ruby-identifier">zero?</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">output</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">%r{^\[\w+\s+R\s*\] .+/(\w+?)-.+$}</span>).<span class="ruby-identifier">flatten</span>
+          <span class="ruby-identifier">available</span> = <span class="ruby-identifier">list</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">matches</span>
+          <span class="ruby-keyword kw">break</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">available</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

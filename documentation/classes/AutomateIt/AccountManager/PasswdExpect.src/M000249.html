@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>passwd (AutomateIt::AccountManager::PasswdExpect)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/account_manager/passwd_expect.rb, line 15</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">passwd</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">_passwd_helper</span>(<span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">log</span>.<span class="ruby-identifier">silence</span>(<span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">WARN</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">mktemp</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span>
+          <span class="ruby-comment cmt"># Script derived from /usr/share/doc/expect/examples/autopasswd</span>
+          <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">render</span>(<span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;set password \&quot;\#{password}\&quot;\nspawn passwd \&quot;\#{user}\&quot;\nexpect \&quot;assword:\&quot;\nsleep 0.1\nsend \&quot;$password\\\\r\&quot;\nexpect \&quot;assword:\&quot;\nsleep 0.1\nsend \&quot;$password\\\\r\&quot;\nexpect eof\n&quot;</span>, <span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>)
+
+          <span class="ruby-identifier">cmd</span> = <span class="ruby-node">&quot;expect #{filename}&quot;</span>
+          <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; &gt; /dev/null&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:quiet</span>]
+          <span class="ruby-keyword kw">return</span>(<span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">sh</span> <span class="ruby-identifier">cmd</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

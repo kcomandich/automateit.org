@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::AccountManager::Etc</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::AccountManager::Etc</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/automateit/account_manager/etc_rb.html">
+                lib/automateit/account_manager/etc.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                ::AutomateIt::AccountManager::BaseDriver
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="Etc.html">AccountManager::Etc</a></h2>
+<p>
+An <a href="../AccountManager.html">AccountManager</a> driver for Unix-like
+OSes that have the Ruby <a href="Etc.html">Etc</a> module. It is only
+suitable for doing queries and lacks methods that perform modifications,
+such as <tt>add_user</tt>. Platform-specific drivers inherit from this
+class and provide methods that perform modifications.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000188">groups</a>&nbsp;&nbsp;
+      <a href="#M000190">groups_for_user</a>&nbsp;&nbsp;
+      <a href="#M000189">has_group?</a>&nbsp;&nbsp;
+      <a href="#M000187">has_user?</a>&nbsp;&nbsp;
+      <a href="#M000186">users</a>&nbsp;&nbsp;
+      <a href="#M000191">users_for_group</a>&nbsp;&nbsp;
+      <a href="#M000192">users_to_groups</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Etc/GroupQuery.html" class="link">AutomateIt::AccountManager::Etc::GroupQuery</a><br />
+Class <a href="Etc/UserQuery.html" class="link">AutomateIt::AccountManager::Etc::UserQuery</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000188" class="method-detail">
+        <a name="M000188"></a>
+
+        <div class="method-heading">
+          <a href="#M000188" class="method-signature">
+          <span class="method-name">groups</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See <a href="../AccountManager.html#M000156">AccountManager#groups</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000188-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000188-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 80</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">groups</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-constant">GroupQuery</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000190" class="method-detail">
+        <a name="M000190"></a>
+
+        <div class="method-heading">
+          <a href="#M000190" class="method-signature">
+          <span class="method-name">groups_for_user</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See <a
+href="../AccountManager.html#M000162">AccountManager#groups_for_user</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000190-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000190-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 90</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">groups_for_user</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-identifier">pwent</span> = <span class="ruby-identifier">users</span>[<span class="ruby-identifier">query</span>]
+    <span class="ruby-keyword kw">return</span> [] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">preview?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">pwent</span>
+    <span class="ruby-identifier">username</span> = <span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-identifier">result</span> = <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">gid</span>].<span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">gid</span>]
+    <span class="ruby-operator">::</span><span class="ruby-constant">Etc</span>.<span class="ruby-identifier">group</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">grent</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">username</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>.<span class="ruby-identifier">to_a</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000189" class="method-detail">
+        <a name="M000189"></a>
+
+        <div class="method-heading">
+          <a href="#M000189" class="method-signature">
+          <span class="method-name">has_group?</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See AccountManager#has_group?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000189-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000189-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 85</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_group?</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">query</span>].<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000187" class="method-detail">
+        <a name="M000187"></a>
+
+        <div class="method-heading">
+          <a href="#M000187" class="method-signature">
+          <span class="method-name">has_user?</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See AccountManager#has_user?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000187-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000187-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 51</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_user?</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">users</span>[<span class="ruby-identifier">query</span>].<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000186" class="method-detail">
+        <a name="M000186"></a>
+
+        <div class="method-heading">
+          <a href="#M000186" class="method-signature">
+          <span class="method-name">users</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See <a href="../AccountManager.html#M000149">AccountManager#users</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000186-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000186-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 46</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-constant">UserQuery</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000191" class="method-detail">
+        <a name="M000191"></a>
+
+        <div class="method-heading">
+          <a href="#M000191" class="method-signature">
+          <span class="method-name">users_for_group</span><span class="method-args">(query)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See <a
+href="../AccountManager.html#M000163">AccountManager#users_for_group</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000191-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000191-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 103</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users_for_group</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-identifier">grent</span> = <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">query</span>]
+    <span class="ruby-keyword kw">return</span> (<span class="ruby-identifier">preview?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">grent</span>) <span class="ruby-operator">?</span> [] <span class="ruby-operator">:</span> <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">mem</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000192" class="method-detail">
+        <a name="M000192"></a>
+
+        <div class="method-heading">
+          <a href="#M000192" class="method-signature">
+          <span class="method-name">users_to_groups</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+See <a
+href="../AccountManager.html#M000164">AccountManager#users_to_groups</a>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000192-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000192-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/account_manager/etc.rb, line 109</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">users_to_groups</span>
+    <span class="ruby-identifier">result</span> = {}
+    <span class="ruby-operator">::</span><span class="ruby-constant">Etc</span>.<span class="ruby-identifier">group</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">grent</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">username</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">result</span>[<span class="ruby-identifier">username</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">result</span>[<span class="ruby-identifier">username</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-operator">::</span><span class="ruby-constant">Etc</span>.<span class="ruby-identifier">passwd</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pwent</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">grent</span> = <span class="ruby-identifier">groups</span>[<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">gid</span>]
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">grent</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">fatal</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-value str">&quot;WARNING: User's default group doesn't exist: user %s, gid %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">gid</span>])
+        <span class="ruby-keyword kw">next</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">name</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Set</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">result</span>[<span class="ruby-identifier">pwent</span>.<span class="ruby-identifier">name</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">grent</span>.<span class="ruby-identifier">name</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

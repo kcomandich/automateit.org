@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="ANSI_X3.4-1968"?>
+<rss version='2.0'>
+  <channel>
+    <title>AutomateIt: Change history</title>
+    <link>http://www.automateit.org/changes.rss</link>
+    <description></description>
+    <pubDate>
+      Wed, 11 Nov 2009 17:45:24 -0700
+    </pubDate>
+    <lastBuildDate>
+      Wed, 11 Nov 2009 17:45:24 -0700
+    </lastBuildDate>
+    <language>en-us</language>
+    <item>
+      <title>
+        0.91104
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed AddressManager, it now works with versions of Ruby that don't allow modifications to sets during iteration.&lt;br /&gt;
+        - (%) Fixed PackageManager::Gem, it now works with newer versions of Open4 that may incorrectly return nil STDOUT.&lt;br /&gt;
+        - (%) Fixed AutomateIt's test suite, it now works with newer versions of RSpec.&lt;br /&gt;
+        - (%) Fixed PackageManager::Cpan, it now works with newer versions of CPAN when installing a package that's been uninstalled before.&lt;br /&gt;
+        - (%) Fixed ShellManager#ln_s, it can now link a directory to a directory and understand a target symlink's relative path. &lt;br /&gt;
+        - (+) Improved HelpfulERB, it now displays friendly errors containing filename and line number in templates, including "fields.yml" and "tags.yml", and will honor the "--trace" flag to optionally display backtraces.&lt;br /&gt;
+        - (+) Improved DownloadManager, it will now only download if the file isn't already present, but you can override this with a :force option.&lt;br /&gt;
+        - (+) Improved PackageManager::Gem, it can now install a specific version of a gem: `package_manager.install("rails", :with => :gem, :version => "2.3.4")`&lt;br /&gt;
+        - Improved PackageManager::Gem, it will now clear the local Gem cache so that "require" calls can see newly-installed packages without restarting AutomateIt.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 11 Nov 2009 17:45:24 -0700
+      </pubDate>
+      <guid>
+        0.91104
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.80624
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Fixed collision of time conversion methods when loading AutomateIt into Rails.&lt;br /&gt;
+        - Improved documentation, reworked Rakefile, updated TODO.txt.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Tue, 24 Jun 2008 23:13:35 -0700
+      </pubDate>
+      <guid>
+        0.80624
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.80607
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed ShellManager#rm and ShellManager#mv, can now remove and move invalid symlinks.&lt;br /&gt;
+        - Improved Object#unique_methods, it now returns an array of symbols.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 06 Jun 2008 23:13:56 -0700
+      </pubDate>
+      <guid>
+        0.80607
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.80116
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (!) Fixed bug that prevented AutomateIt from working without the Builder gem's "blankslate" library. This fix should completely eliminate AutomateIt's dependence on Builder and ActiveSupport, like 0.71230 was supposed to do. This error was missed because other gems provide a "blankslate"-workalike and thus merely uninstalling Builder wasn't enough to confirm the previous fix.&lt;br /&gt;
+        - (+) Improved PackageManager::Gem, it can now use commands other than "gem" to manage RubyGem packages, such as "gem1.8". It now detects the best available command, but also lets you specify a default or choose one on a per-call basis. See the PackageManager::Gem documentation for examples. Comments are sought on the new syntax.&lt;br /&gt;
+        - Improved PackageManager#_list_normalizer, it now accepts comments mid-way through a line and can parse arrays of strings.&lt;br /&gt;
+        - Updated misc/setup_rubygems.sh, a simple shell script that downloads and install RubyGems 1.0.1, useful for bootstrapping a system to get AutomateIt running on it.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 16 Jan 2008 23:55:44 -0800
+      </pubDate>
+      <guid>
+        0.80116
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71230
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (!) Removed all code that relied on the ActiveSupport and Builder libraries. The new, AutomateIt-specific replacements for these libraries are guaranteed to work correctly and load much more quickly.&lt;br /&gt;
+        - (!) Removed the "--to-xml" option from "aitag" and "aifield". If anyone relied on this functionality, post to the mailing list and I'll write a replacement.&lt;br /&gt;
+        - (%) Fixed PlatformManager::LSB, it no longer converts OS release versions like "7.10" into "7.1".&lt;br /&gt;
+        - (%) Fixed "aitags" with "--tags" options, it now returns a sorted array instead of a set.&lt;br /&gt;
+        - (%) Fixed case/when statements to work with Ruby 1.9.&lt;br /&gt;
+        - (%) Fixed TemplateManager#render, it now only runs file-related checks when rendering to a file.&lt;br /&gt;
+        - Improved PackageManager::CPAN's "cpan_wrapper.pl". It's now just a single file that can be used as both a command and library.&lt;br /&gt;
+        - Improved EditManager. In preview mode, it now checks to make sure the file is readable, rather than failing due to permission denied errors.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 30 Dec 2007 14:05:31 -0800
+      </pubDate>
+      <guid>
+        0.71230
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71226.1
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Same as previous version. Something went wrong with Rubyforge and the gem was only partially uploaded, so trying again.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 26 Dec 2007 11:45:03 -0800
+      </pubDate>
+      <guid>
+        0.71226.1
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71226
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed PackageManager::CPAN driver. It now provides a workaround to activate CPAN if it wasn't already configured, previously it'd hang as CPAN tried to get input. It now provides a workaround for rejecting all CPAN inputs because the CPAN default options are surprisingly dangerous. It now tries harder to execute the Perl helper files, previously these wouldn't be executed on some OSes. The helpers' core logic has been abstracted into a wrapper library.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 26 Dec 2007 11:41:03 -0800
+      </pubDate>
+      <guid>
+        0.71226
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71221
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed PackageManager::APT driver. In 0.71220, the DPKG driver was selected as the default driver over APT. The fix chooses APT as the default over DPKG, like before.&lt;br /&gt;
+        - Fixed Rakefile to work with latest version of RubyGems.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 23 Dec 2007 00:48:30 -0800
+      </pubDate>
+      <guid>
+        0.71221
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71220
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (+) Added PackageManager::CPAN for managing Perl packages. Thanks go out to Jesse Hallett for assisting me with research on how to use the CPAN APIs.&lt;br /&gt;
+        - Fixed PackageManager#install when called with a single Symbol argument.&lt;br /&gt;
+        - Added PackageManager::DPKG for local installation of .deb packages. Added logic to help it install a hash of package names to file names. Added spec to validate this.&lt;br /&gt;
+        - Refactored PackageManager::APT to defer to PackageManager::DPKG's logic when possible.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Thu, 20 Dec 2007 23:36:05 -0800
+      </pubDate>
+      <guid>
+        0.71220
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71219
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Created a bunch of workarounds needed because of bugs and backwards incompatible changes in new versions of third-party libraries...&lt;br /&gt;
+        - (%) Fixed "gem install automateit". Created workaround for new ActiveSupport bug which doesn't install the Builder gem.&lt;br /&gt;
+        - (%) Fixed "rake regem" which generates the AutomateIt gem. Created workaround for new RubyGems bug which no longer installs the necessary Gem::Format dependency. Created workaround for new Rake bug which causes FileList to act like a string instead of an array. Created workaround for new Rake/RubyGems bugs that don't load 'rubygems' by default.&lt;br /&gt;
+        - Improved PasswdExpect, no longer passing username/password on command-line to improve security.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 19 Dec 2007 22:00:59 -0800
+      </pubDate>
+      <guid>
+        0.71219
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71112
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed ShellManager::WhichWindows#which, forgot to include helper file in gem.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Mon, 12 Nov 2007 09:51:31 -0800
+      </pubDate>
+      <guid>
+        0.71112
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71111
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (+) Improved AccountManager::Etc detection logic, it now tries to run commands rather than relying on blacklists. This better supports Windows and JRuby.&lt;br /&gt;
+        - (+) Added ShellManager::WhichWindows, it simulates the #which command on Windows.&lt;br /&gt;
+        - WARNING: AccountManager::POSIX#add_groups_to_user and add_users_to_group&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 11 Nov 2007 06:06:27 -0800
+      </pubDate>
+      <guid>
+        0.71111
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71104
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bugs in startup sequence when run on Microsoft Windows. Added support for Vista.&lt;br /&gt;
+        - (%) Fixed bugs encountered on Windows in Plugin::Driver. Dependency checks are now done in specific order and stop as soon as a missing dependency is detected.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 04 Nov 2007 21:01:10 -0800
+      </pubDate>
+      <guid>
+        0.71104
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71103
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (+) Added "aissh" command, provides an easy way to run commands on a group of hosts. For example, see if there's a Rails process running on all hosts matching the "rails_servers" tag: "aissh -p . rails_servers 'ps -ef | grep rails'"&lt;br /&gt;
+        - Improved PackageManager, it can now accept package names as Symbols.&lt;br /&gt;
+        - Improved AccountManager spec with additional examples for checking password changes.&lt;br /&gt;
+        - Improved AccountManager::NSCD with refactoring and additional tests.&lt;br /&gt;
+        - Improved AddressManager spec with additional tests for address conversion routines and code generation helpers.&lt;br /&gt;
+        - Improved Plugin spec with more checks against invalid managers and drivers, and unavailable dependencies.&lt;br /&gt;
+        - Improved ShellManager spec with more checks against hard links and symbolic links; for #cp when contents, modes or ownership changes; for #rm with :force option: for #umask with and without block, and with caught exceptions.&lt;br /&gt;
+        - Added spec for String#shell_escape.&lt;br /&gt;
+        - Added spec for Object's extensions for #unique_methods and #args_and_opts.&lt;br /&gt;
+        - Added spec for NestedError.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sat, 03 Nov 2007 01:26:13 -0700
+      </pubDate>
+      <guid>
+        0.71103
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71102
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Improved PackageManager::PEAR and PackageManager::PECL, can now :force installation of unstable packages.&lt;br /&gt;
+        - Refactored PackageManager spec and added :force to get PEAR and PECL to workaround systems that refuse to load the unstable testing packages.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 02 Nov 2007 02:59:41 -0700
+      </pubDate>
+      <guid>
+        0.71102
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71101.2
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in TagParser, it couldn't parse hostnames with non-letter characters. Added tests. Thanks for the report, David Brewer.&lt;br /&gt;
+        - (%) Fixed bug in TagManager, adding a run-time tag caused it to not parse tags.yml. Added tests.&lt;br /&gt;
+        - (+) Improved TagManager, it now makes run-time tags available to the interpreter when parsing tags.yml, which provides greater flexibility in defining tags. Added tests. Thanks for the suggestion, David Brewer.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Thu, 01 Nov 2007 22:37:44 -0700
+      </pubDate>
+      <guid>
+        0.71101.2
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71101.1
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in Interpreter, which only set optional run-time tags specified on the command-line AFTER it loaded the fields/tags files. Thanks for the report, David Brewer.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Thu, 01 Nov 2007 18:52:01 -0700
+      </pubDate>
+      <guid>
+        0.71101.1
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71101
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in TagManager#tagged? when checking tag names containing dashes ("-"), refactored to improve tag tokenizing rules, added test. Thank you, David Brewer.&lt;br /&gt;
+        - Fixed bug in TemplateManager#render when rendering templates to strings, added tests. Thank you for the report, David Brewer.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Thu, 01 Nov 2007 17:07:51 -0700
+      </pubDate>
+      <guid>
+        0.71101
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71031.2
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (+) Added PackageManager::PEAR and PackageManager::PECL, graciously contributed by David Brewer.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 31 Oct 2007 23:48:41 -0700
+      </pubDate>
+      <guid>
+        0.71031.2
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71031.1
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in EditSession methods, these weren't escaping regular expression characters in strings. Refactored some of these methods for clarity.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 31 Oct 2007 13:15:30 -0700
+      </pubDate>
+      <guid>
+        0.71031.1
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71031
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Improved Project libraries so they're loaded before Tags and Fields. This makes it possible to, for example, write a library helper that's called from within the fields.yml file via ERB.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 31 Oct 2007 02:58:58 -0700
+      </pubDate>
+      <guid>
+        0.71031
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71030
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in AddressManager#add_user when called with multiple groups. Improved AddressManager spec.&lt;br /&gt;
+        - (+) Added documentation to Project explaining how to partition recipes, and run recipes from other recipes.&lt;br /&gt;
+        - (+) Added AddressManager::POSIX which provides support for Linux and SunOS, and eliminated the OS-specific drivers for these.&lt;br /&gt;
+        - Added AddressManager::NSCD by extracting methods from old OS-specific drivers.&lt;br /&gt;
+        - Added AddressManager::PasswdExpect which uses Expect for much more reliable password changes.&lt;br /&gt;
+        - Improved AddressManager::PasswdPty by adding retry capability.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Tue, 30 Oct 2007 01:43:02 -0700
+      </pubDate>
+      <guid>
+        0.71030
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71021
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Added PlatformManager::OpenBSD.&lt;br /&gt;
+        - Added AddressManager::OpenBSD.&lt;br /&gt;
+        - Added AddressManager::FreeBSD.&lt;br /&gt;
+        - Added AddressManager::BSD which assists SunOS, FreeBSD and OpenBSD.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 21 Oct 2007 04:58:01 -0700
+      </pubDate>
+      <guid>
+        0.71021
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71017
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed, created workaround so AutomateIt can run using the newly-released ActiveSupport 1.4.4 (part of Rails 2.0 PR1), because this new library breaks backwards compatibility by depending on new #extract_options method.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 17 Oct 2007 00:24:24 -0700
+      </pubDate>
+      <guid>
+        0.71017
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71012
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed #touch, it worked fine but was corrupting log output&lt;br /&gt;
+        - (%) Fixed AccountManager::Linux, it now only runs when the OS detected is Linux.&lt;br /&gt;
+        - Added PlatformManager::SunOS.&lt;br /&gt;
+        - Added AddressManager::SunOS.&lt;br /&gt;
+        - Improved #render, added default :backup option to save files before overwriting them.&lt;br /&gt;
+        - Improved #backup, added :quiet option to prevent output.&lt;br /&gt;
+        - Improved #chperm, it now displays the exact changes made rather than approximations.&lt;br /&gt;
+        - Improved ServiceManager::SysV spec to validate :wait and :pause options with safe mocks.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 12 Oct 2007 03:54:30 -0700
+      </pubDate>
+      <guid>
+        0.71012
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71006
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed EditSession#delete to delete lines matching substrings rather than exact matches.&lt;br /&gt;
+        - Fixed EditSession#comment to not comment already commented-out lines.&lt;br /&gt;
+        - Fixed SessionManager#start and #stop so these don't check status when called with :force option.&lt;br /&gt;
+        - Improved SessionManager#restart to use :wait option.&lt;br /&gt;
+        - Improved #download to accept array or hash as arguments.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sat, 06 Oct 2007 17:55:37 -0700
+      </pubDate>
+      <guid>
+        0.71006
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.71003
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Fixed bug in #backup on JRuby because it lacks methods to query properties. It now copies the file and timestamp, but not the owner/group/mode because these can't be queried on JRuby.&lt;br /&gt;
+        - Improved #cp with new :preserve => :try option so that properties are preserved when possible, but no exception is thrown when these can't be preserved.&lt;br /&gt;
+        - Improved #touch with options for :like and :stamp options.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 03 Oct 2007 01:17:32 -0700
+      </pubDate>
+      <guid>
+        0.71003
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70930
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Fixed ShellManager#rm to display output like 'rm -rf' rather than 'rm_rf'.&lt;br /&gt;
+        - Fixed #tags, removed the standalone tag for the distro's version (e.g., "7.04"), it must now be qualified with the distro's name, "ubuntu_7.04".&lt;br /&gt;
+        - Improved bin/automateit so it doesn't display error trace when user types 'exit' into irb.&lt;br /&gt;
+        - Improved comments in basic/examples recipes.&lt;br /&gt;
+        - Improved #tag_for to return a sorted Array instead of a Set.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 30 Sep 2007 15:10:43 -0700
+      </pubDate>
+      <guid>
+        0.70930
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70928
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed #cp, #ln and #install when called with relative path source and directory target. These tried to create items which included the relative path, rather than discarding it.&lt;br /&gt;
+        - (+) Added an "--add TAGS" feature to executables: automateit, aifield, aitag. This makes it easy to define tag(s) for a specific run.&lt;br /&gt;
+        - (+) Added #backup command to save copies of files, it's now used by default when using #edit to modify a file.&lt;br /&gt;
+        - (+) Added #download command to retrieve data via HTTP and FTP to a file or directory.&lt;br /&gt;
+        - Improved specs and provided coverage for more exception handling.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 28 Sep 2007 23:18:37 -0700
+      </pubDate>
+      <guid>
+        0.70928
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70923
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Fixed hard link and symlink detection on Windows, spec will now skip these examples.&lt;br /&gt;
+        - Fixed cli_spec so it can invoke Windows version of rake.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 23 Sep 2007 16:01:03 -0700
+      </pubDate>
+      <guid>
+        0.70923
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70922
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Refactored AccountManager::Linux and extracted Passwd driver.&lt;br /&gt;
+        - Refactored Shellmanager::Portable and extracted Which, Link and Symlink drivers.&lt;br /&gt;
+        - Improved Plugin::Driver, added a depends_on :libraries option.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sat, 22 Sep 2007 22:56:39 -0700
+      </pubDate>
+      <guid>
+        0.70922
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70921
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Improved AccountManager::Linux to work around a race condition in PTY/Expect that happens about 1% of the time when setting a password.&lt;br /&gt;
+        - Improved executables (e.g., bin/automateit) to display help with "-h", in addition to "--help".&lt;br /&gt;
+        - Improved executables (e.g., bin/automateit) to display version with "-v" and "--version".&lt;br /&gt;
+        - Refactored EditSession and its documentation.&lt;br /&gt;
+        - Refactored TemplateManager, moved common logic into BaseDriver.&lt;br /&gt;
+        - Refactored Rakefile for clarity.&lt;br /&gt;
+        - Replaced GemSpec with Hoe in preparation to uploading AutomateIt to RubyForge.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 21 Sep 2007 18:29:24 -0700
+      </pubDate>
+      <guid>
+        0.70921
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70919
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (!) Normalized PackageManager methods and ShellManager#chperm to use consistent ':details => true' option.&lt;br /&gt;
+        - (!) Refactored PackageManager with :details mode to return both a boolean and list of affected packages, previously it only returned packages.&lt;br /&gt;
+        - Fixed bug in ShellManager and Tempster that created temporary files and directories in preview mode.&lt;br /&gt;
+        - Created 'preview' methods to replace old 'noop' commands. Improved documentation for previewing commands.&lt;br /&gt;
+        - Made it easier to embed the Interpreter using new methods 'include_in' and 'add_method_missing_to'. Included Rakefile with default and example projects to demonstrate embedding.&lt;br /&gt;
+        - Improved AccountManager, it can set and change passwords on user accounts.&lt;br /&gt;
+        - Improved TagManager, it lazy-loads tags to speed startup.&lt;br /&gt;
+        - Improved ShellManager, TemplateManager and EditManager so they translate :owner to :user for Cfengine refugees.&lt;br /&gt;
+        - Improved support for Darwin and JRuby. Reworked methods and drivers to let these access more features.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 19 Sep 2007 22:08:42 -0700
+      </pubDate>
+      <guid>
+        0.70919
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70915
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Improved Interpreter with friendly error messages that make it easier for users to see what's wrong with a recipe. These new messages display the cause, a snapshot of the problematic code, shortened paths, and only the relevant stack frames. Also provided way to get complete, raw backtraces for debugging internals.&lt;br /&gt;
+        - Improved plugins that use ERB by creating a new HelpfulERB class that provides sane behavior and provides friendly, contextual error messages making it much easier for users to identify and fix problems in templates.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sat, 15 Sep 2007 23:09:26 -0700
+      </pubDate>
+      <guid>
+        0.70915
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70914
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in ShellManager::Portable that caused 'cp' to actually copy even when in 'noop' mode.&lt;br /&gt;
+        - Ported code to work with JRuby.&lt;br /&gt;
+        - Wrote TagParser that works with JRuby and handles arbitrarily complex and deep rules with correct precedence.&lt;br /&gt;
+        - Improved PackageManager commands to accept hash of names to paths, e.g., if package 'TracTags' isn't present, installs it from a directory.&lt;br /&gt;
+        - Improved PackageManager commands to accept annotated, free-form strings with comments.&lt;br /&gt;
+        - Improved Interpreter.invoke to search a project's recipes directory, making it easier for recipes to invoke other recipes.&lt;br /&gt;
+        - Improved EditSession to provide easier access to Interpreter methods.&lt;br /&gt;
+        - Improved ServiceManager to provide 'start_and_enable' and 'start_or_restart' convenience commands.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 14 Sep 2007 17:37:48 -0700
+      </pubDate>
+      <guid>
+        0.70914
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70913
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug in PackageManager::Gem, it wasn't recognizing packages installed multiple times as being installed.&lt;br /&gt;
+        - Provided complete support for CentOS and RedHat.&lt;br /&gt;
+        - Provided complete support for Gentoo with new PackageManager::Portage and ServiceManager::RC_Update drivers.&lt;br /&gt;
+        - Provided basic support for FreeBSD with new PlatformManager::FreeBSD.&lt;br /&gt;
+        - Rewrote AddressManager::Linux using pure 'ifconfig' calls, which provide more universal support than 'iproute'.&lt;br /&gt;
+        - Reworked examples to create a user for the application, demonstrating the use of AccountManager and eliminating need for workarounds to platform-specific differences for the 'nobody' account.&lt;br /&gt;
+        - Added new 'depends_on' option to check complex dependencies using callbacks, e.g., ensure a specific version of ifconfig.&lt;br /&gt;
+        - Included examples/basic in Gem distribution, the code used in the Screenshots.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Thu, 13 Sep 2007 06:35:50 -0700
+      </pubDate>
+      <guid>
+        0.70913
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70912
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (%) Fixed bug where a project's fields were sometimes accidentally cleared. Wrote tests to make sure this won't happen again.&lt;br /&gt;
+        - Added tests for examples/basic recipes.&lt;br /&gt;
+        - Added ServiceManager started? and stopped? methods with wait timeouts.&lt;br /&gt;
+        - (!) Reworked Plugins so drivers find managers by inheritance, rather than by name. Simplifies code and allows drivers in different namespaces than their manager. Should be one of the last changes that breaks backwards-compatibility in Plugins for a while.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Wed, 12 Sep 2007 18:54:10 -0700
+      </pubDate>
+      <guid>
+        0.70912
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70909
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - Added initial support for Apple Mac OS X. Includes a PlatformManager driver for Darwin, and assorted changes needed for AutomateIt to run on the old Ruby 1.8.2 bundled with Tiger.&lt;br /&gt;
+        - Fixed AddressManager by eliminating exceptions raised on misconfigured systems that didn't have IPs for local hostnames.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Sun, 09 Sep 2007 16:39:58 -0700
+      </pubDate>
+      <guid>
+        0.70909
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+    <item>
+      <title>
+        0.70907
+      </title>
+      <link>http://www.automateit.org/changes.rss</link>
+      <description>
+        - (!) Created AbstractDriver classes for each plugin and made the concrete drivers subclass these.&lt;br /&gt;
+        - Wrote tests for CLI, which create projects, invoke recipes, run the interactive shell, etc.&lt;br /&gt;
+        - Eliminated need for custom drivers to run 'setup' on their associated plugin instance.&lt;br /&gt;
+      </description>
+      <pubDate>
+        Fri, 07 Sep 2007 23:48:55 -0700
+      </pubDate>
+      <guid>
+        0.70907
+      </guid>
+      <author>AutomateIt</author>
+    </item>
+  </channel>
+</rss>

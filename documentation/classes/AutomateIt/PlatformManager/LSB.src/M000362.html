@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_read_lsb_release_data (AutomateIt::PlatformManager::LSB)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/platform_manager/lsb.rb, line 32</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_read_lsb_release_data</span>
+    <span class="ruby-comment cmt"># TODO Consider parsing files directly to avoid the overhead of this command.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Do NOT use 'lsb_release -a' because this takes a few seconds. Telling</span>
+    <span class="ruby-comment cmt"># 'lsb_release' which fields we want makes it much faster.</span>
+    <span class="ruby-node">`&quot;#{LSB_RELEASE}&quot; --release --id`</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

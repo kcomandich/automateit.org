@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Installation issues</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>AutomateIt installation issues</h1>
+                <h2>Topics</h2>
+                <ul>
+                	<li><a href="#builder_missing" title="LoadError">no such file to load &#8212; builder</a></li>
+                	<li><a href="#find_unix">Can&#8217;t find the &#8216;automateit&#8217; program on Unix-like systems</a></li>
+                	<li><a href="#find_windows">Can&#8217;t find the &#8216;automateit&#8217; program on Windows</a></li>
+                	<li><a href="#find_jruby">Can&#8217;t find the &#8216;automateit&#8217; program on JRuby</a></li>
+                </ul>
+                <h2><a name="builder_missing" />no such file to load &#8212; builder (LoadError)</h2>
+                <p>If you get this error when running the <code>automateit</code> program, you need to either install AutomateIt 0.71219 or run <code>gem install builder</code>. The problem is that AutomateIt relies on the ActiveRecord package, which recently changed and no longer installs the Builder package.</p>
+                <h2><a name="find_unix" />Can&#8217;t find the &#8220;automateit&#8221; program on Unix-like systems</h2>
+                <p>The <code>automateit</code> program is usually installed as <code>/usr/bin/automateit</code>. However, this path will vary depending on how RubyGems is configured. If <code>which automateit</code> can&#8217;t locate the program, then the gem program installed it into some strange directory.</p>
+                <p>Try running <code>export PATH=`gem env gemdir`/bin:$PATH</code> and re-run <code>which automateit</code> again. This workaround relies on the possibly wrong assumption that gem installed the program into a directory like <code>/var/lib/gems/1.8/bin</code>, like it does on Debian.</p>
+                <p>If the program still can&#8217;t be found, run <code>gem env</code> for clues and poke around the directories it lists until you find the <code>automateit</code> program.</p>
+                <p>This is <strong>not</strong> an AutomateIt bug and there&#8217;s nothing that can be done about it other than fixing how RubyGems works and how it&#8217;s repackaged.</p>
+                <h2><a name="find_windows" />Can&#8217;t find the &#8220;automateit&#8221; program on Windows systems</h2>
+                <p>If you just installed Ruby and RubyGems, then you&#8217;ll probably need to reboot so that the paths are updated.</p>
+                <p>If rebooting doesn&#8217;t help, you may be better off installing a different version of Ruby or RubyGems rather than debugging.</p>
+                <p>If you want to debug, run <code>gem env gemdir</code> to display RubyGem&#8217;s base directory. You will get a path similar to: <code>c:/ruby/lib/ruby/gems/1.8</code>. Unlike Unix, the <code>automateit</code> executable is probably not installed in a <code>gems</code> subdirectory, but rather in the <code>c:\ruby\bin</code> directory, at a path like  <code>c:\ruby\bin\automateit.cmd</code>.</p>
+                <h2><a name="find_jruby" />Can&#8217;t find the &#8220;automateit&#8221; program with JRuby</h2>
+                <p>JRuby installs a gem&#8217;s executables into the same path with the <code>jruby</code> command, so if you can run <code>jruby</code>, you should be able to run <code>automateit</code>. For example, if you installed JRuby into <code>/opt/jruby</code>, the AutomateIt executable will probably be installed as  <code>/opt/jruby/bin/automateit</code>.</p>
+                <p>If you have both JRuby and Ruby installed, be sure you&#8217;re calling the commands for the right one. For example, you must have JRuby in your <span class="caps">PATH</span> first to use its <code>gem</code> program. Also be sure that you&#8217;re using the correct JRuby commands, such as <code>jruby</code>, <code>jirb</code> and such.</p>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>

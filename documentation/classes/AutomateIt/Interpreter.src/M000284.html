@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>setup (AutomateIt::Interpreter)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 142</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">opts</span>={})
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">opts</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:interpreter</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>))
+
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">params</span> <span class="ruby-operator">||=</span> {}
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:irb</span>]
+        <span class="ruby-ivar">@irb</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:irb</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:parent</span>]
+        <span class="ruby-ivar">@parent</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:parent</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log</span>]
+        <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log</span>]
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@log</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-ivar">@log</span> = <span class="ruby-constant">QueuedLogger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">$stdout</span>)
+        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">level</span> = <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">INFO</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log_level</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>]
+        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">level</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:log_level</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:verbosity</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preview</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-comment cmt"># can be false</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">preview?</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">preview</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:preview</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:friendly_exceptions</span>].<span class="ruby-identifier">nil?</span>
+        <span class="ruby-ivar">@friendly_exceptions</span> = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@friendly_exceptions</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@friendly_exceptions</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:friendly_exceptions</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Instantiate core plugins so they're available to the project</span>
+      <span class="ruby-identifier">_instantiate_plugins</span>
+
+      <span class="ruby-comment cmt"># Add optional run-time tags</span>
+      <span class="ruby-identifier">tags</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:tags</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:tags</span>]
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">project_path</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:project</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;AUTOMATEIT_PROJECT&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;AIP&quot;</span>]
+        <span class="ruby-comment cmt"># Only load a project if we find its env file</span>
+        <span class="ruby-identifier">env_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">project_path</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;automateit_env.rb&quot;</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">env_file</span>)
+          <span class="ruby-ivar">@project</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">project_path</span>)
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project from path: #{@project}&quot;</span>)
+
+          <span class="ruby-identifier">lib_files</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;*.rb&quot;</span>)] <span class="ruby-operator">+</span> <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;lib&quot;</span>, <span class="ruby-value str">&quot;**&quot;</span>, <span class="ruby-value str">&quot;init.rb&quot;</span>)]
+          <span class="ruby-identifier">lib_files</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">lib</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project library: #{lib}&quot;</span>)
+            <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">lib</span>)
+          <span class="ruby-keyword kw">end</span>
+          
+          <span class="ruby-identifier">tag_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;tags.yml&quot;</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">tag_file</span>)
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project tags: #{tag_file}&quot;</span>)
+            <span class="ruby-identifier">tag_manager</span>[<span class="ruby-identifier">:yaml</span>].<span class="ruby-identifier">setup</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tag_file</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">field_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@project</span>, <span class="ruby-value str">&quot;config&quot;</span>, <span class="ruby-value str">&quot;fields.yml&quot;</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">field_file</span>)
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project fields: #{field_file}&quot;</span>)
+            <span class="ruby-identifier">field_manager</span>[<span class="ruby-identifier">:yaml</span>].<span class="ruby-identifier">setup</span>(<span class="ruby-identifier">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">field_file</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># Instantiate project's plugins so they're available to the environment</span>
+          <span class="ruby-identifier">_instantiate_plugins</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">env_file</span>)
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Loading project env: #{env_file}&quot;</span>)
+            <span class="ruby-identifier">invoke</span>(<span class="ruby-identifier">env_file</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:guessed_project</span>]
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Couldn't find project at: #{project_path}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

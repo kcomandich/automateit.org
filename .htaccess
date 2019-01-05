@@ -1,0 +1,2 @@
+Options +FollowSymLinks -Indexes +MultiViews
+RedirectPermanent /tutorial "http://automateit.org/documentation/tutorial.html"

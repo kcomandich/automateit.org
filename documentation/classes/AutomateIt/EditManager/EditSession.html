@@ -1,0 +1,892 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: AutomateIt::EditManager::EditSession</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">AutomateIt::EditManager::EditSession</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/automateit/edit_manager_rb.html">
+                lib/automateit/edit_manager.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Common.html">
+                AutomateIt::Common
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2><a href="EditSession.html">EditSession</a></h2>
+<p>
+<a href="EditSession.html">EditSession</a> provides a way to <a
+href="EditSession.html#M000224">edit</a> files and strings.
+</p>
+<p>
+For example, here&#8216;s how to <a
+href="EditSession.html#M000224">edit</a> a string from the <a
+href="../Interpreter.html">Interpreter</a>:
+</p>
+<pre>
+  edit(:text =&gt; &quot;# hello&quot;) do
+    uncomment &quot;llo&quot;
+    append &quot;world&quot;
+  end
+  # =&gt; &quot;hello\nworld&quot;
+</pre>
+<p>
+The above example edits a text string containing &quot;# hello&quot;. The
+editing session uncomments the line containing &quot;llo&quot; and then
+appends a line with the word &quot;world&quot;. The edited result is
+returned, containing two lines: &quot;hello&quot; and &quot;world&quot;.
+</p>
+<p>
+The <a href="EditSession.html#M000224">edit</a> session only makes changes
+if they&#8216;re needed. In the above example, once the &quot;hello&quot;
+line is uncommented, the &quot;<a
+href="EditSession.html#M000231">uncomment</a>&quot; command won&#8216;t do
+anything. Similarly, once the word &quot;world&quot; has been appended, it
+won&#8216;t be appended again. So if you re-<a
+href="EditSession.html#M000224">edit</a> the resulting string, it
+won&#8216;t be changed because it&#8216;s already in the desired state.
+</p>
+<p>
+This approach simplifies editing because you only need to specify the
+commands that are needed to change the file, and the session will figure
+out which ones to run.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000237">_backup</a>&nbsp;&nbsp;
+      <a href="#M000238">_exists?</a>&nbsp;&nbsp;
+      <a href="#M000235">_read</a>&nbsp;&nbsp;
+      <a href="#M000239">_readable?</a>&nbsp;&nbsp;
+      <a href="#M000236">_write</a>&nbsp;&nbsp;
+      <a href="#M000226">append</a>&nbsp;&nbsp;
+      <a href="#M000230">comment</a>&nbsp;&nbsp;
+      <a href="#M000229">comment_style</a>&nbsp;&nbsp;
+      <a href="#M000227">contains?</a>&nbsp;&nbsp;
+      <a href="#M000228">delete</a>&nbsp;&nbsp;
+      <a href="#M000234">different?</a>&nbsp;&nbsp;
+      <a href="#M000224">edit</a>&nbsp;&nbsp;
+      <a href="#M000233">manipulate</a>&nbsp;&nbsp;
+      <a href="#M000223">new</a>&nbsp;&nbsp;
+      <a href="#M000225">prepend</a>&nbsp;&nbsp;
+      <a href="#M000232">replace</a>&nbsp;&nbsp;
+      <a href="#M000231">uncomment</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">comment_prefix</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Comment prefix, e.g., &quot;/*&quot;
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">comment_suffix</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Comment suffix, e.g., &quot;*/&quot;
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">contents</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Current contents of the editing buffer.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filename</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+File that was read for editing.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">original_contents</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Original contents of the editing buffer before any changes were made.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">params</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Hash of parameters to make available to the editing session.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000223" class="method-detail">
+        <a name="M000223"></a>
+
+        <div class="method-heading">
+          <a href="#M000223" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create an <a href="EditSession.html">EditSession</a>.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:interpreter &#8212; AutomateIt <a
+href="../Interpreter.html">Interpreter</a>, required. Will be automatically
+set if you use AutomateIt::Interpreter#edit.
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000223-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000223-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 70</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">add_method_missing_to</span>(<span class="ruby-keyword kw">self</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000226" class="method-detail">
+        <a name="M000226"></a>
+
+        <div class="method-heading">
+          <a href="#M000226" class="method-signature">
+          <span class="method-name">append</span><span class="method-args">(line, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Append <tt>line</tt> to the bottom of the buffer, but only if it&#8216;s
+not in this file already.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:unless &#8212; Look for this String or Regexp instead and don&#8216;t <a
+href="EditSession.html#M000226">append</a> if it matches.
+
+</li>
+</ul>
+<p>
+See example for <a href="EditSession.html#M000225">prepend</a>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000226-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000226-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 202</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:unless</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">query</span>))
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">contains?</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-ivar">@contents</span> = <span class="ruby-value str">&quot;%s\n%s\n&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">chomp</span>, <span class="ruby-identifier">line</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000230" class="method-detail">
+        <a name="M000230"></a>
+
+        <div class="method-heading">
+          <a href="#M000230" class="method-signature">
+          <span class="method-name">comment</span><span class="method-args">(line, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Comment out lines matching the String or Regexp <tt>query</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000230-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000230-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 235</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comment</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">line</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">query</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^(?!#{comment_prefix})([^\n]*%s[^\n]*)(\n*)&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">query</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">query</span>, <span class="ruby-value str">&quot;%s%s%s%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@comment_prefix</span>, <span class="ruby-identifier">$1</span>, <span class="ruby-ivar">@comment_suffix</span>, <span class="ruby-identifier">$2</span>])
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000229" class="method-detail">
+        <a name="M000229"></a>
+
+        <div class="method-heading">
+          <a href="#M000229" class="method-signature">
+          <span class="method-name">comment_style</span><span class="method-args">(prefix, suffix=&quot;&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specify the <a href="EditSession.html#M000230">comment</a> style&#8216;s
+<tt>prefix</tt> and <tt>suffix</tt>.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  # C style comments
+  comment_style &quot;/*&quot;, &quot;*/&quot;
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000229-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000229-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 229</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">comment_style</span>(<span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">suffix</span>=<span class="ruby-value str">&quot;&quot;</span>)
+    <span class="ruby-ivar">@comment_prefix</span> = <span class="ruby-identifier">prefix</span>
+    <span class="ruby-ivar">@comment_suffix</span> = <span class="ruby-identifier">suffix</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000227" class="method-detail">
+        <a name="M000227"></a>
+
+        <div class="method-heading">
+          <a href="#M000227" class="method-signature">
+          <span class="method-name">contains?</span><span class="method-args">(line)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does the buffer contain anything that matches the String or Regexp
+<tt>query</tt>?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000227-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000227-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 212</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">contains?</span>(<span class="ruby-identifier">line</span>)
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">line</span>)) <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-operator">!</span> <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">query</span>).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000228" class="method-detail">
+        <a name="M000228"></a>
+
+        <div class="method-heading">
+          <a href="#M000228" class="method-signature">
+          <span class="method-name">delete</span><span class="method-args">(line, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delete lines matching the String or Regexp <tt>query</tt>
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000228-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000228-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 218</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">line</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">query</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;^[^\n]*%s[^\n]*\n?&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">query</span>)
+    <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">query</span>, <span class="ruby-value str">&quot;&quot;</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000234" class="method-detail">
+        <a name="M000234"></a>
+
+        <div class="method-heading">
+          <a href="#M000234" class="method-signature">
+          <span class="method-name">different?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is the buffer currently different than its original contents?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000234-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000234-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 268</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">different?</span>
+    <span class="ruby-ivar">@contents</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@original_contents</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000224" class="method-detail">
+        <a name="M000224"></a>
+
+        <div class="method-heading">
+          <a href="#M000224" class="method-signature">
+          <span class="method-name">edit</span><span class="method-args">(*a, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Edit a file or string.
+</p>
+<p>
+Requires a filename argument or options hash &#8212; e.g.,. <tt><a
+href="EditSession.html#M000224">edit</a>(&quot;foo&quot;)</tt> and <tt><a
+href="EditSession.html#M000224">edit</a>(:file =&gt; &quot;foo&quot;)</tt>
+will both <a href="EditSession.html#M000224">edit</a> a file called
+<tt>foo</tt>.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:file &#8212; File to <a href="EditSession.html#M000224">edit</a>.
+
+</li>
+<li>:text &#8212; String to <a href="EditSession.html#M000224">edit</a>.
+
+</li>
+<li>:params &#8212; Hash to make available to editor session.
+
+</li>
+<li>:create &#8212; Create the file if it doesn&#8216;t exist? Defaults to
+false.
+
+</li>
+<li>:mode, :user, :group &#8212; Set permissions on generated file, see
+ShellManager#chperm
+
+</li>
+<li>:backup &#8212; Make a backup of original file? Defaults to true.
+
+</li>
+</ul>
+<p>
+Edit a string:
+</p>
+<pre>
+  edit(:text =&gt; &quot;foo&quot;) do
+    replace &quot;o&quot;, &quot;@&quot;
+  end
+  # =&gt; &quot;f@@&quot;
+</pre>
+<p>
+Edit a file and pass parameters to the editing session:
+</p>
+<pre>
+  edit(:file =&gt; &quot;myfile&quot;, :params =&gt; {:greet =&gt; &quot;world&quot;} do
+    prepend &quot;MyHeader&quot;
+    append &quot;Hello &quot;+params[:greet]
+  end
+</pre>
+<p>
+Edit a file, create it and set permissions if necessary:
+</p>
+<pre>
+  edit(&quot;/tmp/foo&quot;, :create =&gt; true, :mode =&gt; 0600, :user =&gt; :root) do
+    prepend &quot;Hello world!&quot;
+  end
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000224-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000224-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 108</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">edit</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;no file or text specified for editing&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:file</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:text</span>]
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:file</span>]
+      <span class="ruby-ivar">@contents</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:text</span>]
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:params</span>] <span class="ruby-operator">||</span> {}
+    <span class="ruby-ivar">@is_backup</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>]
+    <span class="ruby-ivar">@comment_prefix</span> = <span class="ruby-value str">&quot;# &quot;</span>
+    <span class="ruby-ivar">@comment_suffix</span> = <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@contents</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">_read</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:create</span>]
+        <span class="ruby-ivar">@contents</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-ivar">@original_contents</span> = <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">clone</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;no block given&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>
+    <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@filename</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">different?</span>
+        <span class="ruby-identifier">_backup</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@is_backup</span>
+        <span class="ruby-identifier">_write</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">chperm_opts</span> = {}
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">in</span> [<span class="ruby-identifier">:owner</span>, <span class="ruby-identifier">:user</span>, <span class="ruby-identifier">:group</span>, <span class="ruby-identifier">:mode</span>]
+        <span class="ruby-identifier">chperm_opts</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">key</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">key</span>]
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">chperm</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-identifier">chperm_opts</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">chperm_opts</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">different?</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">contents</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000233" class="method-detail">
+        <a name="M000233"></a>
+
+        <div class="method-heading">
+          <a href="#M000233" class="method-signature">
+          <span class="method-name">manipulate</span><span class="method-args">() {|buffer| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Manipulate the buffer. The result of your block will <a
+href="EditSession.html#M000232">replace</a> the buffer. This is very useful
+for complex edits.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  manipulate do |buffer|
+    buffer.gsub(/foo/, &quot;bar&quot;)
+  end
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000233-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000233-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 263</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">manipulate</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: buffer</span>
+    <span class="ruby-ivar">@contents</span> = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-ivar">@contents</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000225" class="method-detail">
+        <a name="M000225"></a>
+
+        <div class="method-heading">
+          <a href="#M000225" class="method-signature">
+          <span class="method-name">prepend</span><span class="method-args">(line, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepend <tt>line</tt> to the top of the buffer, but only if it&#8216;s not
+in this file already.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li>:unless &#8212; Look for this String or Regexp instead and don&#8216;t <a
+href="EditSession.html#M000225">prepend</a> if it matches.
+
+</li>
+</ul>
+<p>
+Example:
+</p>
+<pre>
+  # Buffer's contents are 'add    this line'
+
+  # This will prepend a line because they're not identical.
+  prepend(&quot;add this line&quot;)
+
+  # Won't prepend line because Regexp matches exisint line in buffer.
+  prepend(&quot;add this line&quot;, :unless =&gt; /add\s*this\*line/)
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000225-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000225-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 185</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepend</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:unless</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">query</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+      <span class="ruby-identifier">query</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">query</span>))
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">contains?</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-ivar">@contents</span> = <span class="ruby-value str">&quot;%s\n%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>, <span class="ruby-ivar">@contents</span>]
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000232" class="method-detail">
+        <a name="M000232"></a>
+
+        <div class="method-heading">
+          <a href="#M000232" class="method-signature">
+          <span class="method-name">replace</span><span class="method-args">(line, string, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replace contents matching the String or Regexp <tt>query</tt> with the
+<tt>string</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000232-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000232-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 251</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">replace</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">string</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">line</span>)) <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">query</span>, <span class="ruby-identifier">string</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000231" class="method-detail">
+        <a name="M000231"></a>
+
+        <div class="method-heading">
+          <a href="#M000231" class="method-signature">
+          <span class="method-name">uncomment</span><span class="method-args">(line, opts={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Uncomment lines matching the String or Regexp <tt>query</tt>.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000231-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000231-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 243</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uncomment</span>(<span class="ruby-identifier">line</span>, <span class="ruby-identifier">opts</span>={})
+    <span class="ruby-identifier">query</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">line</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">line</span>
+    <span class="ruby-identifier">query</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;^(%s)([^\n]*%s[^\n]*)(%s)(\n*)&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@comment_prefix</span>, <span class="ruby-identifier">query</span>, <span class="ruby-ivar">@comment_suffix</span>])
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">query</span>)
+    <span class="ruby-ivar">@contents</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-identifier">query</span>, <span class="ruby-value str">&quot;%s%s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$4</span>])
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M000237" class="method-detail">
+        <a name="M000237"></a>
+
+        <div class="method-heading">
+          <a href="#M000237" class="method-signature">
+          <span class="method-name">_backup</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Backup the original file.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000237-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000237-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 301</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_backup</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@filename</span> <span class="ruby-keyword kw">and</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-ivar">@filename</span>)
+    <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">silence</span>(<span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">WARN</span>) <span class="ruby-keyword kw">do</span>
+      <span class="ruby-identifier">result</span> = <span class="ruby-identifier">backup</span>(<span class="ruby-ivar">@filename</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Saved '#{@filename}' to '#{result}'&quot;</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000238" class="method-detail">
+        <a name="M000238"></a>
+
+        <div class="method-heading">
+          <a href="#M000238" class="method-signature">
+          <span class="method-name">_exists?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does the file exist?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000238-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000238-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 311</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_exists?</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-ivar">@filename</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000235" class="method-detail">
+        <a name="M000235"></a>
+
+        <div class="method-heading">
+          <a href="#M000235" class="method-signature">
+          <span class="method-name">_read</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Read contents from filename. Called by the <a
+href="EditSession.html#M000224">edit</a> command to load text into the
+buffer.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000235-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000235-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 276</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_read</span>
+    <span class="ruby-ivar">@contents</span> = \
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">writing?</span> <span class="ruby-keyword kw">or</span> (<span class="ruby-identifier">preview?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@filename</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">_exists?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">_readable?</span>)
+        <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-ivar">@filename</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">preview?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">_readable?</span>
+        <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Not allowed to read file, previewing edits as if it doesn't exist: #{@filename}&quot;</span>)
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000239" class="method-detail">
+        <a name="M000239"></a>
+
+        <div class="method-heading">
+          <a href="#M000239" class="method-signature">
+          <span class="method-name">_readable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is the file readable?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000239-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000239-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 316</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_readable?</span>
+    <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">readable?</span>(<span class="ruby-ivar">@filename</span>)
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000236" class="method-detail">
+        <a name="M000236"></a>
+
+        <div class="method-heading">
+          <a href="#M000236" class="method-signature">
+          <span class="method-name">_write</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Write contents to filename. Used by the <a
+href="EditSession.html#M000224">edit</a> command to write the buffer to a
+file.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000236-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000236-source">
+<pre>
+<span class="ruby-comment cmt"># File lib/automateit/edit_manager.rb, line 290</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_write</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@filename</span>
+    <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Edited '#{@filename}'&quot;</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">preview?</span>
+      <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@filename</span>, <span class="ruby-value str">&quot;w+&quot;</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">writer</span><span class="ruby-operator">|</span> <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@contents</span>)}
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

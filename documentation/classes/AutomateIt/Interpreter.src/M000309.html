@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>add_method_missing_to (AutomateIt::Interpreter)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/interpreter.rb, line 598</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_method_missing_to</span>(<span class="ruby-identifier">object</span>)
+      <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@__automateit</span>, <span class="ruby-keyword kw">self</span>)
+      <span class="ruby-identifier">chain</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:method_missing</span>)
+
+      <span class="ruby-comment cmt"># XXX The solution below is evil and ugly, but I don't know how else to solve this. The problem is that I want to *only* alter the +object+ instance, and NOT its class. Unfortunately, #alias_method and #alias_method_chain only operate on classes, not instances, which makes them useless for this task.</span>
+
+      <span class="ruby-identifier">template</span> = <span class="ruby-value str">&quot;def method_missing&lt;%=chain ? '_with_automateit' : ''%&gt;(method, *args, &amp;block)\n### puts \&quot;mm+a(%s, %s)\&quot; % [method, args.inspect]\nif @__automateit.respond_to?(method)\n@__automateit.send(method, *args, &amp;block)\nelse\n&lt;%-if chain-%&gt;\nmethod_missing_without_automateit(method, *args, &amp;block)\n&lt;%-else-%&gt;\nsuper\n&lt;%-end-%&gt;\nend\nend\n&lt;%-if chain-%&gt;\n@__method_missing_without_automateit = self.method(:method_missing)\n\ndef method_missing_without_automateit(*args)\n### puts \&quot;mm-a %s\&quot; % args.inspect\n@__method_missing_without_automateit.call(*args)\nend\n\ndef method_missing(*args)\n### puts \&quot;mm %s\&quot; % args.inspect\nmethod_missing_with_automateit(*args)\nend\n&lt;%-end-%&gt;\n&quot;</span>
+
+      <span class="ruby-identifier">text</span> = <span class="ruby-operator">::</span><span class="ruby-constant">HelpfulERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">template</span>).<span class="ruby-identifier">result</span>(<span class="ruby-identifier">binding</span>)
+      <span class="ruby-identifier">object</span>.<span class="ruby-identifier">instance_eval</span>(<span class="ruby-identifier">text</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

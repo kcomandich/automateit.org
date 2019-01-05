@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>_render_helper (AutomateIt::TemplateManager::BaseDriver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/automateit/template_manager/base.rb, line 86</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_render_helper</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt"># :yields: block_opts</span>
+    <span class="ruby-identifier">args</span>, <span class="ruby-identifier">opts</span> = <span class="ruby-identifier">args_and_opts</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">options</span>)
+    <span class="ruby-identifier">source_filename</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:file</span>]
+    <span class="ruby-identifier">target_filename</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:to</span>]
+    <span class="ruby-identifier">source_text</span> = <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:text</span>]
+    <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>].<span class="ruby-identifier">nil?</span>
+
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;No source specified with :file or :text&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">source_filename</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">source_text</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">ENOENT</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source_filename</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">writing?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">source_filename</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">_exists?</span>(<span class="ruby-identifier">source_filename</span>)
+
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-comment cmt"># source_filename, target_filename, opts={}</span>
+      <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:check</span>] <span class="ruby-operator">||=</span> <span class="ruby-ivar">@default_check</span>
+      <span class="ruby-identifier">target_exists</span> = <span class="ruby-identifier">target_filename</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">_exists?</span>(<span class="ruby-identifier">target_filename</span>)
+      <span class="ruby-identifier">updates</span> = []
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_filename</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:force</span>]
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:check</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:exists</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_exists</span>
+              <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering for '#{target_filename}' skipped because it already exists&quot;</span>)
+              <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering '#{target_filename}' because of it doesn't exist&quot;</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:timestamp</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_exists</span>
+              <span class="ruby-identifier">updates</span> = <span class="ruby-identifier">_newer</span>(<span class="ruby-identifier">target_filename</span>, \
+                  <span class="ruby-operator">*</span>[<span class="ruby-identifier">source_filename</span>, <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:dependencies</span>]].<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">nil?</span>}.<span class="ruby-identifier">flatten</span>)
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">updates</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering for '#{target_filename}' skipped because dependencies haven't been updated&quot;</span>)
+                <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">target_contents</span> = <span class="ruby-identifier">target_exists</span> <span class="ruby-value">? </span><span class="ruby-identifier">_read</span>(<span class="ruby-identifier">target_filename</span>) <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">source_text</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">_read</span>(<span class="ruby-identifier">source_filename</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source_text</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">preview?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">binder</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:locals</span>]
+        <span class="ruby-comment cmt"># Create a binding that the template can get variables from without</span>
+        <span class="ruby-comment cmt"># polluting the Driver's namespace.</span>
+        <span class="ruby-identifier">callback</span> = <span class="ruby-identifier">lambda</span>{
+          <span class="ruby-identifier">code</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">key</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:locals</span>].<span class="ruby-identifier">keys</span>
+            <span class="ruby-identifier">code</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{key} = opts[:locals][:#{key}]\n&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">eval</span> <span class="ruby-identifier">code</span>
+          <span class="ruby-identifier">binding</span>
+        }
+        <span class="ruby-identifier">binder</span> = <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">call</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">block_opts</span> = {
+        <span class="ruby-identifier">:binder</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">binder</span>,
+        <span class="ruby-identifier">:filename</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_filename</span>,
+        <span class="ruby-identifier">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">source_text</span>,
+        <span class="ruby-identifier">:locals</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:locals</span>],
+        <span class="ruby-identifier">:opts</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>,
+      }
+      <span class="ruby-identifier">output</span> = <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">block_opts</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_filename</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:check</span>]
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:compare</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">target_exists</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering '#{target_filename}' because of it doesn't exist&quot;</span>)
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">output</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">target_contents</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">debug</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering for '#{target_filename}' skipped because contents are the same&quot;</span>)
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering '#{target_filename}' because its contents changed&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:timestamp</span>
+          <span class="ruby-identifier">log</span>.<span class="ruby-identifier">info</span>(<span class="ruby-constant">PNOTE</span><span class="ruby-operator">+</span><span class="ruby-node">&quot;Rendering '#{target_filename}' because of updated: #{updates.join(' ')}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">_backup</span>(<span class="ruby-identifier">target_filename</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target_exists</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:backup</span>]
+
+      <span class="ruby-keyword kw">return</span>(<span class="ruby-identifier">target_filename</span> <span class="ruby-value">? </span><span class="ruby-identifier">_write</span>(<span class="ruby-identifier">target_filename</span>, <span class="ruby-identifier">output</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">output</span>)
+    <span class="ruby-keyword kw">ensure</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mode</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:user</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:group</span>]
+        <span class="ruby-identifier">interpreter</span>.<span class="ruby-identifier">chperm</span>(<span class="ruby-identifier">target_filename</span>, <span class="ruby-identifier">:mode</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:mode</span>], <span class="ruby-identifier">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:user</span>], <span class="ruby-identifier">:group</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">opts</span>[<span class="ruby-identifier">:group</span>])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

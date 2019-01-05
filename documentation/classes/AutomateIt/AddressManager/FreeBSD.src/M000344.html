@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title>_freebsd_ifconfig_helper (AutomateIt::AddressManager::FreeBSD)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+.ruby-comment    { color: green; font-style: italic }
+.ruby-constant   { color: #4433aa; font-weight: bold; }
+.ruby-identifier { color: #222222;  }
+.ruby-ivar       { color: #2233dd; }
+.ruby-keyword    { color: #3333FF; font-weight: bold }
+.ruby-node       { color: #777777; }
+.ruby-operator   { color: #111111;  }
+.ruby-regexp     { color: #662222; }
+.ruby-value      { color: #662222; font-style: italic }
+  .kw { color: #3333FF; font-weight: bold }
+  .cmt { color: green; font-style: italic }
+  .str { color: #662222; font-style: italic }
+  .re  { color: #662222; }
+</style>
+</head>
+<body bgcolor="white">
+<pre><span class="ruby-comment cmt"># File lib/automateit/address_manager/freebsd.rb, line 43</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_freebsd_ifconfig_helper</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">opts</span>)    
+    <span class="ruby-identifier">helper_opts</span> = {<span class="ruby-identifier">:state</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:prepend</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">%w(inet)</span>}
+    <span class="ruby-identifier">opts2</span> = <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">clone</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">opts2</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:label</span>)
+      <span class="ruby-identifier">helper_opts</span>[<span class="ruby-identifier">:append</span>] = \
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">action</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:add</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(alias)</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:remove</span>, <span class="ruby-identifier">:del</span><span class="ruby-operator">:</span> <span class="ruby-node">%w(-alias)</span>
+        <span class="ruby-keyword kw">else</span> <span class="ruby-constant">ArgumentError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Unknown action: #{action}&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">_ifconfig_helper</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">opts2</span>, <span class="ruby-identifier">helper_opts</span>)
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

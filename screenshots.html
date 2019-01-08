@@ -38,7 +38,7 @@
                   <li>&nbsp;</li>
                   <!-- / %li Use -->
                   <li><a href="screenshots">Screenshots</a></li>
-                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation/tutorial">Tutorial</a></li>
                   <li><a href="documentation">Documentation</a></li>
                   <li><a href="compatibility">Compatibility</a></li>
                   <li><a href="download">Download</a></li>
@@ -57,7 +57,7 @@
                   <h1>AutomateIt screenshots</h1>
                   <p><strong>AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.</strong></p>
                   <p>The screenshots below will show how to use AutomateIt to setup a Ruby on Rails application server on Linux. AutomateIt can also be used to fully automate entire systems and works well with a variety of OSes, frameworks and tools.</p>
-                  <p>The code in these screens is self-documenting and the accompanying text is deliberately brief. Please read the <a href="tutorial">Tutorial</a> for further information.</p>
+                  <p>The code in these screens is self-documenting and the accompanying text is deliberately brief. Please read the <a href="documentation/tutorial">Tutorial</a> for further information.</p>
                   <p>You will need to <a href="download">install</a> AutomateIt to run these examples.</p>
                   <h2>Let&#8217;s see some code!</h2>
                   <h3>Project</h3>
@@ -97,7 +97,7 @@
                   <p>AutomateIt can be easily embedded into other programs. For example, put the following <code>Rakefile</code> into the <code>demo</code> project directory. You will now be able to execute Rake tasks like <code>rake preview install</code>, which will run the equivalent of <code>automateit --preview recipes/install.rb</code>.</p>
                   <pre><span style="background-color: #103040"><font color="#a2b5cd">require</font></span> <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">automateit</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;&#x000A;<font color="#9a94c8"># Create an Interpreter for project in current directory.</font>&#x000A;<font color="#8db6cd">@interpreter</font> = <font color="#8db6cd">AutomateIt</font>.new(<font color="#8db6cd">:project</font> =&gt; <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">.</font></span><font color="#66cdaa"><b>&quot;</b></font>)&#x000A;&#x000A;<font color="#9a94c8"># Include Interpreter's 'invoke' and 'preview' methods into Rake.</font>&#x000A;<font color="#8db6cd">@interpreter</font>.include_in(<span style="background-color: #103040"><font color="#00cdcd">self</font></span>, <font color="#66cdaa"><b>%w(</b></font><span style="background-color: #103040"><font color="#00e5ee">invoke preview</font></span><font color="#66cdaa"><b>)</b></font>)&#x000A;&#x000A;desc <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">Install myapp server</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;task <font color="#8db6cd">:install</font> <font color="#90ee90">do</font>&#x000A;  <font color="#9a94c8"># The 'invoke' method was created by the 'include_in' call earlier,</font>&#x000A;  <font color="#9a94c8"># as a convenient shortcut for: @interpreter.invoke(&quot;install&quot;)</font>&#x000A;  invoke <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">install</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;<font color="#90ee90">end</font>&#x000A;&#x000A;desc <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">Uninstall myapp server</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;task <font color="#8db6cd">:uninstall</font> <font color="#90ee90">do</font>&#x000A;  invoke <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">uninstall</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;<font color="#90ee90">end</font>&#x000A;&#x000A;desc <font color="#66cdaa"><b>&quot;</b></font><span style="background-color: #103040"><font color="#00e5ee">Preview action, e.g, 'rake preview install'</font></span><font color="#66cdaa"><b>&quot;</b></font>&#x000A;task <font color="#8db6cd">:preview</font> <font color="#90ee90">do</font>&#x000A;  preview <span style="background-color: #103040"><font color="#00cdcd">true</font></span>&#x000A;<font color="#90ee90">end</font>&#x000A;</pre>&#x000A;&#x000A;
                   <h2>Learn more</h2>
-                  <p>AutomateIt can do much more than this simple example shows. For more information, see the hands-on <a href="tutorial">Tutorial</a> and reference <a href="documentation">Documentation</a>.</p>
+                  <p>AutomateIt can do much more than this simple example shows. For more information, see the hands-on <a href="documentation/tutorial">Tutorial</a> and reference <a href="documentation">Documentation</a>.</p>
                 </div>
               </div>
             </td>

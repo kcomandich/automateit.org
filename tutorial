@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>AutomateIt: Open source server automation</title>
+    <link href='http://yui.yahooapis.com/2.4.1/build/reset-fonts-grids/reset-fonts-grids.css' media='all' rel='stylesheet' type='text/css' />
+    <link href='stylesheets/application.css' media='all' rel='stylesheet' type='text/css' />
+    <!-- /= stylesheets -->
+    <meta http-equiv="Refresh" content="1; URL=https://automateit.org/documentation/tutorial.html"/>
+  </head>
+  <body>
+    <div id='everything'>
+      <div id='header'>
+        <table>
+          <tr>
+            <td>
+              <div class='logo'>
+                <a href='index.html'>
+                  <img alt='AutomateIt - Open source server automation' src='images/logo.png' />
+                </a>
+              </div>
+            </td>
+            <td align='middle'>
+              <!-- / .tagline -->
+              <!-- /  System Administration 2.0 -->
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='menu_and_page_content'>
+        <table>
+          <tr>
+            <td>
+              <div id='menu'>
+                <ul>
+                  <!-- / %li Learn -->
+                  <li><a href="index">Home</a></li>
+                  <li><a href="about">About</a></li>
+                  <li><a href="compare">Compare</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Use -->
+                  <li><a href="screenshots">Screenshots</a></li>
+                  <li><a href="tutorial">Tutorial</a></li>
+                  <li><a href="documentation">Documentation</a></li>
+                  <li><a href="compatibility">Compatibility</a></li>
+                  <li><a href="download">Download</a></li>
+                  <li>&nbsp;</li>
+                  <!-- / %li Connect -->
+                  <li><a href="http://groups.google.com/group/automateit">Community</a></li>
+                  <li><a href="contact">Contact</a></li>
+                  <li><a href="credits">Credits</a></li>
+                  <li><a href="changes">Changes</a></li>
+                </ul>
+              </div>
+            </td>
+            <td>
+              <div id='page_content'>
+                <h1>Open source server automation</h1>
+                <div class='showcase'>
+                  <p>
+                    <b>AutomateIt is an open source tool for automating the setup and maintenance of servers, applications and their dependencies.</b>
+                    It provides a surprisingly simple, yet powerful, way to manage files, packages, services, networks, accounts, roles, templates and more.
+                    AutomateIt's faster, more efficient systems management helps you run circles around competitors, deliver higher-quality service, and sleep better at night.
+                    <a href="screenshots">See AutomateIt in action...</a>
+                  </p>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div id='footer'>
+        <p>
+          Copyright &copy; 2007-2009 Igal Koshevoy. <a href="legal">Legal</a>.
+        </p>
+      </div>
+    </div>
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+    _uacct = "UA-2647440-1";
+    urchinTracker();
+    </script>
+  </body>
+</html>
